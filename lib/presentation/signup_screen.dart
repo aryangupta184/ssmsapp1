@@ -112,9 +112,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   color: Color(0xff0c0c0c),
 
                   image: DecorationImage (
+
+
                     fit: BoxFit.cover,
                     image: AssetImage (
-                      'assets/images/pattern-bg_.png',
+                      'assets/images/pattern-bg_3.png',
                     ),
                   ),
                 ),
