@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "779980475967",
+    "project_id": "ssmsapp1",
+    "storage_bucket": "ssmsapp1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779980475967:android:3ba7ed4622fa1fd578728a",
+        "android_client_info": {
+          "package_name": "gupta.aryan.com.ssmsapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779980475967-1si1rj6u54v2rh4ii7f5498b5t5be26k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiFPOyfSJ2FNfd-ACRRhEbY7OLrINKT7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779980475967-08htrveacbjfcghttm05qh8jv74f74ac.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "779980475967-76fkmi6scdcmq5aejvr8040psfjjm5qn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "gupta.aryan.com.ssmsapp1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
