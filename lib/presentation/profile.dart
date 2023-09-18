@@ -48,16 +48,24 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                QrImageView(
-                  data: getCurrentUsername(),
-                  size: 270,
-                  backgroundColor: Colors.white,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.deepPurpleAccent),
+                    borderRadius: BorderRadius.circular(16)
+                  ),
+                  padding: EdgeInsets.all(10),
+                  child: QrImageView(
+                    data: getCurrentUsername(),
+                    size: 270,
+                    backgroundColor: Colors.white,
+                  ),
                 ),
+
 
                 Container(
                   // autogroupcg2uiMf (HqNr5u9ATaSyCpGeFiCg2u)
                   width: 376*fem,
-                  height: 470*fem,
+                  height: 450*fem,
                   child: Stack(
                     children: [
 
@@ -105,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                                   width: 347*fem,
                                   height: 64*fem,
                                   decoration: BoxDecoration (
-                                    border: Border.all(color: Color(0xffd256ff),),
+                                    border: Border.all(color: Colors.deepPurpleAccent),
                                     color: Color(0xff252525),
                                     borderRadius: BorderRadius.circular(15*fem),
                                     boxShadow: [
@@ -172,7 +180,7 @@ class ProfileScreen extends StatelessWidget {
                           width: 347*fem,
                           height: 103*fem,
                           decoration: BoxDecoration (
-                            border: Border.all(color: Color(0xffd256ff),),
+                            border: Border.all(color: Colors.deepPurpleAccent),
                             color: Color(0xff252525),
                             borderRadius: BorderRadius.circular(15*fem),
                             boxShadow: [
@@ -243,9 +251,9 @@ class ProfileScreen extends StatelessWidget {
                                         style: SafeGoogleFont (
                                           'Inter',
                                           fontSize: 19*ffem,
-                                          color: Color(0xffd256ff),
+                                          color: Colors.deepPurpleAccent,
                                           fontWeight: FontWeight.w400,
-                                          height: 1.3102272435*ffem/fem,
+                                            height: 1*ffem/fem,
                                         ),
                                       ),
                                     ),
@@ -258,149 +266,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
 
-                      Positioned(
-                        // menubaro13 (0:557)
-                        left: 9*fem,
-                        top: 384*fem,
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(40.5*fem, 16*fem, 38*fem, 14*fem),
-                          width: 356*fem,
-                          height: 74*fem,
-                          decoration: BoxDecoration (
-                            color: Color(0xff252525),
-                            borderRadius: BorderRadius.circular(15*fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x7f010107),
-                                offset: Offset(0*fem, 0*fem),
-                                blurRadius: 25*fem,
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Opacity(
-                                // iconhomeeXT (0:559)
-                                opacity: 0.5,
-                                child: Container(
-                                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 31.5*fem, 2*fem),
-                                    width: 19*fem,
-                                    height: 20*fem,
-                                    child: InkWell(
-                                      onTap: (){
-                                        Navigator.of(context)
-                                            .pushReplacement(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HomeScreen(),
-                                            ));
-                                      },
-                                      child: Opacity(
-                                        opacity: 0.4,
-                                        child: Image.asset(
-                                          'assets/images/iconly-bulk-home.png',
-                                          width: 19*fem,
-                                          height: 20*fem,
-                                          color: Color(0xffd256ff),
-                                        ),
 
-                                      )
-
-                                    )
-
-                                ),
-                              ),
-                              Container(
-                                // iconprofileactivem6H (0:562)
-                                margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 31*fem, 0*fem),
-                                padding: EdgeInsets.fromLTRB(18*fem, 11*fem, 18*fem, 12*fem),
-                                height: double.infinity,
-                                decoration: BoxDecoration (
-                                  borderRadius: BorderRadius.circular(12*fem),
-                                    color: Colors.purpleAccent.withOpacity(0.1)
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 16.01*fem, 1*fem),
-                                        width: 15.99*fem,
-                                        height: 20*fem,
-                                        child: Image.asset(
-                                          'assets/images/icon-profile.png',
-                                          width: 15.99*fem,
-                                          height: 20*fem,
-                                          color: Color(0xffd256ff),
-                                        ),
-                                      ),
-
-                                    Container(
-                                      // profileUuo (0:568)
-                                      margin: EdgeInsets.fromLTRB(0*fem, 2*fem, 0*fem, 0*fem),
-                                      child: Text(
-                                        'Profile',
-                                        style: SafeGoogleFont (
-                                          'Inter',
-                                          fontSize: 12*ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.3102272352*ffem/fem,
-                                          color: Color(0xffffffff),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // iconbuywithreminderCau (0:569)
-                                margin: EdgeInsets.fromLTRB(0*fem, 7*fem, 45*fem, 12.9*fem),
-                                width: 26*fem,
-                                height: double.infinity,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      // iconbuyKvR (0:570)
-                                      left: 0*fem,
-                                      top: 4.4996643066*fem,
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 20.02*fem,
-                                          height: 19.6*fem,
-                                          child: Opacity(
-                                            opacity: 0.5,
-                                            child: Image.asset(
-                                              'assets/images/iconly-bulk-buy.png',
-                                              width: 20.02*fem,
-                                              height: 19.6*fem,
-                                              color: Color(0xffd256ff),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-
-
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // iconchatwitreminderSdf (0:580)
-                                margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 2.03*fem),
-                                width: 20*fem,
-                                height: 19.97*fem,
-                                child: Image.asset(
-                                  'assets/images/iconly-bulk-chat.png',
-                                  width: 20*fem,
-                                  height: 19.97*fem,color: Color(0xffd256ff),
-
-
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
 
                     ],
                   ),

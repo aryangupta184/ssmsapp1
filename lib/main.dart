@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ssmsapp1/presentation/home_screen.dart';
+import 'package:ssmsapp1/presentation/master.dart';
 import 'package:ssmsapp1/presentation/onboarding_screen.dart';
 import 'package:ssmsapp1/presentation/signup_screen.dart';
 import 'package:ssmsapp1/providers/user_provider.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.active) {
               // Checking if the snapshot has any data or not
               if (snapshot.hasData) {
-                return HomeScreen();
+                return MasterScreen();
 
               } else if (snapshot.hasError) {
                 return Center(

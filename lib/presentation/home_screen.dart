@@ -42,6 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   }
+  String date(newDate){
+    if (newDate.day==DateTime.now().day){
+      return "Today\'s";
+    }
+    else {
+      return newDate.day.toString()+"-"+newDate.month.toString();
+
+    }
+
+
+  }
   DateTime selectedDate = DateTime.now();
   DateTime newDate=DateTime.now();
 
@@ -65,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
              width: double.infinity,
              height: 812*fem,
              decoration: BoxDecoration (
-               color: Color(0xff0c0c0c),
+               color: Colors.black,
 
              ),
              child: Stack(
@@ -112,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            },
                            child: Icon(
                              Icons.logout,
-                             color: Color(0xffd256ff),
+                             color: Colors.deepPurpleAccent,
 
                            ),
 
@@ -141,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                      colorScheme: ColorScheme.light(
                                        primary: Color(0xffd256ff), // <-- SEE HERE
                                        onPrimary: Color(0xff6256bf), // <-- SEE HERE
-                                       onSurface: Colors.purpleAccent, // <-- SEE HERE
+                                       onSurface: Colors.deepPurpleAccent, // <-- SEE HERE
                                      ),
                                      textButtonTheme: TextButtonThemeData(
                                        style: TextButton.styleFrom(
@@ -169,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            'assets/images/icon-notification-calendar.png',
                            width: 45*fem,
                            height: 45*fem,
-                           color: Color(0xffd256ff),
+                           color: Colors.deepPurpleAccent,
                          ),
                        )
 
@@ -185,11 +196,12 @@ class _HomeScreenState extends State<HomeScreen> {
                        width: 110*fem,
                        height: 82*fem,
                        child: Text(
-                         newDate.day.toString()+"-"+newDate.month.toString()+
+                         date(newDate)+
+                         // newDate.day.toString()+"-"+newDate.month.toString()+
                          '\nMenu',
                          style: SafeGoogleFont (
                            'Inter',
-                           fontSize: 20*ffem,
+                           fontSize: 30*ffem,
                            fontWeight: FontWeight.w400,
                            height: 1.3102273018*ffem/fem,
                            color: Color(0xffffffff),
@@ -201,167 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-                 Positioned(
-                   // menubarcwT (0:9791)
-                   left: 10*fem,
-                   top: 700*fem,
-                   child: Container(
-                     padding: EdgeInsets.fromLTRB(20*fem, 15*fem, 40*fem, 15*fem),
-                     width: 355*fem,
-                     height: 74*fem,
-                     decoration: BoxDecoration (
-                       color: Color(0xff252525),
-                       borderRadius: BorderRadius.circular(15*fem),
-                       boxShadow: [
-                         BoxShadow(
-                           color: Color(0x7f010107),
-                           offset: Offset(0*fem, 0*fem),
-                           blurRadius: 25*fem,
-                         ),
-                       ],
-                     ),
-                     child: Row(
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       children: [
-                         Container(
-                           // iconhomeactiveUCy (0:9793)
-                           margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 46*fem, 0*fem),
-                           padding: EdgeInsets.fromLTRB(19.5*fem, 12*fem, 18*fem, 12*fem),
-                           height: double.infinity,
-                           decoration: BoxDecoration (
 
-                             borderRadius: BorderRadius.circular(12*fem),
-                             color: Colors.purpleAccent.withOpacity(0.1)
-
-                           ),
-                           child: Row(
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             children: [
-                               Opacity(opacity: 0.5,child: Container(
-                                 // iconlybulkhome6k9 (0:9795)
-                                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 14.5*fem, 0*fem),
-                                 width: 19*fem,
-                                 height: 20*fem,
-                                 child: Image.asset(
-                                   'assets/images/iconly-bulk-home.png',
-                                   width: 19*fem,
-                                   height: 20*fem,
-                                   color: Color(0xffd256ff),
-                                 ),
-                               ),),
-
-                               Container(
-                                 // homeciV (0:9798)
-                                 margin: EdgeInsets.fromLTRB(0*fem, 2*fem, 0*fem, 0*fem),
-                                 child: Text(
-                                   'Home',
-                                   style: SafeGoogleFont (
-                                     'Inter',
-                                     fontSize: 12*ffem,
-                                     fontWeight: FontWeight.w400,
-                                     height: 1.3102272352*ffem/fem,
-                                     color: Color(0xffffffff),
-                                   ),
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
-                         Opacity(
-                           // iconprofileimX (0:9806)
-                           opacity: 0.5,
-                           child: InkWell(
-                             onTap: () {
-                               Navigator.of(context)
-                                   .pushReplacement(
-                                   MaterialPageRoute(
-                                     builder: (context) =>
-                                         ProfileScreen(),
-                                   ));
-                             },
-                             child: Container(
-                                 margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 40*fem, 0*fem),
-                                 width: 15.99*fem,
-                                 height:30*fem,
-                                 child: Image.asset(
-                                     'assets/images/icon-profile.png',
-                                     width: 15.99*fem,
-                                     height: 20*fem,
-                                   color: Color(0xffd256ff),
-                                   ),
-
-
-                             ),
-                           )
-
-                         ),
-                         Container(
-                           // autogroupjymjpJm (HqPBPBKVp3kLJgwwsWjyMj)
-                           margin: EdgeInsets.fromLTRB(0*fem, 8*fem, 42*fem, 11.9*fem),
-                           width: 27*fem,
-                           height: double.infinity,
-                           child: Stack(
-                             children: [
-
-                               Positioned(
-                                 // iconcart3SR (0:9801)
-                                 left: 0*fem,
-                                 top: 0*fem,
-                                 child: Container(
-                                   width: 26*fem,
-                                   height: 24.1*fem,
-                                   child: Stack(
-                                     children: [
-                                       Positioned(
-                                         // iconlybulkbuyNzV (0:9802)
-                                         left: 0*fem,
-                                         top: 4.4996643066*fem,
-                                         child: Align(
-                                           child: SizedBox(
-                                             width: 20.02*fem,
-                                             height: 19.6*fem,
-                                             child: Opacity(
-                                               opacity: 0.5,
-                                               child: Image.asset(
-                                                 'assets/images/iconly-bulk-buy.png',
-                                                 width: 20.02*fem,
-                                                 height: 19.6*fem,
-                                                 color: Color(0xffd256ff),
-                                               ),
-                                             ),
-                                           ),
-                                         ),
-                                       ),
-
-                                     ],
-                                   ),
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
-                         Opacity(
-                           // iconlybulkchatpk1 (0:9799)
-                           opacity: 0.5,
-                           child: Container(
-
-                             margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0.03*fem),
-                             width: 20*fem,
-                             height: 19.97*fem,
-                             child: Image.asset(
-                               'assets/images/iconly-bulk-chat.png',
-                               width: 20*fem,
-                               height: 19.97*fem,
-                               color: Color(0xffd256ff),
-                             ),
-
-
-                           ),
-                         ),
-                       ],
-                     ),
-                   ),
-                 ),
                  Positioned(
                    // restaurant6iaV (0:9811)
                    left: 10*fem,
@@ -372,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      width: 170*fem,
                      height: 250*fem,
                      decoration: BoxDecoration (
-                       border: Border.all( color: Color(0xffd256ff),),
+                       border: Border.all( color:Colors.deepPurpleAccent),
                        color: Color(0x19ffffff),
                        borderRadius: BorderRadius.circular(15*fem),
                        boxShadow: [
@@ -392,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              fontSize: 28 *ffem,
                              fontWeight: FontWeight.w500,
                              height: 1.3102273305*ffem/fem,
-                             color: Color(0xffd256ff),
+                             color: Colors.deepPurpleAccent,
                            ),
                          ),
                          const SizedBox(height: 5,),
@@ -400,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[1][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
+                             fontSize: 13 *ffem,
                              fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
@@ -411,8 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[2][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -422,8 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[3][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -433,8 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[4][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -444,8 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[5][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -455,8 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[6][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -466,8 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[7][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -477,8 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[8][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -488,8 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                            _data[9][newDate.day-16],
                            style: SafeGoogleFont (
                              'Inter',
-                             fontSize: 15 *ffem,
-                             fontWeight: FontWeight.w400,
+                             fontSize: 13 *ffem,                             fontWeight: FontWeight.w400,
                              height: 1.3102273305*ffem/fem,
                              color: Color(0xffffffff),
                            ),
@@ -511,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      width: 170*fem,
                      height: 250*fem,
                      decoration: BoxDecoration (
-                       border: Border.all( color: Color(0xffd256ff),),
+                       border: Border.all( color: Colors.deepPurpleAccent),
                        color: Color(0x19ffffff),
                        borderRadius: BorderRadius.circular(15*fem),
                        boxShadow: [
@@ -531,7 +375,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                fontSize: 28 *ffem,
                                fontWeight: FontWeight.w500,
                                height: 1.3102273305*ffem/fem,
-                               color: Color(0xffd256ff),
+                               color: Colors.deepPurpleAccent,
                              ),
                            ),
                            const SizedBox(height: 8,),
@@ -539,8 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[12][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -550,8 +393,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[13][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -561,8 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[14][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -572,8 +413,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[15][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -583,8 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[16][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -594,8 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[17][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -605,8 +443,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[18][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -616,8 +453,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[19][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -638,7 +474,7 @@ class _HomeScreenState extends State<HomeScreen> {
                      width: 170*fem,
                      height: 250*fem,
                      decoration: BoxDecoration (
-                       border: Border.all( color: Color(0xffd256ff),),
+                       border: Border.all( color: Colors.deepPurpleAccent),
                        color: Color(0x19ffffff),
                        borderRadius: BorderRadius.circular(15*fem),
                        boxShadow: [
@@ -658,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                fontSize: 28 *ffem,
                                fontWeight: FontWeight.w500,
                                height: 1.3102273305*ffem/fem,
-                               color: Color(0xffd256ff),
+                               color: Colors.deepPurpleAccent,
                              ),
                            ),
                            const SizedBox(height: 8,),
@@ -666,8 +502,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[22][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -677,8 +512,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[23][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -688,8 +522,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[24][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -699,8 +532,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[25][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -710,8 +542,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[26][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -721,8 +552,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[27][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
@@ -732,8 +562,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              _data[28][newDate.day-16],
                              style: SafeGoogleFont (
                                'Inter',
-                               fontSize: 15 *ffem,
-                               fontWeight: FontWeight.w400,
+                               fontSize: 13 *ffem,                               fontWeight: FontWeight.w400,
                                height: 1.3102273305*ffem/fem,
                                color: Color(0xffffffff),
                              ),
