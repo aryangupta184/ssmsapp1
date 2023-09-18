@@ -311,7 +311,7 @@ class _CartScreenState extends State<CartScreen> {
                             alignment: Alignment.center,
 
                             child: Text(
-                              "             Place My Order",
+                              "Place My Order",
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.deepPurpleAccent),
