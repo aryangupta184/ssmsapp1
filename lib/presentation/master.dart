@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:ssmsapp1/presentation/cart.dart';
 import 'package:ssmsapp1/presentation/home_screen.dart';
 import 'package:ssmsapp1/presentation/profile.dart';
 import 'package:ssmsapp1/resources/menu.dart';
@@ -62,6 +63,7 @@ class _MasterScreenState extends State<MasterScreen> {
                });
               },
               tabs: [
+
                 GButton(
                   icon: Icons.home_filled,
                   iconColor: Colors.deepPurpleAccent,
@@ -77,6 +79,7 @@ class _MasterScreenState extends State<MasterScreen> {
                   iconColor: Colors.deepPurpleAccent,
                   text: 'Cart',
                 ),
+
                 GButton(
                   icon: Icons.fastfood,
                   iconColor: Colors.deepPurpleAccent,
@@ -91,6 +94,7 @@ class _MasterScreenState extends State<MasterScreen> {
     List<Widget> pages = [
       HomeScreen(),
       ProfileScreen(),
+      CartScreen(),
 
     ];
     return IndexedStack(
