@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ssmsapp1/presentation/home_screen.dart';
+import 'package:ssmsapp1/presentation/master.dart';
 import 'package:ssmsapp1/routes/app_routes.dart';
 import 'package:ssmsapp1/utils.dart';
 import 'package:ssmsapp1/resources/auth_methods.dart';
@@ -77,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if (context.mounted) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-              builder: (context) => HomeScreen()
+              builder: (context) => MasterScreen()
             ),
                 (route) => false);
 
