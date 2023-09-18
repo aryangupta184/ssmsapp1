@@ -49,7 +49,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
     await FirebaseServices().signInWithGoogle();
-    Navigator.of(context).pop();
+    // Navigator.of(context).pop();
+    Navigator.of(context)
+        .pushReplacement(
+        MaterialPageRoute(
+          builder: (context) =>
+              MasterScreen(),
+        ));
 
     if (!mounted) return 1;
 
@@ -296,16 +302,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // bitsmailtMw (0:7679)
                                   margin: EdgeInsets.fromLTRB(5*fem, 3*fem, 0*fem, 0*fem),
                                   child: InkWell(
-                                    onTap: () async {
-                                      await GoogleLogin(context);
-                                      Navigator.of(context)
-                                          .pushReplacement(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                             HomeScreen(),
-                                          ));
+                                    onTap: () {
+                                      GoogleLogin(context);
+
 
                                     },
+                                    // onTap: () async {
+                                    //   await GoogleLogin(context);
+                                    //   Navigator.of(context)
+                                    //       .pushReplacement(
+                                    //       MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //          MasterScreen(),
+                                    //       ));
+                                    //
+                                    // },
                                     child: Text(
                                       'BITS Mail',
                                       style: SafeGoogleFont (
