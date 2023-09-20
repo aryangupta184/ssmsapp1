@@ -12,6 +12,11 @@ import 'package:ssmsapp1/utils.dart';
 import 'package:ssmsapp1/resources/auth_methods.dart';
 import 'package:ssmsapp1/presentation/signup_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ssmsapp1/presentation/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ssmsapp1/utils.dart';
+import 'package:ssmsapp1/resources/auth_methods.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,6 +30,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   List<List<dynamic>> _data = [];
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
 
@@ -36,6 +42,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       _data = listData;
     });
 
+  }
+  getCurrentUsername(){
+    if (_auth.currentUser!.displayName!=null){
+      return _auth.currentUser!.displayName!.toString();
+
+    }
   }
 
   @override
@@ -286,13 +298,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ],
             ),
           ),
-          Container(width: double.infinity,
-            height: 20*fem,
-            decoration: BoxDecoration (
-              color: Colors.black,
-
-            ),
-          child: SizedBox(height: 20,),),
+          // Container(width: double.infinity,
+          //   height: 20*fem,
+          //   decoration: BoxDecoration (
+          //     color: Colors.black,
+          //
+          //   ),
+          // child: SizedBox(height: 20,),),
           Container(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             width: double.infinity,
@@ -672,6 +684,72 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
               ],
             ),),
+            Container(
+              decoration: BoxDecoration(
+
+                                color: Colors.black,
+              ),
+              padding: EdgeInsets.all(10),
+              height: 60,
+              width: double.infinity,
+
+
+              child: GestureDetector(
+                onTap: (){showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context){
+                      return Container(
+                        decoration: BoxDecoration(
+
+                          color: Colors.black,
+                        ),
+                        padding: EdgeInsets.all(10),
+
+
+
+                        height: 400,
+                        child: Center(
+                          child: Column(
+                            children: [
+                              QrImageView(
+                                data: getCurrentUsername(),
+                                size: 300,
+                                backgroundColor: Colors.white,
+                              ),
+                              SizedBox(height: 20,),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration (
+                                  border: Border.all( color: Colors.deepPurpleAccent),
+                                  color: Color(0x19ffffff),
+                                  borderRadius: BorderRadius.circular(15*fem),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0x115a6cea),
+                                      offset: Offset(12*fem, 26*fem),
+                                      blurRadius: 25*fem,
+                                    ),
+                                  ],
+                                ),
+                                child:GestureDetector(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.arrow_back_ios_new,color: Colors.deepPurpleAccent,) ,
+                                ),
+                              )
+
+                            ],
+                          )
+                          
+                        ),
+                      );
+                    }
+
+                );},
+                child: Icon(Icons.qr_code_2,size: 50,color: Colors.white,),
+              )
+            )
 
           ]
         ),
