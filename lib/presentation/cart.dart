@@ -24,7 +24,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 80,
+                  height: 50,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
@@ -110,7 +110,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Container(
                     child: Align(
@@ -122,7 +122,9 @@ class _CartScreenState extends State<CartScreen> {
                 )
 
 
+
                 ),
+
                 SizedBox(height: 30,),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
@@ -261,7 +263,7 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 60,),
+                SizedBox(height: 90,),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 50),
                   padding: EdgeInsets.all(15),

@@ -22,6 +22,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
+
   Future<int> GoogleLogin(BuildContext context, [bool mounted = true]) async {
     showDialog(
 
