@@ -43,6 +43,12 @@ class ProfileScreen extends StatelessWidget {
 
     }
   }
+  getProfileImage() {
+
+      return Image.network(_auth.currentUser!.photoURL.toString(),fit: BoxFit.cover,);
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,16 +74,14 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
+                  height: 270,
+                  width: 270,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.deepPurpleAccent),
                     borderRadius: BorderRadius.circular(16)
                   ),
                   padding: EdgeInsets.all(10),
-                  child: QrImageView(
-                    data: getCurrentUsername(),
-                    size: 270,
-                    backgroundColor: Colors.white,
-                  ),
+                  child: getProfileImage()
                 ),
 
 
@@ -351,3 +355,4 @@ class ProfileScreen extends StatelessWidget {
 
   }
 }
+
