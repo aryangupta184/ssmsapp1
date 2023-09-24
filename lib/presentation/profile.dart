@@ -7,6 +7,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ssmsapp1/utils.dart';
 import 'package:ssmsapp1/resources/auth_methods.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:intl/intl.dart';
+import 'package:ssmsapp1/presentation/profile.dart';
+import 'package:ssmsapp1/resources/menu.dart';
+import 'dart:ui';
+import 'package:csv/csv.dart';
+
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:ssmsapp1/utils.dart';
+
+import 'package:ssmsapp1/resources/auth_methods.dart';
+import 'package:ssmsapp1/presentation/signup_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ssmsapp1/presentation/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ssmsapp1/utils.dart';
+import 'package:ssmsapp1/resources/auth_methods.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
 
@@ -64,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
 
                 Container(
                   // autogroupcg2uiMf (HqNr5u9ATaSyCpGeFiCg2u)
-                  width: 376*fem,
+                  width: 400*fem,
                   height: 450*fem,
                   child: Stack(
                     children: [
@@ -74,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
                         left: 20*fem,
                         top: 50*fem,
                         child: Container(
-                          width: 243*fem,
+                          width: 400*fem,
                           height: 186*fem,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,30 +127,44 @@ class ProfileScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                  padding: EdgeInsets.fromLTRB(11*fem, 12*fem, 11*fem, 8*fem),
-                                  width: 347*fem,
-                                  height: 64*fem,
-                                  decoration: BoxDecoration (
-                                    border: Border.all(color: Colors.deepPurpleAccent),
-                                    color: Color(0xff252525),
-                                    borderRadius: BorderRadius.circular(15*fem),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0x7f010107),
-                                        offset: Offset(0*fem, 0*fem),
-                                        blurRadius: 25*fem,
-                                      ),
-                                    ],
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        // voucherosX (0:591)
-                                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 4*fem),
-                                        child: Text(
-                                          'ID',
+                              Row(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(11*fem, 12*fem, 11*fem, 8*fem),
+                                    width: 200*fem,
+                                    height: 64*fem,
+                                    decoration: BoxDecoration (
+                                      border: Border.all(color: Colors.deepPurpleAccent),
+                                      color: Color(0xff252525),
+                                      borderRadius: BorderRadius.circular(15*fem),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0x7f010107),
+                                          offset: Offset(0*fem, 0*fem),
+                                          blurRadius: 25*fem,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          // voucherosX (0:591)
+                                          margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 4*fem),
+                                          child: Text(
+                                            'ID',
+                                            style: SafeGoogleFont (
+                                              'Inter',
+                                              fontSize: 15*ffem,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.3102273305*ffem/fem,
+                                              color: Color(0xffffffff),
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          // voucherL6m (0:590)
+                                          'Bhawan and Room',
                                           style: SafeGoogleFont (
                                             'Inter',
                                             fontSize: 15*ffem,
@@ -140,26 +173,62 @@ class ProfileScreen extends StatelessWidget {
                                             color: Color(0xffffffff),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        // voucherL6m (0:590)
-                                        'Bhawan and Room',
-                                        style: SafeGoogleFont (
-                                          'Inter',
-                                          fontSize: 15*ffem,
-                                          fontWeight: FontWeight.w500,
-                                          height: 1.3102273305*ffem/fem,
-                                          color: Color(0xffffffff),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(width: 40,),
+                                  Container(
+                                    padding: EdgeInsets.fromLTRB(12, 8*fem, 11*fem, 8),
+                                    width: 45*fem,
+                                    height: 45*fem,
+                                    decoration: BoxDecoration (
+                                      border: Border.all(color: Colors.deepPurpleAccent),
+                                      color: Color(0xff252525),
+                                      borderRadius: BorderRadius.circular(15*fem),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0x7f010107),
+                                          offset: Offset(0*fem, 0*fem),
+                                          blurRadius: 25*fem,
+                                        ),
+                                      ],
+                                    ),
+                                    child:Align(
+                                      child: SizedBox(
+                                          width: 45*fem,
+                                          height: 45*fem,
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await FirebaseServices().signOut();
+                                              await AuthMethods().signOut();
+                                              Navigator.of(context)
+                                                  .pushReplacement(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                    const SignUpScreen(),
+                                                  ));
+                                            },
+                                            child: Icon(
+                                              Icons.logout,
+                                              color: Colors.deepPurpleAccent,
+
+                                            ),
+
+                                          )
+
+                                      ),
+                                    ),
+
+                                  ),
+
+                                ],
+                              ),
+
                               const SizedBox(height: 20,),
                               Text(
                                 // thismonthsorderswn9 (0:540)
                                 'This Month’s Orders',
-                                style: SafeGoogleFont (
+                                style:SafeGoogleFont (
                                   'Inter',
                                   fontSize: 15*ffem,
                                   fontWeight: FontWeight.w400,

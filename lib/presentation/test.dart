@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:intl/intl.dart';
-import 'package:ssmsapp1/presentation/profile.dart';
-import 'package:ssmsapp1/resources/menu.dart';
+
 import 'dart:ui';
 import 'package:csv/csv.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:local_auth/local_auth.dart';
+import 'package:ssmsapp1/resources/local_auth_service.dart';
 import 'package:ssmsapp1/utils.dart';
 
-import 'package:ssmsapp1/resources/auth_methods.dart';
-import 'package:ssmsapp1/presentation/signup_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ssmsapp1/presentation/home_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ssmsapp1/utils.dart';
-import 'package:ssmsapp1/resources/auth_methods.dart';
+
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +27,9 @@ class HomeScreen extends StatefulWidget {
 
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+  late final LocalAuthentication auth;
+
+  bool _supportState = false;
   List<List<dynamic>> _data = [];
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -43,6 +44,27 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     });
 
   }
+  int getinitialpage() {
+    var datetime = DateTime.now();
+    var timeString = DateFormat('HH').format(datetime);
+    var time = int.parse(timeString);
+    if (10<time && 16>time){
+      return 1;
+
+    }
+    else if (time>22 || time<10){
+      return 0;
+
+    }
+    else{
+      return 2;
+    }
+
+
+  }
+
+
+
   getCurrentUsername(){
     if (_auth.currentUser!.displayName!=null){
       return _auth.currentUser!.displayName!.toString();
@@ -50,10 +72,35 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     }
   }
 
+  Future<void> _authenticate() async {
+    try {
+      bool authenticated = await auth.authenticate(
+          localizedReason: 'Open QR',
+        options: AuthenticationOptions(
+          stickyAuth: true,
+          biometricOnly: true,
+        )
+      );
+    }  catch (e) {
+      print(e);
+
+    }
+
+
+
+  }
+
   @override
   void initState() {
+
     super.initState();
     _loadCSV();
+    auth = LocalAuthentication();
+    auth.isDeviceSupported().then((bool isSupported) => setState((){
+      _supportState=isSupported;
+
+    }));
+
 
 
 
@@ -87,10 +134,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       child: Column(
 
           children: [
+
             Container(
             // homepHX (0:9368)
             width: double.infinity,
-            height: 250*fem,
+            height: 275*fem,
             decoration: BoxDecoration (
               color: Colors.black,
 
@@ -121,37 +169,89 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Positioned(
                   // iconnotificationSiD (0:9765)
                   left: 300*fem,
-                  top: 40*fem,
-                  child: Align(
-                    child: SizedBox(
-                        width: 45*fem,
-                        height: 45*fem,
-                        child: InkWell(
-                          onTap: () async {
-                            await FirebaseServices().signOut();
-                            await AuthMethods().signOut();
-                            Navigator.of(context)
-                                .pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                  const SignUpScreen(),
-                                ));
-                          },
-                          child: Icon(
-                            Icons.logout,
-                            color: Colors.deepPurpleAccent,
+                  top: 60*fem,
+                  child: Container(
 
-                          ),
-
-                        )
-
+                    width: 45*fem,
+                    height: 45*fem,
+                    decoration: BoxDecoration (
+                      border: Border.all(color: Colors.deepPurpleAccent),
+                      color: Color(0xff252525),
+                      borderRadius: BorderRadius.circular(16*fem),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x7f010107),
+                          offset: Offset(0*fem, 0*fem),
+                          blurRadius: 25*fem,
+                        ),
+                      ],
                     ),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final isAuthenticated = await LocalAuthApi.authenticate();
+                        if(isAuthenticated)
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context){
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24),
+
+                                color: Colors.black87,
+                              ),
+
+
+
+
+                              height: 400,
+                              child: Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 30,),
+                                      QrImageView(
+                                        data: getCurrentUsername(),
+                                        size: 300,
+                                        backgroundColor: Colors.white,
+                                      ),
+                                      SizedBox(height: 20,),
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration (
+                                          border: Border.all( color: Colors.deepPurpleAccent),
+                                          color: Color(0x19ffffff),
+                                          borderRadius: BorderRadius.circular(15*fem),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color(0x115a6cea),
+                                              offset: Offset(12*fem, 26*fem),
+                                              blurRadius: 25*fem,
+                                            ),
+                                          ],
+                                        ),
+                                        child:GestureDetector(
+                                          onTap: (){
+                                            Navigator.pop(context);
+                                          },
+                                          child: Icon(Icons.arrow_back_ios_new,color: Colors.deepPurpleAccent,) ,
+                                        ),
+                                      )
+
+                                    ],
+                                  )
+
+                              ),
+                            );
+                          }
+
+                      );},
+                      child: Icon(Icons.qr_code_2,size: 30,color: Colors.white,),
+                    )
                   ),
                 ),
                 Positioned(
                   // iconnotificationxAm (0:9772)
                   left: 300*fem,
-                  top: 200*fem,
+                  top: 220*fem,
                   child: Align(
                     child: SizedBox(
 
@@ -206,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Positioned(
                   // tiiitletext3xu (0:9775)
                   left: 31*fem,
-                  top: 45*fem,
+                  top: 70*fem,
                   child: Align(
 
                     child: SizedBox(
@@ -227,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
                 Positioned(
                   left: 10*fem,
-                  top: 100*fem,
+                  top: 120*fem,
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 25),
                     padding: EdgeInsets.all(15),
@@ -240,9 +340,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         borderRadius: BorderRadius.circular(24)),
                     child: Row(
                         children: [
-                          SizedBox(
-                            width: 15,
-                          ),
+
                           Align(alignment: Alignment.center,child: Text('Rs. Cost',style: SafeGoogleFont (
                             'Inter',
                             fontSize: 24*ffem,
@@ -267,7 +365,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Positioned(
                   // tiiitletext3xu (0:9775)
                   left: 31*fem,
-                  top: 210*fem,
+                  top: 230*fem,
                   child: Align(
                     child: SizedBox(
                       width: 200*fem,
@@ -675,6 +773,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     height: 350.0,
                     enlargeCenterPage: true,
                     autoPlay: false,
+                    initialPage: getinitialpage(),
 
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: false,
@@ -684,72 +783,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 ),
               ],
             ),),
-            Container(
-              decoration: BoxDecoration(
-
-                                color: Colors.black,
-              ),
-              padding: EdgeInsets.all(10),
-              height: 60,
-              width: double.infinity,
-
-
-              child: GestureDetector(
-                onTap: (){showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context){
-                      return Container(
-                        decoration: BoxDecoration(
-
-                          color: Colors.black,
-                        ),
-                        padding: EdgeInsets.all(10),
-
-
-
-                        height: 400,
-                        child: Center(
-                          child: Column(
-                            children: [
-                              QrImageView(
-                                data: getCurrentUsername(),
-                                size: 300,
-                                backgroundColor: Colors.white,
-                              ),
-                              SizedBox(height: 20,),
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration (
-                                  border: Border.all( color: Colors.deepPurpleAccent),
-                                  color: Color(0x19ffffff),
-                                  borderRadius: BorderRadius.circular(15*fem),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0x115a6cea),
-                                      offset: Offset(12*fem, 26*fem),
-                                      blurRadius: 25*fem,
-                                    ),
-                                  ],
-                                ),
-                                child:GestureDetector(
-                                  onTap: (){
-                                    Navigator.pop(context);
-                                  },
-                                  child: Icon(Icons.arrow_back_ios_new,color: Colors.deepPurpleAccent,) ,
-                                ),
-                              )
-
-                            ],
-                          )
-                          
-                        ),
-                      );
-                    }
-
-                );},
-                child: Icon(Icons.qr_code_2,size: 50,color: Colors.white,),
-              )
-            )
 
           ]
         ),

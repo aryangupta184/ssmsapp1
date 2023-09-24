@@ -58,6 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               MasterScreen(),
         ));
 
+
     if (!mounted) return 1;
 
     else return 2;
@@ -402,27 +403,73 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 }
 class FirebaseServices {
-  final _auth = FirebaseAuth.instance;
-  final _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  signInWithGoogle() async {
+  final _googleSignIn = GoogleSignIn();
+  Future<bool> signInWithGoogle() async {
+    bool res = false;
+
     try {
-      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
-        final AuthCredential authCredential = GoogleAuthProvider.credential(
-            accessToken: googleSignInAuthentication.accessToken,
-            idToken: googleSignInAuthentication.idToken);
-        await _auth.signInWithCredential(authCredential);
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      UserCredential userCredential =
+      await _auth.signInWithCredential(credential);
+
+      User? user = userCredential.user;
+
+      if (user != null && isEmailAllowed("${user.email}")) {
+        if (userCredential.additionalUserInfo!.isNewUser) {
+          _firestore.collection('users').doc(user.uid).set({
+            'username': user.displayName,
+            'uid': user.uid,
+            'profilePhoto': user.photoURL,
+            'email': user.email,
+          });
+        }
+        res = true;
       }
     } on FirebaseAuthException catch (e) {
-      throw e;
+
+      res = false;
     }
+    return res;
   }
+  // signInWithGoogle() async {
+  //   try {
+  //     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  //     if (googleSignInAccount != null) {
+  //       final GoogleSignInAuthentication googleSignInAuthentication =
+  //       await googleSignInAccount.authentication;
+  //       final AuthCredential authCredential = GoogleAuthProvider.credential(
+  //           accessToken: googleSignInAuthentication.accessToken,
+  //           idToken: googleSignInAuthentication.idToken);
+  //       await _auth.signInWithCredential(authCredential);
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     throw e;
+  //   }
+  // }
 
   signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
   }
+
+  bool isEmailAllowed(String? email) {
+    // Check if the email ends with "@pilani.bits-pilani.ac.in"
+    if (email != null && email.toLowerCase().endsWith("@pilani.bits-pilani.ac.in")) {
+      return true;
+    }
+    return false;
+  }
 }
+
