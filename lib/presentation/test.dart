@@ -446,7 +446,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 20,),
                             Text(
-                              _data[1][newDate.day-16],
+                              _data[1][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,
@@ -457,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[2][newDate.day-16],
+                              _data[2][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -467,7 +467,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[3][newDate.day-16],
+                              _data[3][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -477,7 +477,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[4][newDate.day-16],
+                              _data[4][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -487,7 +487,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[5][newDate.day-16],
+                              _data[5][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -497,7 +497,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[6][newDate.day-16],
+                              _data[6][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -507,7 +507,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[7][newDate.day-16],
+                              _data[7][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -517,7 +517,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[8][newDate.day-16],
+                              _data[8][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -527,7 +527,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[9][newDate.day-16],
+                              _data[9][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
@@ -573,7 +573,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 20,),
                             Text(
-                              _data[12][newDate.day-16],
+                              _data[12][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -583,7 +583,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[13][newDate.day-16],
+                              _data[13][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -593,7 +593,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[14][newDate.day-16],
+                              _data[14][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -603,7 +603,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[15][newDate.day-16],
+                              _data[15][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -613,7 +613,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[16][newDate.day-16],
+                              _data[16][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -623,7 +623,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[17][newDate.day-16],
+                              _data[17][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -633,7 +633,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[18][newDate.day-16],
+                              _data[18][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -643,7 +643,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[19][newDate.day-16],
+                              _data[19][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -687,7 +687,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 20,),
                             Text(
-                              _data[22][newDate.day-16],
+                              _data[22][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -697,7 +697,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[23][newDate.day-16],
+                              _data[23][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -707,7 +707,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[24][newDate.day-16],
+                              _data[24][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -717,7 +717,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[25][newDate.day-16],
+                              _data[25][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -727,7 +727,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[26][newDate.day-16],
+                              _data[26][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -737,7 +737,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[27][newDate.day-16],
+                              _data[27][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
@@ -747,7 +747,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             ),
                             const SizedBox(height: 5,),
                             Text(
-                              _data[28][newDate.day-16],
+                              _data[28][newDate.day-1],
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
