@@ -4,6 +4,7 @@ import 'package:ssmsapp1/presentation/onboarding_screen.dart';
 import 'package:ssmsapp1/presentation/profile.dart';
 import 'package:ssmsapp1/presentation/signup_screen.dart';
 import 'package:ssmsapp1/presentation/test.dart';
+import 'package:ssmsapp1/presentation/test2.dart';
 
 
 class AppRoutes {

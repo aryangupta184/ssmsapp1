@@ -2,35 +2,45 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class MenuModel {
-  String data;
+  List<String> items;
 
-
-  MenuModel({
-    required this.data,
-  });
+  MenuModel({required this.items});
 
   factory MenuModel.fromMap(Map<String, dynamic> json) {
-    return MenuModel(
-      data: json['data'],
-    );
+    var itemsList = (json['data'] as List).cast<String>();
+    return MenuModel(items: itemsList);
   }
-
 }
 
 List<MenuModel> decodeMenu(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-  return parsed
-      .map<MenuModel>((json) => MenuModel.fromMap(json))
-      .toList();
+  final Map<String, dynamic> parsed = json.decode(responseBody);
+  final List<dynamic> dataLists = parsed['data'];
+
+  return dataLists.map<MenuModel>((json) => MenuModel.fromMap({'data': json})).toList();
 }
 
 Future<List<MenuModel>> fetchMenu() async {
-  final response = await http.get(
-      'https://script.google.com/macros/s/AKfycbwW2I-GjaEfhQRN44UMyV5CEtKUzw6KGqd3TRfdZK-M1ZyadzNCcqN4ZgF2JuQjrlol_Q/exec' as Uri);
+  String url = 'https://script.google.com/macros/s/AKfycbwuakl_p421f_uvq6uABzx1Q51fspxa_FFw2yUripQGs24hP4nca2vmcca4jDSi-vAMLA/exec';
+  Uri uri = Uri.parse(url);
+  final response = await http.get(uri);
   if (response.statusCode == 200) {
-    print(response.body);
     return decodeMenu(response.body);
   } else {
     throw Exception('Unable to fetch data from the REST API');
   }
+}
+
+List<List<String>> convertToRowwise(List<MenuModel> menuModels) {
+  List<List<String>> rowwise = [];
+
+  for (var model in menuModels) {
+    rowwise.add(model.items);
+  }
+
+  return rowwise;
+}
+
+Future<List<List<String>>> fetchRowwiseMenu() async {
+  List<MenuModel> menu = await fetchMenu();
+  return convertToRowwise(menu);
 }
