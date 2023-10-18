@@ -8,6 +8,7 @@ import 'package:ssmsapp1/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ssmsapp1/resources/menu_method.dart';
 
 
 import 'package:ssmsapp1/routes/app_routes.dart';
@@ -15,6 +16,7 @@ import 'package:ssmsapp1/routes/app_routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  fetchMenu();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MyApp()));
