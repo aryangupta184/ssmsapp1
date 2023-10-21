@@ -25,30 +25,24 @@ import 'package:google_fonts/google_fonts.dart';
 import '../resources/menu_method.dart';
 import '../resources/menu_method.dart';
 
-int current=0;
-
+int current = 0;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   late Future<List<List<String>>> futureMenu;
 
-
   late final LocalAuthentication auth;
-
 
   bool _supportState = false;
   List<List<dynamic>> _data = [];
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-
 
   // void _loadCSV() async {
   //   final rawData = await rootBundle.loadString("assets/menu.csv");
@@ -63,36 +57,26 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     var datetime = DateTime.now();
     var timeString = DateFormat('HH').format(datetime);
     var time = int.parse(timeString);
-    if (10<time && 16>time){
+    if (10 < time && 16 > time) {
       return 1;
-
-    }
-    else if (time>22 || time<10){
+    } else if (time > 22 || time < 10) {
       return 0;
-
-    }
-    else{
+    } else {
       return 2;
     }
-
   }
 
-  getHalf(){
-    if (newDate.day.toInt()>=16){
-      return -16+newDate.day.toInt();
+  getHalf() {
+    if (newDate.day.toInt() >= 16) {
+      return -16 + newDate.day.toInt();
+    } else {
+      return -1 + newDate.day.toInt();
     }
-    else {
-      return -1+newDate.day.toInt();
-    }
-
   }
 
-
-
-  getCurrentUsername(){
-    if (_auth.currentUser!.displayName!=null){
+  getCurrentUsername() {
+    if (_auth.currentUser!.displayName != null) {
       return _auth.currentUser!.displayName!.toString();
-
     }
   }
 
@@ -103,893 +87,839 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           options: AuthenticationOptions(
             stickyAuth: true,
             biometricOnly: true,
-          )
-      );
-    }  catch (e) {
+          ));
+    } catch (e) {
       print(e);
-
     }
-
-
-
   }
 
   @override
   void initState() {
-
     super.initState();
-    futureMenu=fetchRowwiseMenu();
-    current=getHalf();
-
-
-
+    futureMenu = fetchRowwiseMenu();
+    current = getHalf();
 
     auth = LocalAuthentication();
-    auth.isDeviceSupported().then((bool isSupported) => setState((){
-      _supportState=isSupported;
-
-    }));
-
+    auth.isDeviceSupported().then((bool isSupported) => setState(() {
+          _supportState = isSupported;
+        }));
   }
-  String date(newDate){
-    if (newDate.day==DateTime.now().day){
+
+  String date(newDate) {
+    if (newDate.day == DateTime.now().day) {
       return "Today\'s";
+    } else {
+      return newDate.day.toString() + "-" + newDate.month.toString();
     }
-    else {
-      return newDate.day.toString()+"-"+newDate.month.toString();
-
-    }
-
-
   }
+
   DateTime selectedDate = DateTime.now();
-  DateTime newDate=DateTime.now();
-
-
-
-
+  DateTime newDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
-
 
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Material(
-      color: Colors.black,
-      child: Column(
-
-          children: [
-
-            Container(
-              // homepHX (0:9368)
-              width: double.infinity,
-              height: 275*fem,
-              decoration: BoxDecoration (
-                color: Colors.black,
-
-              ),
-              child: Stack(
-                children: [
-
-                  Positioned(
-                    // patternk4h (0:9371)
-                      left: 0*fem,
-                      top: 0*fem,
-                      child: Opacity(
-                        opacity: 0.2,
-                        child: Align(
-                          child: SizedBox(
-                            width: 375*fem,
-                            height: 200*fem,
-                            child: Image.asset(
-                              'assets/images/pattern-bg2_.png',
-                              width: 375*fem,
-                              height: 812*fem,
-                            ),
-                          ),
-                        ),
-                      )
-
-                  ),
-                  Positioned(
-                    // iconnotificationSiD (0:9765)
-                    left: 300*fem,
-                    top: 60*fem,
-                    child: Container(
-
-                        width: 45*fem,
-                        height: 45*fem,
-                        decoration: BoxDecoration (
-                          border: Border.all(color: Colors.deepPurpleAccent),
-                          color: Color(0xff252525),
-                          borderRadius: BorderRadius.circular(16*fem),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x7f010107),
-                              offset: Offset(0*fem, 0*fem),
-                              blurRadius: 25*fem,
-                            ),
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () async {
-                            final isAuthenticated = await LocalAuthApi.authenticate();
-                            if(isAuthenticated)
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context){
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(24),
-
-                                        color: Colors.black87,
-                                      ),
-
-
-
-
-                                      height: 400,
-                                      child: Center(
-                                          child: Column(
-                                            children: [
-                                              SizedBox(height: 30,),
-                                              QrImageView(
-                                                data: getCurrentUsername(),
-                                                size: 300,
-                                                backgroundColor: Colors.white,
-                                              ),
-                                              SizedBox(height: 20,),
-                                              Container(
-                                                padding: EdgeInsets.all(10),
-                                                decoration: BoxDecoration (
-                                                  border: Border.all( color: Colors.deepPurpleAccent),
-                                                  color: Color(0x19ffffff),
-                                                  borderRadius: BorderRadius.circular(15*fem),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Color(0x115a6cea),
-                                                      offset: Offset(12*fem, 26*fem),
-                                                      blurRadius: 25*fem,
-                                                    ),
-                                                  ],
-                                                ),
-                                                child:GestureDetector(
-                                                  onTap: (){
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Icon(Icons.arrow_back_ios_new,color: Colors.deepPurpleAccent,) ,
-                                                ),
-                                              )
-
-                                            ],
-                                          )
-
-                                      ),
-                                    );
-                                  }
-
-                              );},
-                          child: Icon(Icons.qr_code_2,size: 30,color: Colors.white,),
-                        )
-                    ),
-                  ),
-                  Positioned(
-                    // iconnotificationxAm (0:9772)
-                    left: 300*fem,
-                    top: 220*fem,
+      color: Color(0xffFFEEDD),
+      child: Column(children: [
+        Container(
+          // homepHX (0:9368)
+          width: double.infinity,
+          height: 230 * fem,
+          decoration: BoxDecoration(
+            color: Color(0xffFFEEDD),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                  // patternk4h (0:9371)
+                  left: 0 * fem,
+                  top: 0 * fem,
+                  child: Opacity(
+                    opacity: 0.2,
                     child: Align(
                       child: SizedBox(
+                        width: 375 * fem,
+                        height: 200 * fem,
+                        child: Image.asset(
+                          'assets/images/pattern-bg_2.png',
+                          fit: BoxFit.cover,
+                          width: 375 * fem,
+                          height: 812 * fem,
+                        ),
+                      ),
+                    ),
+                  )),
 
-                          width: 45*fem,
-                          height: 45*fem,
-                          child: InkWell(
-                            onTap: () async {
-                              DateTime? dateTime = await showDatePicker(
-                                  context: context, initialDate: selectedDate,
-                                  firstDate: DateTime(2020), lastDate: DateTime(2028),
-                                  builder: (context, child) {
-                                    return Theme(
-                                      data: Theme.of(context).copyWith(
-                                        colorScheme: ColorScheme.light(
-                                          primary: Color(0xff6256bf), // <-- SEE HERE
-                                          onPrimary: Color(0xffd256ff), // <-- SEE HERE
-                                          onSurface: Colors.deepPurpleAccent, // <-- SEE HERE
-                                        ),
-                                        textButtonTheme: TextButtonThemeData(
-                                          style: TextButton.styleFrom(
-                                            primary: Color(0xff6256bf), // button text color
-                                          ),
-                                        ),
+              Positioned(
+                // iconnotificationxAm (0:9772)
+                left: 285 * fem,
+                top: 180 * fem,
+                child: Align(
+                  child: SizedBox(
+                      width: 45 * fem,
+                      height: 45 * fem,
+                      child: InkWell(
+                        onTap: () async {
+                          DateTime? dateTime = await showDatePicker(
+                              context: context,
+                              initialDate: selectedDate,
+                              firstDate: DateTime(2020),
+                              lastDate: DateTime(2028),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: Theme.of(context).copyWith(
+                                    colorScheme: ColorScheme.light(
+                                      primary:
+                                          Colors.white, // <-- SEE HERE
+                                      onPrimary:
+                                          Color((0xffDA6317)), // <-- SEE HERE
+                                      onSurface: Color(0xffDA6317), // <-- SEE HERE
+                                    ),
+                                    textButtonTheme: TextButtonThemeData(
+                                      style: TextButton.styleFrom(
+                                        primary: Color(
+                                            0xffDA6317), // button text color
                                       ),
-                                      child: child!,
-                                    );
-                                  }
-
-
-                              );
-                              selectedDate=dateTime!;
-                              newDate=dateTime!;
-
-                              setState(() {
-                                current=getHalf();
-
+                                    ),
+                                  ),
+                                  child: child!,
+                                );
                               });
+                          selectedDate = dateTime!;
+                          newDate = dateTime!;
 
+                          setState(() {
+                            current = getHalf();
+                          });
+                        },
+                        child: Container(
+                          width: 45 * fem,
+                          height: 45 * fem,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffDA6317)),
+                            color: Color(0x10634831),
+                            borderRadius: BorderRadius.circular(16 * fem),
 
-
-
-                            },
-                            child: Image.asset(
-                              'assets/images/icon-notification-calendar.png',
-                              width: 45*fem,
-                              height: 45*fem,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                          )
-
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    // tiiitletext3xu (0:9775)
-                    left: 31*fem,
-                    top: 70*fem,
-                    child: Align(
-
-                      child: SizedBox(
-                        width: 200*fem,
-                        height: 82*fem,
-                        child: Text(
-                          'Your Expenses',
-                          style: SafeGoogleFont (
-                            'Inter',
-                            fontSize: 24*ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.3102273018*ffem/fem,
-                            color: Color(0xffffffff),
                           ),
-                        ),
+                          child: Image.asset(
+                            'assets/images/icon-notification-calendar.png',
+                            width: 45 * fem,
+                            height: 45 * fem,
+                            color: Color(0xffDA6317),
+                          ),
+                        )
+
+                      )),
+                ),
+              ),
+              Positioned(
+                // tiiitletext3xu (0:9775)
+                left: 31 * fem,
+                top: 70 * fem,
+                child: Align(
+                  child: SizedBox(
+                    width: 200 * fem,
+                    height: 82 * fem,
+                    child: Text(
+                      'This Month\'s \n Expenses',
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 24 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.3102273018 * ffem / fem,
+                        color: Color(0xff634831),
                       ),
                     ),
                   ),
-                  Positioned(
-                    left: 10*fem,
-                    top: 120*fem,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 25),
-                      padding: EdgeInsets.all(15),
-                      height: 80,
+                ),
+              ),
+              Positioned(
+                left: 245 * fem,
+                top: 35 * fem,
+                child: Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
 
-
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 7, color: Color(0xffDA6317))
+                  ),
+                  child:
+                  Center(child:
+                  Text("Rs.1440",
+                      style:TextStyle(
+                          color:Color(0xff634831),
+                          fontWeight:FontWeight.bold,
+                          fontSize:20
+                      )))
+                  // margin: EdgeInsets.symmetric(horizontal: 25),
+                  // padding: EdgeInsets.all(15),
+                  // height: 80,
+                  // decoration: BoxDecoration(
+                  //     gradient: LinearGradient(
+                  //         colors: [Color(0xffD256FF), Color(0xff6256BF)]),
+                  //     borderRadius: BorderRadius.circular(24)),
+                  // child: Row(children: [
+                  //   Align(
+                  //     alignment: Alignment.center,
+                  //     child: Text(
+                  //       'Rs. Cost',
+                  //       style: SafeGoogleFont(
+                  //         'Inter',
+                  //         fontSize: 24 * ffem,
+                  //         fontWeight: FontWeight.w400,
+                  //         height: 1.3102273018 * ffem / fem,
+                  //         color: Color(0xffffffff),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   SizedBox(
+                  //     width: 55,
+                  //   ),
+                  //   Align(
+                  //     alignment: Alignment.centerRight,
+                  //     child: Text(
+                  //       DateFormat.MMMM().format(DateTime.now()).toString(),
+                  //       style: SafeGoogleFont(
+                  //         'Inter',
+                  //         fontSize: 24 * ffem,
+                  //         fontWeight: FontWeight.w400,
+                  //         height: 1.3102273018 * ffem / fem,
+                  //         color: Colors.tealAccent,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ]),
+                ),
+              ),
+              Positioned(
+                // tiiitletext3xu (0:9775)
+                left: 31 * fem,
+                top: 190 * fem,
+                child: Align(
+                  child: SizedBox(
+                    width: 200 * fem,
+                    height: 82 * fem,
+                    child: Text(
+                      date(newDate) +
+                          // newDate.day.toString()+"-"+newDate.month.toString()+
+                          ' Menu',
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 26 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.3102273018 * ffem / fem,
+                        color: Color(0xff634831),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        // Container(width: double.infinity,
+        //   height: 20*fem,
+        //   decoration: BoxDecoration (
+        //     color: Colors.black,
+        //
+        //   ),
+        // child: SizedBox(height: 20,),),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          width: double.infinity,
+          height: 390 * fem,
+          decoration: BoxDecoration(
+            color: Color(0xffFFEEDD),
+          ),
+          child: ListView(
+            children: [
+              CarouselSlider(
+                items: [
+                  Container(
+                      alignment: Alignment.center,
+                      // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                      width: 250 * fem,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Color(0xffD256FF), Color(0xff6256BF)]),
-                          borderRadius: BorderRadius.circular(24)),
-                      child: Row(
-                          children: [
+                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        color: Color(0x10634831),
+                        borderRadius: BorderRadius.circular(15 * fem),
 
-                            Align(alignment: Alignment.center,child: Text('Rs. Cost',style: SafeGoogleFont (
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Breakfast',
+                            style: SafeGoogleFont(
                               'Inter',
-                              fontSize: 24*ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.3102273018*ffem/fem,
-                              color: Color(0xffffffff),
-                            ),),),
-                            SizedBox(
-                              width: 55,
+                              fontSize: 36 * ffem,
+                              fontWeight: FontWeight.bold,
+                              height: 1.3102273305 * ffem / fem,
+                              color: Color(0xff634831),
                             ),
-                            Align(alignment: Alignment.centerRight,child: Text(DateFormat.MMMM().format(DateTime.now()).toString(),style: SafeGoogleFont (
+                          ),
+
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 240,
+                            child: FutureBuilder<List<List<String>>>(
+                              future: futureMenu,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return ListView.builder(
+                                    itemCount: 9,
+                                    itemBuilder: (context, rowIndex) {
+                                      return ListTile(
+                                          title: Center(
+                                        child: Column(
+                                          children: snapshot.data![current]
+                                              .skip(3)
+                                              .take(9)
+                                              .map((item) => Container(
+                                                    padding: EdgeInsets.all(4),
+                                                    child: Text(
+                                                      item,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          color: Color(0xff634831),
+                                                          fontSize: 16),
+                                                    ),
+                                                  ))
+                                              .toList(),
+                                        ),
+                                      ));
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                      child: Text("An error occurred"));
+                                }
+
+                                return SpinKitPulsingGrid(
+                                  color:
+                                      Color(0xff634831).withOpacity(0.5),
+                                  size: 50.0,
+                                );
+                              },
+                            ),
+                          ),
+
+                          // Text(
+                          //   _data[1][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,
+                          //     fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[2][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[3][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[4][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[5][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[6][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[7][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[8][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[9][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                        ],
+                      )),
+
+                  Container(
+                      alignment: Alignment.center,
+                      // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
+                      width: 250 * fem,
+                      height: 100 * fem,
+                      decoration: BoxDecoration(
+                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        color: Color(0x10634831),
+                        borderRadius: BorderRadius.circular(15 * fem),
+
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Lunch',
+                            style: SafeGoogleFont(
                               'Inter',
-                              fontSize: 24*ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.3102273018*ffem/fem,
-                              color: Colors.tealAccent,
-                            ),),),
-
-                          ]
-                      ),
-                    ),),
-                  Positioned(
-                    // tiiitletext3xu (0:9775)
-                    left: 31*fem,
-                    top: 230*fem,
-                    child: Align(
-                      child: SizedBox(
-                        width: 200*fem,
-                        height: 82*fem,
-                        child: Text(
-                          date(newDate)+
-                              // newDate.day.toString()+"-"+newDate.month.toString()+
-                              ' Menu',
-                          style: SafeGoogleFont (
-                            'Inter',
-                            fontSize: 24*ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.3102273018*ffem/fem,
-                            color: Color(0xffffffff),
+                              fontSize: 36 * ffem,
+                              fontWeight: FontWeight.bold,
+                              height: 1.3102273305 * ffem / fem,
+                              color: Color(0xff634831),
+                            ),
                           ),
-                        ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 235,
+                            child: FutureBuilder<List<List<String>>>(
+                              future: futureMenu,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return ListView.builder(
+                                    itemCount: 8,
+                                    itemBuilder: (context, rowIndex) {
+                                      return ListTile(
+                                          title: Center(
+                                        child: Column(
+                                          children: snapshot.data![current]
+                                              .skip(14)
+                                              .take(8)
+                                              .map((item) => Container(
+                                                    padding: EdgeInsets.all(4),
+                                                    child: Text(
+                                                      item,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          color: Color(0xff634831),
+                                                          fontSize: 16),
+                                                    ),
+                                                  ))
+                                              .toList(),
+                                        ),
+                                      ));
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                      child: Text("An error occurred"));
+                                }
+
+                                return SpinKitPulsingGrid(
+                                  color:
+                                  Color(0xff634831).withOpacity(0.5),
+                                  size: 50.0,
+                                );
+                              },
+                            ),
+                          ),
+                          // Text(
+                          //   _data[12][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[13][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[14][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[15][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[16][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[17][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[18][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[19][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                        ],
+                      )),
+                  Container(
+                      alignment: Alignment.center,
+                      // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                      width: 250 * fem,
+                      height: 350 * fem,
+                      decoration: BoxDecoration(
+                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        color: Color(0x10634831),
+                        borderRadius: BorderRadius.circular(15 * fem),
+
                       ),
-                    ),
-                  ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Dinner',
+                            style: SafeGoogleFont(
+                              'Inter',
+                              fontSize: 36 * ffem,
+                              fontWeight: FontWeight.bold,
+                              height: 1.3102273305 * ffem / fem,
+                              color: Color(0xff634831),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 235,
+                            child: FutureBuilder<List<List<String>>>(
+                              future: futureMenu,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return ListView.builder(
+                                    itemCount: 7,
+                                    itemBuilder: (context, rowIndex) {
+                                      return ListTile(
+                                          title: Center(
+                                        child: Column(
+                                          children: snapshot.data![current]
+                                              .skip(24)
+                                              .take(7)
+                                              .map((item) => Container(
+                                                    padding: EdgeInsets.all(4),
+                                                    child: Text(
+                                                      item,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      softWrap: false,
+                                                      style: TextStyle(
+                                                          color: Color(0xff634831),
+                                                          fontSize: 16),
+                                                    ),
+                                                  ))
+                                              .toList(),
+                                        ),
+                                      ));
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(
+                                      child: Text("An error occurred"));
+                                }
 
+                                return SpinKitPulsingGrid(
+                                  color:
+                                  Color(0xff634831).withOpacity(0.5),
+                                  size: 50.0,
+                                );
+                                // return Shimmer.fromColors(
+                                //   baseColor: Colors.white10,
+                                //   highlightColor: Colors.white,
+                                //   child: Text(
+                                //     'Loading ...',
+                                //     style: TextStyle(
+                                //       fontSize: 24,
+                                //       fontWeight: FontWeight.bold,
+                                //     ),
+                                //   ),
+                                // );
+                              },
+                            ),
+                          ),
+                          // Text(
+                          //   _data[22][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[23][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[24][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[25][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[26][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[27][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5,),
+                          // Text(
+                          //   _data[28][newDate.day-1],
+                          //   style: SafeGoogleFont (
+                          //     'Inter',
+                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                          //     height: 1.3102273305*ffem/fem,
+                          //     color: Color(0xffffffff),
+                          //   ),
+                          // ),
+                        ],
+                      )),
 
-
-
-
-
-
-
+                  //1st Image of Slider
                 ],
+
+                //Slider Container properties
+                options: CarouselOptions(
+                  height: 350.0,
+                  enlargeCenterPage: true,
+                  autoPlay: false,
+                  initialPage: getinitialpage(),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: false,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.6,
+                ),
               ),
-            ),
-            // Container(width: double.infinity,
-            //   height: 20*fem,
-            //   decoration: BoxDecoration (
-            //     color: Colors.black,
-            //
-            //   ),
-            // child: SizedBox(height: 20,),),
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              width: double.infinity,
-              height: 390*fem,
-              decoration: BoxDecoration (
-                color: Colors.black,
+            ],
+          ),
+        ),
+        Container(
+          color: Color(0xffFFEEDD),
+          height: 87,
+          child: Column(
+            children: [
+              SizedBox(height: 20,),
+              Container(
+                  width: 60 * fem,
+                  height: 60 * fem,
+                  decoration: BoxDecoration(
 
-              ),
-              child: ListView(
-                children: [
-                  CarouselSlider(
-                    items: [
-                      Container(
-                          alignment: Alignment.center,
-                          // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
-                          width: 250*fem,
 
-                          decoration: BoxDecoration (
-                            border: Border.all( color:Colors.deepPurpleAccent),
-                            color: Color(0x19ffffff),
-                            borderRadius: BorderRadius.circular(15*fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x115a6cea),
-                                offset: Offset(12*fem, 26*fem),
-                                blurRadius: 25*fem,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Breakfast',
+                    border: Border.all(color: Color(0xffDA6317)),
+                    color: Color(0x30DF6F20),
+                    borderRadius: BorderRadius.circular(16 * fem),
 
-                                style: SafeGoogleFont (
-                                  'Inter',
-                                  fontSize: 36 *ffem,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.3102273305*ffem/fem,
-                                  color: Colors.deepPurpleAccent,
+                  ),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final isAuthenticated =
+                      await LocalAuthApi.authenticate();
+                      if (isAuthenticated)
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  color: Color(0x80FEC584),
                                 ),
-                              ),
-
-                              const SizedBox(height: 20,),
-                              Container(
-                                height:240,
-                                child:  FutureBuilder<List<List<String>>>(
-                                  future: futureMenu,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-
-
-                                      return ListView.builder(
-                                        itemCount: 9,
-                                        itemBuilder: (context, rowIndex) {
-
-                                          return ListTile(
-
-                                            title: Center(
-                                              child: Column(
-
-                                                children: snapshot.data![current].skip(3).take(9).map((item) =>
-                                                    Container(
-
-                                                      padding: EdgeInsets.all(4),
-                                                      child: Text(
-                                                        item,
-                                                        overflow: TextOverflow.ellipsis,
-                                                        softWrap: false,
-
-
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                          fontSize: 16
-
-                                                        ),
-                                                      ),
-                                                    )
-                                                ).toList(),
+                                height: 400,
+                                child: Center(
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 30,
+                                        ),
+                                        QrImageView(
+                                          data: getCurrentUsername(),
+                                          size: 300,
+                                          backgroundColor: Color(0xffFFEEDD),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Color(0xffDA6317)),
+                                            color: Color(0x19ffffff),
+                                            borderRadius:
+                                            BorderRadius.circular(15 * fem),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x115a6cea),
+                                                offset:
+                                                Offset(12 * fem, 26 * fem),
+                                                blurRadius: 25 * fem,
                                               ),
-                                            )
-
-                                          );
-                                        },
-                                      );
-                                    } else if (snapshot.hasError) {
-                                      return Center(child: Text("An error occurred"));
-                                    }
-
-                                    return SpinKitPulsingGrid(
-                                      color: Colors.deepPurpleAccent.withOpacity(0.7),
-                                      size: 50.0,
-                                    );
-                                  },
-                                ),
-                              ),
-
-
-                              // Text(
-                              //   _data[1][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,
-                              //     fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[2][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[3][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[4][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[5][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[6][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[7][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[8][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[9][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-
-                            ],
-                          )
-
-
-                      ),
-
-                      Container(
-                          alignment: Alignment.center,
-                          // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
-                          width: 250*fem,
-                          height: 100*fem,
-                          decoration: BoxDecoration (
-                            border: Border.all( color: Colors.deepPurpleAccent),
-                            color: Color(0x19ffffff),
-                            borderRadius: BorderRadius.circular(15*fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x115a6cea),
-                                offset: Offset(12*fem, 26*fem),
-                                blurRadius: 25*fem,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Lunch',
-                                style: SafeGoogleFont (
-                                  'Inter',
-                                  fontSize: 36 *ffem,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.3102273305*ffem/fem,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                              ),
-                              const SizedBox(height: 20,),
-                              Container(
-                                height:235,
-                                child:  FutureBuilder<List<List<String>>>(
-                                  future: futureMenu,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-
-                                      return ListView.builder(
-                                        itemCount: 8,
-                                        itemBuilder: (context, rowIndex) {
-                                          return ListTile(
-
-                                              title: Center(
-                                                child: Column(
-
-                                                  children: snapshot.data![current].skip(14).take(8).map((item) =>
-                                                      Container(
-                                                        padding: EdgeInsets.all(4),
-                                                        child: Text(
-                                                          item,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          softWrap: false,
-
-
-                                                          style: TextStyle(
-                                                              color: Colors.white,
-                                                              fontSize: 16
-
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ).toList(),
-                                                ),
-                                              )
-
-                                          );
-                                        },
-                                      );
-                                    } else if (snapshot.hasError) {
-                                      return Center(child: Text("An error occurred"));
-                                    }
-
-                                    return SpinKitPulsingGrid(
-                                      color: Colors.deepPurpleAccent.withOpacity(0.7),
-                                      size: 50.0,
-                                    );
-                                  },
-                                ),
-                              ),
-                              // Text(
-                              //   _data[12][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[13][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[14][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[15][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[16][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[17][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[18][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[19][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-
-
-                            ],
-                          )
-                      ),
-                      Container(
-                          alignment: Alignment.center,
-                          // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
-                          width: 250*fem,
-                          height: 350*fem,
-                          decoration: BoxDecoration (
-                            border: Border.all( color: Colors.deepPurpleAccent),
-                            color: Color(0x19ffffff),
-                            borderRadius: BorderRadius.circular(15*fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x115a6cea),
-                                offset: Offset(12*fem, 26*fem),
-                                blurRadius: 25*fem,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Dinner',
-                                style: SafeGoogleFont (
-                                  'Inter',
-                                  fontSize: 36 *ffem,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.3102273305*ffem/fem,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                              ),
-                              const SizedBox(height: 20,),
-                              Container(
-                                height:235,
-                                child:  FutureBuilder<List<List<String>>>(
-                                  future: futureMenu,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-
-                                      return ListView.builder(
-                                        itemCount: 7,
-
-                                        itemBuilder: (context, rowIndex) {
-                                          return ListTile(
-
-                                              title: Center(
-                                                child: Column(
-
-                                                  children: snapshot.data![current].skip(24).take(7).map((item) =>
-                                                      Container(
-                                                        padding: EdgeInsets.all(4),
-
-                                                        child:
-
-                                                        Text(
-                                                          item,
-                                                          overflow: TextOverflow.ellipsis,
-                                                          softWrap: false,
-
-
-                                                          style: TextStyle(
-                                                              color: Colors.white,
-                                                              fontSize: 16
-
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ).toList(),
-                                                ),
-                                              )
-
-                                          );
-                                        },
-                                      );
-                                    } else if (snapshot.hasError) {
-                                      return Center(child: Text("An error occurred"));
-                                    }
-
-                                    return SpinKitPulsingGrid(
-                                      color: Colors.deepPurpleAccent.withOpacity(0.7),
-                                      size: 50.0,
-                                    );
-                                    // return Shimmer.fromColors(
-                                    //   baseColor: Colors.white10,
-                                    //   highlightColor: Colors.white,
-                                    //   child: Text(
-                                    //     'Loading ...',
-                                    //     style: TextStyle(
-                                    //       fontSize: 24,
-                                    //       fontWeight: FontWeight.bold,
-                                    //     ),
-                                    //   ),
-                                    // );
-                                  },
-                                ),
-                              ),
-                              // Text(
-                              //   _data[22][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[23][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[24][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[25][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[26][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[27][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-                              // const SizedBox(height: 5,),
-                              // Text(
-                              //   _data[28][newDate.day-1],
-                              //   style: SafeGoogleFont (
-                              //     'Inter',
-                              //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                              //     height: 1.3102273305*ffem/fem,
-                              //     color: Color(0xffffffff),
-                              //   ),
-                              // ),
-
-
-
-                            ],
-                          )
-                      ),
-
-
-                      //1st Image of Slider
-
-
-                    ],
-
-                    //Slider Container properties
-                    options: CarouselOptions(
-                      height: 350.0,
-                      enlargeCenterPage: true,
-                      autoPlay: false,
-                      initialPage: getinitialpage(),
-
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enableInfiniteScroll: false,
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      viewportFraction: 0.6,
+                                            ],
+                                          ),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new,
+                                              color: Color(0x30DF6F20),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    )),
+                              );
+                            });
+                    },
+                    child: Icon(
+                      Icons.qr_code_2,
+                      size: 50,
+                      color: Color(0xffDA6317),
                     ),
-                  ),
-                ],
-              ),),
+                  ))
 
-          ]
-      ),
+            ],
 
+          )
+          ,
+        )
+      ]),
     );
-
   }
-
 }
-

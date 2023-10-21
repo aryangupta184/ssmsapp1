@@ -47,12 +47,12 @@ class _MasterScreenState extends State<MasterScreen> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xffFFEEDD),
       body: getBody(),
       bottomNavigationBar: Container(
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color: Color(0xff252525),
+            color: Color(0xffFEC584),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Padding(
@@ -63,9 +63,9 @@ class _MasterScreenState extends State<MasterScreen> {
               iconSize: 30,
               curve: Curves.easeInExpo,
               tabBorderRadius: 16,
-              color: Colors.deepPurpleAccent,
-              activeColor: Colors.white,
-              tabBackgroundColor: Color(0x336256BF),
+              color: Color(0x80FEC584),
+              activeColor: Color(0xffe47517),
+              tabBackgroundColor: Color(0x30DF6F20),
               gap: 20,
               padding: EdgeInsets.all(10),
               onTabChange: (index){
@@ -77,23 +77,23 @@ class _MasterScreenState extends State<MasterScreen> {
 
                 GButton(
                   icon: Icons.home_filled,
-                  iconColor: Colors.deepPurpleAccent,
+                  iconColor: Color(0x80634831),
                   text: 'Home',
                 ),
                 GButton(
                   icon: Icons.person,
-                  iconColor: Colors.deepPurpleAccent,
+                  iconColor: Color(0x80634831),
                   text: 'Profile',
                 ),
                 GButton(
                   icon: Icons.shopping_cart,
-                  iconColor: Colors.deepPurpleAccent,
+                  iconColor: Color(0x80634831),
                   text: 'Cart',
                 ),
 
                 GButton(
                   icon: Icons.fastfood,
-                  iconColor: Colors.deepPurpleAccent,
+                  iconColor: Color(0x80634831),
                   text: 'Grub',
                 ),
               ],

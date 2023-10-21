@@ -16,10 +16,10 @@ class _CartScreenState extends State<CartScreen> {
     return Stack(
       children: [
         Image.asset(
-          'assets/images/pattern-bg2_.png',
+          'assets/images/pattern-bg_2.png',
         ),
         Scaffold(
-          backgroundColor: Colors.black87,
+          backgroundColor: Color(0xffFFEEDD),
           body: Container(
             child: Column(
               children: [
@@ -32,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
                   height: 150,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffD256FF), Color(0xff6256BF)]),
+                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Row(
                     children: [
@@ -61,7 +61,7 @@ class _CartScreenState extends State<CartScreen> {
                                 "Reserve Now",
                                 style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Color(0xff634831)),
                               ),
                             ),
                           )
@@ -100,7 +100,7 @@ class _CartScreenState extends State<CartScreen> {
                                 "Reserve Now",
                                 style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Color(0xff634831)),
                               ),
                             ),
                           )
@@ -117,7 +117,7 @@ class _CartScreenState extends State<CartScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "    Order Details",
-                        style: TextStyle(fontSize: 30, color: Colors.white,),
+                        style: TextStyle(fontSize: 30, color: Color(0xff634831),),
                   ),
                 )
 
@@ -128,10 +128,12 @@ class _CartScreenState extends State<CartScreen> {
                 SizedBox(height: 30,),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.fromLTRB(14*fem, 19*fem, 17*fem, 13*fem),
                   height: 80,
                   decoration: BoxDecoration(
-                    color: Color(0xff252525),
+                      border: Border.all(color: Color(0xffDA6317)),
+
+                    color: Color(0x10634831),
                     borderRadius: BorderRadius.circular(12)
                   ),
                   child: Row(
@@ -146,7 +148,7 @@ class _CartScreenState extends State<CartScreen> {
                           borderRadius: BorderRadius.circular(16*fem),
                           child: Image.asset(
                             'assets/images/photo-paneer.png',
-                            fit: BoxFit.cover,
+
                           ),
                         ),
                       ),
@@ -167,12 +169,12 @@ class _CartScreenState extends State<CartScreen> {
                                   fontSize: 16*ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.3102273305*ffem/fem,
-                                  color: Color(0xffffffff),
+                                  color: Color(0xff634831),
                                 ),
                               ),
                             ),
 
-                            SizedBox(height: 5,),
+
                             Container(
                               // priece99T (0:546)
                               margin: EdgeInsets.fromLTRB(0.45*fem, 0*fem, 0*fem, 0*fem),
@@ -181,7 +183,7 @@ class _CartScreenState extends State<CartScreen> {
                                 style: SafeGoogleFont (
                                   'Inter',
                                   fontSize: 19*ffem,
-                                  color: Colors.deepPurpleAccent,
+                                  color: Color(0xff634831),
                                   fontWeight: FontWeight.w400,
                                   height: 1*ffem/fem,
                                 ),
@@ -200,7 +202,8 @@ class _CartScreenState extends State<CartScreen> {
                   padding: EdgeInsets.all(15),
                   height: 80,
                   decoration: BoxDecoration(
-                      color: Color(0xff252525),
+                      border: Border.all(color: Color(0xffDA6317)),
+                      color: Color(0x10634831),
                       borderRadius: BorderRadius.circular(12)
                   ),
                   child: Row(
@@ -236,12 +239,11 @@ class _CartScreenState extends State<CartScreen> {
                                   fontSize: 16*ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.3102273305*ffem/fem,
-                                  color: Color(0xffffffff),
+                                  color: Color(0xff634831),
                                 ),
                               ),
                             ),
 
-                            SizedBox(height: 5,),
                             Container(
                               // priece99T (0:546)
                               margin: EdgeInsets.fromLTRB(0.45*fem, 0*fem, 0*fem, 0*fem),
@@ -250,7 +252,7 @@ class _CartScreenState extends State<CartScreen> {
                                 style: SafeGoogleFont (
                                   'Inter',
                                   fontSize: 19*ffem,
-                                  color: Colors.deepPurpleAccent,
+                                  color: Color(0xff634831),
                                   fontWeight: FontWeight.w400,
                                   height: 1*ffem/fem,
                                 ),
@@ -270,7 +272,7 @@ class _CartScreenState extends State<CartScreen> {
                   height: 150,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffD256FF), Color(0xff6256BF)]),
+                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Column(
                     children: [
@@ -316,7 +318,7 @@ class _CartScreenState extends State<CartScreen> {
                               "Place My Order",
                               style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.deepPurpleAccent),
+                                  color: Color(0xff634831)),
                             ) ,
                           ),
 

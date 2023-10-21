@@ -113,19 +113,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height,
               width: double.infinity,
+
               child: Container(
 
-                padding: EdgeInsets.fromLTRB(25*fem, 31*fem, 25*fem, 40*fem),
+                padding: EdgeInsets.fromLTRB(25*fem, 31*fem, 25*fem, 28*fem),
                 width: double.infinity,
                 decoration: BoxDecoration (
-                  color: Color(0xff0c0c0c),
+                  color: Color(0xffFFEEDD),
 
                   image: DecorationImage (
+                    alignment: Alignment.topCenter,
 
 
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                     image: AssetImage (
-                      'assets/images/pattern-bg_3.png',
+                      'assets/images/pattern-bg_4.png',
                     ),
                   ),
                 ),
@@ -138,15 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            // logoNKj (0:7698)
-                            margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
-                            width: 175*fem,
-                            height: 139*fem,
-                            child: Image.asset(
-                              'assets/images/logo-ssms.png',
-                            ),
-                          ),
+                          SizedBox(height: 120,),
                           Container(
 
                             width: double.infinity,
@@ -167,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         style: SafeGoogleFont (
                                           'Viga',
                                           fontSize: 40*ffem,
-                                          color: Color(0xffd256ff),
+                                          color: Color(0xFFec8646),
                                           fontWeight: FontWeight.w400,
                                           height: 1.345*ffem/fem,
                                           letterSpacing: 0.5*fem,
@@ -193,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           fontWeight: FontWeight.w600,
                                           height: 1.2125*ffem/fem,
                                           letterSpacing: 1*fem,
-                                          color: Color(0xffffffff),
+                                          color: Color(0xff634831),
                                         ),
                                       ),
                                     ),
@@ -213,13 +207,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          SizedBox(height: 30,),
+                          Align(
+                            child: SizedBox(
+                              width: 250*fem,
+                              height: 16*fem,
+                              child: Text(
+                                'Login to your Account',
+                                textAlign: TextAlign.center,
+                                style: SafeGoogleFont (
+                                  'Inter',
+                                  fontSize: 16*ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.2125*ffem/fem,
+                                  letterSpacing: 1*fem,
+                                  color: Color(0xff634831),
+                                ),
+                              ),
+                            ),
+                          ),
+
                                   Container(
 
                                     margin: EdgeInsets.fromLTRB(0*fem, 50*fem, 0*fem, 12*fem),
                                     padding: EdgeInsets.fromLTRB(15*fem, 0*fem, 15*fem, 0*fem),
                                     width: double.infinity,
                                     decoration: BoxDecoration (
-                                      color: Color(0x19ffffff),
+                                      color: Color(0x19634831),
                                       borderRadius: BorderRadius.circular(15*fem),
                                     ),
                                     child: TextField(
@@ -242,7 +256,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             padding: EdgeInsets.fromLTRB(15*fem, 0*fem, 15*fem, 0*fem),
                             width: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0x19ffffff),
+                              color: Color(0x19634831),
                               borderRadius: BorderRadius.circular(15*fem),
                             ),
                             child: TextField(
@@ -271,7 +285,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontSize: 12*ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.6652272542*ffem/fem,
-                                color: Color(0xffffffff),
+                                color: Color(0xff634831),
                               ),
                             ),
                           ),
@@ -282,7 +296,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 57*fem,
                             decoration: BoxDecoration (
 
-                              color: Color(0x19ffffff),
+                              color: Color(0x40634831),
                               borderRadius: BorderRadius.circular(15*fem),
 
                             ),
@@ -327,7 +341,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontWeight: FontWeight.w400,
                                         height: 1.2125*ffem/fem,
                                         letterSpacing: 0.5*fem,
-                                        color: Color(0xffffffff),
+                                        color: Color(0xff634831),
                                       ),
                                     ),
                                   )
@@ -345,7 +359,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 12*ffem,
-                                color: Color(0xffd256ff),
+                                color: Color(0xff634831),
                                 fontWeight: FontWeight.w400,
                                 height: 1.6652272542*ffem/fem,
                                 decoration: TextDecoration.underline,
@@ -360,7 +374,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             decoration: BoxDecoration (
                               borderRadius: BorderRadius.circular(15*fem),
                               gradient: LinearGradient(
-                                colors: [Color(0xffd256ff), Color(0xff6256bf)],
+                                colors: [Color(0xffFD9C2E), Color(0xffDA6317)],
                                 stops: [0, 1],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,

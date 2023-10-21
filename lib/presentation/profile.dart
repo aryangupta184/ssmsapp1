@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0*fem, 60*fem, 0*fem, 0*fem),
             width: double.infinity,
             decoration: BoxDecoration (
-              color: Color(0xff0c0c0c),
+              color: Color(0xffFFEEDD),
 
             ),
             child: Column(
@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 270,
                   width: 270,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.deepPurpleAccent),
+                    border: Border.all(color: Color(0xffDA6317),width: 3),
                     borderRadius: BorderRadius.circular(16)
                   ),
                   padding: EdgeInsets.all(10),
@@ -94,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
                       Positioned(
                         // textSgy (0:537)
                         left: 20*fem,
-                        top: 50*fem,
+                        top: 40*fem,
                         child: Container(
                           width: 400*fem,
                           height: 186*fem,
@@ -109,9 +109,9 @@ class ProfileScreen extends StatelessWidget {
                                   style: SafeGoogleFont (
                                     'Inter',
                                     fontSize: 27*ffem,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w500,
                                     height: 1.3102272881*ffem/fem,
-                                    color: Color(0xffffffff),
+                                    color: Color(0xff634831),
                                   ),
                                 ),
                               ),
@@ -126,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     height: 1.5*ffem/fem,
                                     letterSpacing: 0.5*fem,
-                                    color: Color(0xffffffff),
+                                    color: Color(0xff634831),
                                   ),
                                 ),
                               ),
@@ -137,16 +137,10 @@ class ProfileScreen extends StatelessWidget {
                                     width: 200*fem,
                                     height: 64*fem,
                                     decoration: BoxDecoration (
-                                      border: Border.all(color: Colors.deepPurpleAccent),
-                                      color: Color(0xff252525),
+                                      border: Border.all(color: Color(0xffDA6317)),
+                                      color: Color(0x10634831),
                                       borderRadius: BorderRadius.circular(15*fem),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x7f010107),
-                                          offset: Offset(0*fem, 0*fem),
-                                          blurRadius: 25*fem,
-                                        ),
-                                      ],
+
                                     ),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
                                               fontSize: 15*ffem,
                                               fontWeight: FontWeight.w500,
                                               height: 1.3102273305*ffem/fem,
-                                              color: Color(0xffffffff),
+                                              color: Color(0xff634831),
                                             ),
                                           ),
                                         ),
@@ -173,7 +167,7 @@ class ProfileScreen extends StatelessWidget {
                                             fontSize: 15*ffem,
                                             fontWeight: FontWeight.w500,
                                             height: 1.3102273305*ffem/fem,
-                                            color: Color(0xffffffff),
+                                            color: Color(0xff634831),
                                           ),
                                         ),
                                       ],
@@ -185,16 +179,10 @@ class ProfileScreen extends StatelessWidget {
                                     width: 45*fem,
                                     height: 45*fem,
                                     decoration: BoxDecoration (
-                                      border: Border.all(color: Colors.deepPurpleAccent),
-                                      color: Color(0xff252525),
+                                      border: Border.all(color: Color(0xffDA6317)),
+                                      color: Color(0x10634831),
                                       borderRadius: BorderRadius.circular(15*fem),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x7f010107),
-                                          offset: Offset(0*fem, 0*fem),
-                                          blurRadius: 25*fem,
-                                        ),
-                                      ],
+
                                     ),
                                     child:Align(
                                       child: SizedBox(
@@ -213,7 +201,7 @@ class ProfileScreen extends StatelessWidget {
                                             },
                                             child: Icon(
                                               Icons.logout,
-                                              color: Colors.deepPurpleAccent,
+                                              color: Color(0xffDA6317),
 
                                             ),
 
@@ -233,10 +221,10 @@ class ProfileScreen extends StatelessWidget {
                                 'This Month’s Orders',
                                 style:SafeGoogleFont (
                                   'Inter',
-                                  fontSize: 15*ffem,
+                                  fontSize: 18*ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.3102273305*ffem/fem,
-                                  color: Color(0xffffffff),
+                                  color: Color(0xff634831),
                                 ),
                               ),
                             ],
@@ -252,16 +240,10 @@ class ProfileScreen extends StatelessWidget {
                           width: 347*fem,
                           height: 103*fem,
                           decoration: BoxDecoration (
-                            border: Border.all(color: Colors.deepPurpleAccent),
-                            color: Color(0xff252525),
+                            border: Border.all(color: Color(0xffDA6317)),
+                            color: Color(0x10634831),
                             borderRadius: BorderRadius.circular(15*fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x7f010107),
-                                offset: Offset(0*fem, 0*fem),
-                                blurRadius: 25*fem,
-                              ),
-                            ],
+
                           ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -296,7 +278,7 @@ class ProfileScreen extends StatelessWidget {
                                           fontSize: 15*ffem,
                                           fontWeight: FontWeight.w400,
                                           height: 1.3102273305*ffem/fem,
-                                          color: Color(0xffffffff),
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -311,7 +293,7 @@ class ProfileScreen extends StatelessWidget {
                                           fontWeight: FontWeight.w400,
                                           height: 1.2125*ffem/fem,
                                           letterSpacing: 0.5*fem,
-                                          color: Color(0xffffffff),
+                                          color: Color(0xff634831),
                                         ),
                                       ),
                                     ),
@@ -323,8 +305,8 @@ class ProfileScreen extends StatelessWidget {
                                         style: SafeGoogleFont (
                                           'Inter',
                                           fontSize: 19*ffem,
-                                          color: Colors.deepPurpleAccent,
-                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff634831),
+                                          fontWeight: FontWeight.bold,
                                             height: 1*ffem/fem,
                                         ),
                                       ),
