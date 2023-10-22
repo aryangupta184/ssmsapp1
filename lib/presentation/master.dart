@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:ssmsapp1/presentation/cart.dart';
+import 'package:ssmsapp1/presentation/grub.dart';
+import 'package:ssmsapp1/presentation/complaint.dart';
 import 'package:ssmsapp1/presentation/home_screen.dart';
 import 'package:ssmsapp1/presentation/profile.dart';
 import 'package:ssmsapp1/presentation/test2.dart';
@@ -86,15 +87,15 @@ class _MasterScreenState extends State<MasterScreen> {
                   text: 'Profile',
                 ),
                 GButton(
-                  icon: Icons.shopping_cart,
-                  iconColor: Color(0x80634831),
-                  text: 'Cart',
-                ),
-
-                GButton(
                   icon: Icons.fastfood,
                   iconColor: Color(0x80634831),
                   text: 'Grub',
+                ),
+
+                GButton(
+                  icon: Icons.chat_bubble,
+                  iconColor: Color(0x80634831),
+                  text: 'Complain',
                 ),
               ],
             ),
@@ -105,7 +106,8 @@ class _MasterScreenState extends State<MasterScreen> {
     List<Widget> pages = [
       HomeScreen(),
       ProfileScreen(),
-      CartScreen(),
+      GrubScreen(),
+      ComplaintScreen()
 
     ];
     return IndexedStack(

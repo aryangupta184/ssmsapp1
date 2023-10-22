@@ -57,9 +57,9 @@ class _HomeScreenState extends State<HomeScreen>
     var datetime = DateTime.now();
     var timeString = DateFormat('HH').format(datetime);
     var time = int.parse(timeString);
-    if (10 < time && 16 > time) {
+    if (10 <= time && 16 >= time) {
       return 1;
-    } else if (time > 22 || time < 10) {
+    } else if (time < 10) {
       return 0;
     } else {
       return 2;
@@ -91,6 +91,108 @@ class _HomeScreenState extends State<HomeScreen>
     } catch (e) {
       print(e);
     }
+  }
+
+  Widget setupAlertDialoadContainer(context) {
+    return Container(
+
+      decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffDA6317)),
+          borderRadius: BorderRadius.circular(16),
+        color: Color(0xffFFEEDD),
+       boxShadow: [
+          BoxShadow(
+          color: Color(0xffDA6317).withOpacity(0.5),  // Adjust opacity as needed
+      blurRadius: 25.0,  // Adjust blur radius as needed
+      spreadRadius: 15.0,  // Adjust spread radius as needed
+      offset: Offset(0.0, 4.0),  // Adjust offset as needed
+    ),
+    ],
+
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          Align(
+            child: SizedBox(
+              width: 200 ,
+             height: 50,
+              child: Text(
+                'Notifications',
+                style: SafeGoogleFont(
+                  'Inter',
+                  fontSize: 24 ,
+                  fontWeight: FontWeight.w400,
+                  height: 1.6,
+                  color: Color(0xff634831),
+                ),
+              ),
+            ),
+          ),
+          Container(
+
+
+
+            height: 300.0, // Change as per your requirement
+            width: 300.0, // Change as per your requirement
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Container(
+                      padding: EdgeInsets.fromLTRB(11, 12, 11, 8),
+                      width: 200,
+                      height: 40,
+                      decoration: BoxDecoration (
+                        border: Border.all(color: Color(0xffDA6317)),
+                        color: Color(0x10634831),
+                        borderRadius: BorderRadius.circular(15),
+
+                      ),
+                      child: Text(
+                        'List Item $index',
+                        style: SafeGoogleFont (
+                          'Inter',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          height: 1.2,
+                          color: Color(0xff634831),
+                        ),
+                      ),),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: 20,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                    color: Color(0xffDA6317)),
+                color: Color(0x10634831),
+                borderRadius:
+                BorderRadius.circular(15 ),
+
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Color(0xffDA6317),
+                ),
+              ),
+            )
+          ),
+          SizedBox(height: 10,)
+        ],
+      ),
+    );
   }
 
   @override
@@ -129,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen>
         Container(
           // homepHX (0:9368)
           width: double.infinity,
-          height: 230 * fem,
+          height: 240 * fem,
           decoration: BoxDecoration(
             color: Color(0xffFFEEDD),
           ),
@@ -154,82 +256,115 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ),
                   )),
-
               Positioned(
                 // iconnotificationxAm (0:9772)
                 left: 285 * fem,
-                top: 180 * fem,
+                top: 195 * fem,
                 child: Align(
                   child: SizedBox(
                       width: 45 * fem,
                       height: 45 * fem,
                       child: InkWell(
-                        onTap: () async {
-                          DateTime? dateTime = await showDatePicker(
-                              context: context,
-                              initialDate: selectedDate,
-                              firstDate: DateTime(2020),
-                              lastDate: DateTime(2028),
-                              builder: (context, child) {
-                                return Theme(
-                                  data: Theme.of(context).copyWith(
-                                    colorScheme: ColorScheme.light(
-                                      primary:
-                                          Colors.white, // <-- SEE HERE
-                                      onPrimary:
-                                          Color((0xffDA6317)), // <-- SEE HERE
-                                      onSurface: Color(0xffDA6317), // <-- SEE HERE
-                                    ),
-                                    textButtonTheme: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        primary: Color(
-                                            0xffDA6317), // button text color
+                          onTap: () async {
+                            DateTime? dateTime = await showDatePicker(
+                                context: context,
+                                initialDate: selectedDate,
+                                firstDate: DateTime(2020),
+                                lastDate: DateTime(2028),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: Theme.of(context).copyWith(
+                                      colorScheme: ColorScheme.light(
+                                        primary:
+                                            Color(0xffFFEEDD), // <-- SEE HERE
+                                        onPrimary:
+                                            Color((0xffDA6317)), // <-- SEE HERE
+                                        onSurface:
+                                            Color(0xffDA6317), // <-- SEE HERE
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: Color(
+                                              0xffDA6317), // button text color
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  child: child!,
-                                );
-                              });
-                          selectedDate = dateTime!;
-                          newDate = dateTime!;
+                                    child: child!,
+                                  );
+                                });
+                            selectedDate = dateTime!;
+                            newDate = dateTime!;
 
-                          setState(() {
-                            current = getHalf();
-                          });
-                        },
-                        child: Container(
-                          width: 45 * fem,
-                          height: 45 * fem,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffDA6317)),
-                            color: Color(0x10634831),
-                            borderRadius: BorderRadius.circular(16 * fem),
-
-                          ),
-                          child: Image.asset(
-                            'assets/images/icon-notification-calendar.png',
+                            setState(() {
+                              current = getHalf();
+                            });
+                          },
+                          child: Container(
                             width: 45 * fem,
                             height: 45 * fem,
-                            color: Color(0xffDA6317),
-                          ),
-                        )
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffDA6317)),
+                              color: Color(0x10634831),
+                              borderRadius: BorderRadius.circular(16 * fem),
+                            ),
+                            child: Image.asset(
+                              'assets/images/icon-notification-calendar.png',
+                              width: 45 * fem,
+                              height: 45 * fem,
+                              color: Color(0xffDA6317),
+                            ),
+                          ))),
+                ),
+              ),
+              Positioned(
+                // iconnotificationxAm (0:9772)
+                left: 50 * fem,
+                top: 30 * fem,
+                child: Align(
+                  child: SizedBox(
+                      width: 45 * fem,
+                      height: 45 * fem,
+                      child: InkWell(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
 
-                      )),
+                                    content:
+                                        setupAlertDialoadContainer(context),
+                                  );
+                                });
+                          },
+                          child: Container(
+                            width: 45 * fem,
+                            height: 45 * fem,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffDA6317)),
+                              color: Color(0x10634831),
+                              borderRadius: BorderRadius.circular(16 * fem),
+                            ),
+                            child: Icon(
+                              Icons.notifications,
+                              size: 30,
+                              color: Color(0xffDA6317),
+                            ),
+                          ))),
                 ),
               ),
               Positioned(
                 // tiiitletext3xu (0:9775)
-                left: 31 * fem,
-                top: 70 * fem,
+                left: 30 * fem,
+                top: 90 * fem,
                 child: Align(
                   child: SizedBox(
                     width: 200 * fem,
                     height: 82 * fem,
                     child: Text(
-                      'This Month\'s \n Expenses',
+                      'This Month\'s \nExpenses',
                       style: SafeGoogleFont(
                         'Inter',
-                        fontSize: 24 * ffem,
+                        fontSize: 22 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.3102273018 * ffem / fem,
                         color: Color(0xff634831),
@@ -240,67 +375,63 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               Positioned(
                 left: 245 * fem,
-                top: 35 * fem,
+                top: 55 * fem,
                 child: Container(
-                  height: 120,
-                  width: 120,
-                  decoration: BoxDecoration(
-
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 7, color: Color(0xffDA6317))
-                  ),
-                  child:
-                  Center(child:
-                  Text("Rs.1440",
-                      style:TextStyle(
-                          color:Color(0xff634831),
-                          fontWeight:FontWeight.bold,
-                          fontSize:20
-                      )))
-                  // margin: EdgeInsets.symmetric(horizontal: 25),
-                  // padding: EdgeInsets.all(15),
-                  // height: 80,
-                  // decoration: BoxDecoration(
-                  //     gradient: LinearGradient(
-                  //         colors: [Color(0xffD256FF), Color(0xff6256BF)]),
-                  //     borderRadius: BorderRadius.circular(24)),
-                  // child: Row(children: [
-                  //   Align(
-                  //     alignment: Alignment.center,
-                  //     child: Text(
-                  //       'Rs. Cost',
-                  //       style: SafeGoogleFont(
-                  //         'Inter',
-                  //         fontSize: 24 * ffem,
-                  //         fontWeight: FontWeight.w400,
-                  //         height: 1.3102273018 * ffem / fem,
-                  //         color: Color(0xffffffff),
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   SizedBox(
-                  //     width: 55,
-                  //   ),
-                  //   Align(
-                  //     alignment: Alignment.centerRight,
-                  //     child: Text(
-                  //       DateFormat.MMMM().format(DateTime.now()).toString(),
-                  //       style: SafeGoogleFont(
-                  //         'Inter',
-                  //         fontSize: 24 * ffem,
-                  //         fontWeight: FontWeight.w400,
-                  //         height: 1.3102273018 * ffem / fem,
-                  //         color: Colors.tealAccent,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ]),
-                ),
+                    height: 120,
+                    width: 120,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(width: 7, color: Color(0xffDA6317))),
+                    child: Center(
+                        child: Text("Rs.1440",
+                            style: TextStyle(
+                                color: Color(0xff634831),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20)))
+                    // margin: EdgeInsets.symmetric(horizontal: 25),
+                    // padding: EdgeInsets.all(15),
+                    // height: 80,
+                    // decoration: BoxDecoration(
+                    //     gradient: LinearGradient(
+                    //         colors: [Color(0xffD256FF), Color(0xff6256BF)]),
+                    //     borderRadius: BorderRadius.circular(24)),
+                    // child: Row(children: [
+                    //   Align(
+                    //     alignment: Alignment.center,
+                    //     child: Text(
+                    //       'Rs. Cost',
+                    //       style: SafeGoogleFont(
+                    //         'Inter',
+                    //         fontSize: 24 * ffem,
+                    //         fontWeight: FontWeight.w400,
+                    //         height: 1.3102273018 * ffem / fem,
+                    //         color: Color(0xffffffff),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   SizedBox(
+                    //     width: 55,
+                    //   ),
+                    //   Align(
+                    //     alignment: Alignment.centerRight,
+                    //     child: Text(
+                    //       DateFormat.MMMM().format(DateTime.now()).toString(),
+                    //       style: SafeGoogleFont(
+                    //         'Inter',
+                    //         fontSize: 24 * ffem,
+                    //         fontWeight: FontWeight.w400,
+                    //         height: 1.3102273018 * ffem / fem,
+                    //         color: Colors.tealAccent,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ]),
+                    ),
               ),
               Positioned(
                 // tiiitletext3xu (0:9775)
-                left: 31 * fem,
-                top: 190 * fem,
+                left: 30 * fem,
+                top: 200 * fem,
                 child: Align(
                   child: SizedBox(
                     width: 200 * fem,
@@ -346,10 +477,9 @@ class _HomeScreenState extends State<HomeScreen>
                       // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
                       width: 250 * fem,
                       decoration: BoxDecoration(
-                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        border: Border.all(width: 3, color: Color(0xffDA6317)),
                         color: Color(0x10634831),
                         borderRadius: BorderRadius.circular(15 * fem),
-
                       ),
                       child: Column(
                         children: [
@@ -390,7 +520,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                           TextOverflow.ellipsis,
                                                       softWrap: false,
                                                       style: TextStyle(
-                                                          color: Color(0xff634831),
+                                                          color:
+                                                              Color(0xff634831),
                                                           fontSize: 16),
                                                     ),
                                                   ))
@@ -405,8 +536,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 }
 
                                 return SpinKitPulsingGrid(
-                                  color:
-                                      Color(0xff634831).withOpacity(0.5),
+                                  color: Color(0xff634831).withOpacity(0.5),
                                   size: 50.0,
                                 );
                               },
@@ -512,10 +642,9 @@ class _HomeScreenState extends State<HomeScreen>
                       width: 250 * fem,
                       height: 100 * fem,
                       decoration: BoxDecoration(
-                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        border: Border.all(width: 3, color: Color(0xffDA6317)),
                         color: Color(0x10634831),
                         borderRadius: BorderRadius.circular(15 * fem),
-
                       ),
                       child: Column(
                         children: [
@@ -555,7 +684,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                           TextOverflow.ellipsis,
                                                       softWrap: false,
                                                       style: TextStyle(
-                                                          color: Color(0xff634831),
+                                                          color:
+                                                              Color(0xff634831),
                                                           fontSize: 16),
                                                     ),
                                                   ))
@@ -570,8 +700,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 }
 
                                 return SpinKitPulsingGrid(
-                                  color:
-                                  Color(0xff634831).withOpacity(0.5),
+                                  color: Color(0xff634831).withOpacity(0.5),
                                   size: 50.0,
                                 );
                               },
@@ -664,10 +793,9 @@ class _HomeScreenState extends State<HomeScreen>
                       width: 250 * fem,
                       height: 350 * fem,
                       decoration: BoxDecoration(
-                        border: Border.all(width:3,color: Color(0xffDA6317)),
+                        border: Border.all(width: 3, color: Color(0xffDA6317)),
                         color: Color(0x10634831),
                         borderRadius: BorderRadius.circular(15 * fem),
-
                       ),
                       child: Column(
                         children: [
@@ -707,7 +835,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                           TextOverflow.ellipsis,
                                                       softWrap: false,
                                                       style: TextStyle(
-                                                          color: Color(0xff634831),
+                                                          color:
+                                                              Color(0xff634831),
                                                           fontSize: 16),
                                                     ),
                                                   ))
@@ -722,8 +851,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 }
 
                                 return SpinKitPulsingGrid(
-                                  color:
-                                  Color(0xff634831).withOpacity(0.5),
+                                  color: Color(0xff634831).withOpacity(0.5),
                                   size: 50.0,
                                 );
                                 // return Shimmer.fromColors(
@@ -832,25 +960,23 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         Container(
           color: Color(0xffFFEEDD),
-          height: 87,
+          height: 77,
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                   width: 60 * fem,
                   height: 60 * fem,
                   decoration: BoxDecoration(
-
-
                     border: Border.all(color: Color(0xffDA6317)),
                     color: Color(0x30DF6F20),
                     borderRadius: BorderRadius.circular(16 * fem),
-
                   ),
                   child: GestureDetector(
                     onTap: () async {
-                      final isAuthenticated =
-                      await LocalAuthApi.authenticate();
+                      final isAuthenticated = await LocalAuthApi.authenticate();
                       if (isAuthenticated)
                         showModalBottomSheet(
                             context: context,
@@ -863,47 +989,40 @@ class _HomeScreenState extends State<HomeScreen>
                                 height: 400,
                                 child: Center(
                                     child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        QrImageView(
-                                          data: getCurrentUsername(),
-                                          size: 300,
-                                          backgroundColor: Color(0xffFFEEDD),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Color(0xffDA6317)),
-                                            color: Color(0x19ffffff),
-                                            borderRadius:
+                                  children: [
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    QrImageView(
+                                      data: getCurrentUsername(),
+                                      size: 300,
+                                      backgroundColor: Color(0xffFFEEDD),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color(0xffDA6317)),
+                                        color: Color(0x19ffffff),
+                                        borderRadius:
                                             BorderRadius.circular(15 * fem),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Color(0x115a6cea),
-                                                offset:
-                                                Offset(12 * fem, 26 * fem),
-                                                blurRadius: 25 * fem,
-                                              ),
-                                            ],
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Icon(
-                                              Icons.arrow_back_ios_new,
-                                              color: Color(0x30DF6F20),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    )),
+
+                                      ),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new,
+                                          color: Color(0x30DF6F20),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )),
                               );
                             });
                     },
@@ -913,11 +1032,8 @@ class _HomeScreenState extends State<HomeScreen>
                       color: Color(0xffDA6317),
                     ),
                   ))
-
             ],
-
-          )
-          ,
+          ),
         )
       ]),
     );

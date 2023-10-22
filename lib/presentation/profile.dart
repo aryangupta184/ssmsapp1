@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
           width: double.infinity,
           child: Container(
             // profileLru (0:533)
-            padding: EdgeInsets.fromLTRB(0*fem, 60*fem, 0*fem, 0*fem),
+            padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 0*fem),
             width: double.infinity,
             decoration: BoxDecoration (
               color: Color(0xffFFEEDD),
@@ -73,27 +73,61 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: 270,
-                  width: 270,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffDA6317),width: 3),
-                    borderRadius: BorderRadius.circular(16)
+                  height: 200,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        // patternk4h (0:9371)
+                          left: 0 * fem,
+                          top: 0 * fem,
+                          child: Opacity(
+                            opacity: 0.2,
+                            child: Align(
+                              child: SizedBox(
+                                width: 375 * fem,
+                                height: 200 * fem,
+                                child: Image.asset(
+                                  'assets/images/pattern-bg_2.png',
+                                  fit: BoxFit.cover,
+                                  width: 375 * fem,
+                                  height: 812 * fem,
+                                ),
+                              ),
+                            ),
+                          )),
+                      Positioned(
+                        top: 60,
+                        left: 130,
+                        child: Container(
+                            height: 130,
+                            width: 130,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffDA6317),width: 3),
+                              borderRadius: BorderRadius.circular(16),
+
+                            ),
+                            padding: EdgeInsets.all(10),
+                            child: getProfileImage()
+                        ),)
+
+
+
+                    ],
                   ),
-                  padding: EdgeInsets.all(10),
-                  child: getProfileImage()
                 ),
+
 
 
                 Container(
                   // autogroupcg2uiMf (HqNr5u9ATaSyCpGeFiCg2u)
                   width: 400*fem,
-                  height: 450*fem,
+                  height: 500*fem,
                   child: Stack(
                     children: [
 
                       Positioned(
                         // textSgy (0:537)
-                        left: 20*fem,
+                        left: 10*fem,
                         top: 40*fem,
                         child: Container(
                           width: 400*fem,
@@ -308,6 +342,94 @@ class ProfileScreen extends StatelessWidget {
                                           color: Color(0xff634831),
                                           fontWeight: FontWeight.bold,
                                             height: 1*ffem/fem,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        // menu1GJd (0:542)
+                        left: 14*fem,
+                        top: 370*fem,
+                        child: Container(
+                          padding: EdgeInsets.fromLTRB(14*fem, 19*fem, 17*fem, 13*fem),
+                          width: 347*fem,
+                          height: 103*fem,
+                          decoration: BoxDecoration (
+                            border: Border.all(color: Color(0xffDA6317)),
+                            color: Color(0x10634831),
+                            borderRadius: BorderRadius.circular(15*fem),
+
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                // photomenuHzR (0:547)
+                                margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 17.45*fem, 5*fem),
+                                width: 62*fem,
+                                height: 62*fem,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16*fem),
+                                  child: Image.asset(
+                                    'assets/images/photo-paneer.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
+                                margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 36.55*fem, 0*fem),
+                                height: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      // menunamejLd (0:544)
+                                      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 4*fem),
+                                      child: Text(
+                                        'Item',
+                                        style: SafeGoogleFont (
+                                          'Inter',
+                                          fontSize: 15*ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.3102273305*ffem/fem,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      // resaturantnameqPf (0:545)
+                                      margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 5*fem),
+                                      child: Text(
+                                        'Meal, Date',
+                                        style: SafeGoogleFont (
+                                          'Inter',
+                                          fontSize: 14*ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.2125*ffem/fem,
+                                          letterSpacing: 0.5*fem,
+                                          color: Color(0xff634831),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      // priece99T (0:546)
+                                      margin: EdgeInsets.fromLTRB(0.45*fem, 0*fem, 0*fem, 0*fem),
+                                      child: Text(
+                                        'Rs. Cost',
+                                        style: SafeGoogleFont (
+                                          'Inter',
+                                          fontSize: 19*ffem,
+                                          color: Color(0xff634831),
+                                          fontWeight: FontWeight.bold,
+                                          height: 1*ffem/fem,
                                         ),
                                       ),
                                     ),
