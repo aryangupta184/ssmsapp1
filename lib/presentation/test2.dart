@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
@@ -442,8 +443,8 @@ class _HomeScreenState extends State<HomeScreen>
                 // tiiitletext3xu (0:9775)
                 left: 30 * fem,
                 top: 100 * fem,
-                child: Image.asset(
-                  'assets/images/frame14.png',
+                child: SvgPicture.asset(
+                  'assets/images/frame14.svg',
 
 
                 ),
