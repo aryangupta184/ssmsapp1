@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
           width: double.infinity,
           height: 812*fem,
           decoration: BoxDecoration (
-            color: Color(0xffFFEEDD),
+            color: Color(0xff0D0D0D),
 
           ),
           child: Stack(
@@ -32,7 +32,7 @@ class OnboardingScreen extends StatelessWidget {
                     width: 375*fem,
                     height: 812*fem,
                     child: Image.asset(
-                      'assets/images/pattern-bg_4.png',
+                      'assets/images/pattern-bg.png',
                       width: 375*fem,
                       height: 812*fem,
                     ),
@@ -76,7 +76,7 @@ class OnboardingScreen extends StatelessWidget {
                                       style: SafeGoogleFont (
                                         'Viga',
                                         fontSize: 40*ffem,
-                                        color: Color(0xFFec8646),
+                                        color: Colors.greenAccent,
                                         fontWeight: FontWeight.w400,
                                         height: 1.345*ffem/fem,
                                         letterSpacing: 0.5*fem,
@@ -105,7 +105,7 @@ class OnboardingScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                       height: 1.2125*ffem/fem,
                                       letterSpacing: 1*fem,
-                                      color: Color(0xff634831),
+                                      color: Colors.greenAccent,
                                     ),
                                   ),
                                 ),

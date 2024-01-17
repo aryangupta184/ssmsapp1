@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         context: context,
         builder: (_) {
           return Dialog(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black.withOpacity(0.7),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
@@ -40,7 +40,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 15,
                   ),
-                  Text('Searching for Google Accounts....')
+                  Text(
+                    'Searching for Google Accounts....',
+                    style: TextStyle(color: Colors.white),
+                  )
                 ],
               ),
             ),
@@ -119,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: EdgeInsets.fromLTRB(25*fem, 31*fem, 25*fem, 28*fem),
                 width: double.infinity,
                 decoration: BoxDecoration (
-                  color: Color(0xffFFEEDD),
+                  color: Color(0xff0D0D0D),
 
                   image: DecorationImage (
                     alignment: Alignment.topCenter,
@@ -127,7 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     fit: BoxFit.fitWidth,
                     image: AssetImage (
-                      'assets/images/pattern-bg_4.png',
+                      'assets/images/pattern-bg.png',
                     ),
                   ),
                 ),
@@ -140,28 +143,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 120,),
+                          SizedBox(height: 50,),
+
                           Container(
 
                             width: double.infinity,
-                            height: 64*fem,
+                            height: 110*fem,
                             child: Stack(
                               children: [
                                 Positioned(
 
-                                  left: 71*fem,
+                                  left: 0*fem,
                                   top: 0*fem,
-                                  child: Align(
+                                  child: Center(
                                     child: SizedBox(
-                                      width: 107*fem,
-                                      height: 54*fem,
+                                      width: 280*fem,
+                                      height: 120*fem,
                                       child: Text(
                                         'ssms ',
                                         textAlign: TextAlign.center,
                                         style: SafeGoogleFont (
                                           'Viga',
-                                          fontSize: 40*ffem,
-                                          color: Color(0xFFec8646),
+                                          fontSize: 80*ffem,
+                                          color: Color(0xFF53E88B),
                                           fontWeight: FontWeight.w400,
                                           height: 1.345*ffem/fem,
                                           letterSpacing: 0.5*fem,
@@ -173,7 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Positioned(
 
                                   left: 0*fem,
-                                  top: 48*fem,
+                                  top: 90*fem,
                                   child: Align(
                                     child: SizedBox(
                                       width: 250*fem,
@@ -187,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           fontWeight: FontWeight.w600,
                                           height: 1.2125*ffem/fem,
                                           letterSpacing: 1*fem,
-                                          color: Color(0xff634831),
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -201,13 +205,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Container(
 
-                      margin: EdgeInsets.fromLTRB(5*fem, 0*fem, 5*fem, 0*fem),
+                      margin: EdgeInsets.fromLTRB(5*fem, 0*fem, 5*fem, 5*fem),
                       width: double.infinity,
 
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 30,),
+                          SizedBox(height: 45,),
                           Align(
                             child: SizedBox(
                               width: 250*fem,
@@ -221,7 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   fontWeight: FontWeight.w600,
                                   height: 1.2125*ffem/fem,
                                   letterSpacing: 1*fem,
-                                  color: Color(0xff634831),
+                                  color: Color(0xff15BE77),
                                 ),
                               ),
                             ),
@@ -233,7 +237,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     padding: EdgeInsets.fromLTRB(15*fem, 0*fem, 15*fem, 0*fem),
                                     width: double.infinity,
                                     decoration: BoxDecoration (
-                                      color: Color(0x19634831),
+                                      color: Colors.white.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(15*fem),
                                     ),
                                     child: TextField(
@@ -247,7 +251,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontWeight: FontWeight.w400,
                                         height: 1.2125*ffem/fem,
                                         letterSpacing: 0.5*fem,
-                                        color: Color(0xffffffff),
+                                        color: Colors.white.withOpacity(0.3),
                                       ),
                                     ),
                                   ),
@@ -256,7 +260,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             padding: EdgeInsets.fromLTRB(15*fem, 0*fem, 15*fem, 0*fem),
                             width: double.infinity,
                             decoration: BoxDecoration (
-                              color: Color(0x19634831),
+                              color: Colors.white.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(15*fem),
                             ),
                             child: TextField(
@@ -270,7 +274,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontWeight: FontWeight.w400,
                                 height: 1.2125*ffem/fem,
                                 letterSpacing: 0.5*fem,
-                                color: Color(0xffffffff),
+                                color: Colors.white.withOpacity(0.3),
                               ),
                             ),
                           ),
@@ -285,7 +289,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontSize: 12*ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.6652272542*ffem/fem,
-                                color: Color(0xff634831),
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -296,7 +300,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 57*fem,
                             decoration: BoxDecoration (
 
-                              color: Color(0x40634831),
+                              color: Colors.white.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(15*fem),
 
                             ),
@@ -341,7 +345,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontWeight: FontWeight.w400,
                                         height: 1.2125*ffem/fem,
                                         letterSpacing: 0.5*fem,
-                                        color: Color(0xff634831),
+                                        color: Colors.white,
                                       ),
                                     ),
                                   )
@@ -359,7 +363,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: SafeGoogleFont (
                                 'Inter',
                                 fontSize: 12*ffem,
-                                color: Color(0xff634831),
+                                color: Color(0xff15BE77),
                                 fontWeight: FontWeight.w400,
                                 height: 1.6652272542*ffem/fem,
                                 decoration: TextDecoration.underline,
@@ -374,7 +378,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             decoration: BoxDecoration (
                               borderRadius: BorderRadius.circular(15*fem),
                               gradient: LinearGradient(
-                                colors: [Color(0xffFD9C2E), Color(0xffDA6317)],
+                                colors: [Color(0xff53E88B), Color(0xff15BE77)],
                                 stops: [0, 1],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,

@@ -95,45 +95,40 @@ class _HomeScreenState extends State<HomeScreen>
 
   Widget setupAlertDialoadContainer(context) {
     return Container(
-
       decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffDA6317)),
-          borderRadius: BorderRadius.circular(16),
-        color: Color(0xffFFEEDD),
-       boxShadow: [
+        border: Border.all(color: Color(0xff0D0D0D)),
+        borderRadius: BorderRadius.circular(16),
+        color: Color(0xff0D0D0D),
+        boxShadow: [
           BoxShadow(
-          color: Color(0xffDA6317).withOpacity(0.5),  // Adjust opacity as needed
-      blurRadius: 25.0,  // Adjust blur radius as needed
-      spreadRadius: 15.0,  // Adjust spread radius as needed
-      offset: Offset(0.0, 4.0),  // Adjust offset as needed
-    ),
-    ],
-
+            color:
+                Color(0xff0D0D0D).withOpacity(0.5), // Adjust opacity as needed
+            blurRadius: 25.0, // Adjust blur radius as needed
+            spreadRadius: 15.0, // Adjust spread radius as needed
+            offset: Offset(0.0, 4.0), // Adjust offset as needed
+          ),
+        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           Align(
             child: SizedBox(
-              width: 200 ,
-             height: 50,
+              width: 200,
+              height: 50,
               child: Text(
                 'Notifications',
                 style: SafeGoogleFont(
                   'Inter',
-                  fontSize: 24 ,
+                  fontSize: 27,
                   fontWeight: FontWeight.w400,
                   height: 1.6,
-                  color: Color(0xff634831),
+                  color: Color(0xff53E88B),
                 ),
               ),
             ),
           ),
           Container(
-
-
-
             height: 300.0, // Change as per your requirement
             width: 300.0, // Change as per your requirement
             child: ListView.builder(
@@ -142,54 +137,54 @@ class _HomeScreenState extends State<HomeScreen>
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Container(
-                      padding: EdgeInsets.fromLTRB(11, 12, 11, 8),
-                      width: 200,
-                      height: 40,
-                      decoration: BoxDecoration (
-                        border: Border.all(color: Color(0xffDA6317)),
-                        color: Color(0x10634831),
-                        borderRadius: BorderRadius.circular(15),
-
+                    padding: EdgeInsets.fromLTRB(11, 12, 11, 8),
+                    width: 200,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff53E88B)),
+                      color: Color(0x10634831),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Text(
+                      'List Item $index',
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        height: 1.2,
+                        color: Colors.white.withOpacity(0.7),
                       ),
-                      child: Text(
-                        'List Item $index',
-                        style: SafeGoogleFont (
-                          'Inter',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2,
-                          color: Color(0xff634831),
-                        ),
-                      ),),
+                    ),
+                  ),
                 );
               },
             ),
           ),
-          SizedBox(height: 20,),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: Color(0xffDA6317)),
-                color: Color(0x10634831),
-                borderRadius:
-                BorderRadius.circular(15 ),
-
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Color(0xffDA6317),
-                ),
-              ),
-            )
+          SizedBox(
+            height: 20,
           ),
-          SizedBox(height: 10,)
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xff53E88B)),
+                  color: Color(0x10634831),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Color(0xff53E88B),
+                  ),
+                ),
+              )),
+          SizedBox(
+            height: 10,
+          )
         ],
       ),
     );
@@ -226,40 +221,34 @@ class _HomeScreenState extends State<HomeScreen>
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Material(
-      color: Color(0xffFFEEDD),
+      color: Color(0xff0D0D0D),
       child: Column(children: [
         Container(
           // homepHX (0:9368)
           width: double.infinity,
-          height: 240 * fem,
+          height: 320 * fem,
+
           decoration: BoxDecoration(
-            color: Color(0xffFFEEDD),
+            color: Color(0xff0D0D0D),
           ),
           child: Stack(
             children: [
               Positioned(
-                  // patternk4h (0:9371)
-                  left: 0 * fem,
-                  top: 0 * fem,
-                  child: Opacity(
-                    opacity: 0.2,
-                    child: Align(
-                      child: SizedBox(
-                        width: 375 * fem,
-                        height: 200 * fem,
-                        child: Image.asset(
-                          'assets/images/pattern-bg_2.png',
-                          fit: BoxFit.cover,
-                          width: 375 * fem,
-                          height: 812 * fem,
-                        ),
-                      ),
-                    ),
-                  )),
+                // patternk4h (0:9371)
+                left: 0 * fem,
+                top: 0 * fem,
+
+                child: Image.asset(
+                  'assets/images/pattern-bg2.png',
+                  fit: BoxFit.fitWidth,
+                  width: 375 * fem,
+                  height: 812 * fem,
+                ),
+              ),
               Positioned(
                 // iconnotificationxAm (0:9772)
-                left: 285 * fem,
-                top: 195 * fem,
+               right: 30*fem,
+                top: 275 * fem,
                 child: Align(
                   child: SizedBox(
                       width: 45 * fem,
@@ -271,27 +260,31 @@ class _HomeScreenState extends State<HomeScreen>
                                 initialDate: selectedDate,
                                 firstDate: DateTime(2020),
                                 lastDate: DateTime(2028),
-                                builder: (context, child) {
-                                  return Theme(
-                                    data: Theme.of(context).copyWith(
-                                      colorScheme: ColorScheme.light(
-                                        primary:
-                                            Color(0xffFFEEDD), // <-- SEE HERE
-                                        onPrimary:
-                                            Color((0xffDA6317)), // <-- SEE HERE
-                                        onSurface:
-                                            Color(0xffDA6317), // <-- SEE HERE
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: Color(
-                                              0xffDA6317), // button text color
-                                        ),
-                                      ),
-                                    ),
-                                    child: child!,
-                                  );
-                                });
+                              builder: (context, child) {
+                                return Theme(
+                                  data: ThemeData.dark(), // This will change to light theme.
+                                  child: child!,
+                                );
+                              },
+
+                                // builder: (context, child) {
+                                //   // return Theme(
+                                //   //   data: Theme.of(context).copyWith(
+                                //   //     colorScheme: ColorScheme.dark(
+                                //   //       primary: Color(0x50FFFFFF)
+                                //   //       // <-- SEE HERE
+                                //   //     ),
+                                //   //     textButtonTheme: TextButtonThemeData(
+                                //   //       style: TextButton.styleFrom(
+                                //   //         primary: Color(
+                                //   //             0xff0D0D0D), // button text color
+                                //   //       ),
+                                //   //     ),
+                                //   //   ),
+                                //   //   child: child!,
+                                //   // );
+                                // }
+                                );
                             selectedDate = dateTime!;
                             newDate = dateTime!;
 
@@ -303,22 +296,21 @@ class _HomeScreenState extends State<HomeScreen>
                             width: 45 * fem,
                             height: 45 * fem,
                             decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xffDA6317)),
-                              color: Color(0x10634831),
+                              color: Color(0x10FFFFFF),
                               borderRadius: BorderRadius.circular(16 * fem),
                             ),
                             child: Image.asset(
                               'assets/images/icon-notification-calendar.png',
                               width: 45 * fem,
                               height: 45 * fem,
-                              color: Color(0xffDA6317),
+                              color: Color(0xff53E88B),
                             ),
                           ))),
                 ),
               ),
               Positioned(
                 // iconnotificationxAm (0:9772)
-                left: 50 * fem,
+                right: 30 * fem,
                 top: 30 * fem,
                 child: Align(
                   child: SizedBox(
@@ -330,7 +322,10 @@ class _HomeScreenState extends State<HomeScreen>
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-
+                                    backgroundColor: Color(0xff0D0D0D),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
                                     content:
                                         setupAlertDialoadContainer(context),
                                   );
@@ -340,14 +335,13 @@ class _HomeScreenState extends State<HomeScreen>
                             width: 45 * fem,
                             height: 45 * fem,
                             decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xffDA6317)),
-                              color: Color(0x10634831),
+                              color: Color(0x20FFFFFF),
                               borderRadius: BorderRadius.circular(16 * fem),
                             ),
                             child: Icon(
-                              Icons.notifications,
+                              Icons.notifications_none,
                               size: 30,
-                              color: Color(0xffDA6317),
+                              color: Color(0xff53E88B),
                             ),
                           ))),
                 ),
@@ -356,82 +350,109 @@ class _HomeScreenState extends State<HomeScreen>
                 // tiiitletext3xu (0:9775)
                 left: 30 * fem,
                 top: 90 * fem,
-                child: Align(
-                  child: SizedBox(
-                    width: 200 * fem,
-                    height: 82 * fem,
-                    child: Text(
-                      'This Month\'s \nExpenses',
-                      style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 22 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.3102273018 * ffem / fem,
-                        color: Color(0xff634831),
-                      ),
-                    ),
-                  ),
+                child: Image.asset(
+                  'assets/images/frame14.png',
+
+
                 ),
               ),
+
               Positioned(
-                left: 245 * fem,
-                top: 55 * fem,
-                child: Container(
-                    height: 120,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(width: 7, color: Color(0xffDA6317))),
-                    child: Center(
-                        child: Text("Rs.1440",
-                            style: TextStyle(
-                                color: Color(0xff634831),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)))
-                    // margin: EdgeInsets.symmetric(horizontal: 25),
-                    // padding: EdgeInsets.all(15),
-                    // height: 80,
-                    // decoration: BoxDecoration(
-                    //     gradient: LinearGradient(
-                    //         colors: [Color(0xffD256FF), Color(0xff6256BF)]),
-                    //     borderRadius: BorderRadius.circular(24)),
-                    // child: Row(children: [
-                    //   Align(
-                    //     alignment: Alignment.center,
-                    //     child: Text(
-                    //       'Rs. Cost',
-                    //       style: SafeGoogleFont(
-                    //         'Inter',
-                    //         fontSize: 24 * ffem,
-                    //         fontWeight: FontWeight.w400,
-                    //         height: 1.3102273018 * ffem / fem,
-                    //         color: Color(0xffffffff),
-                    //       ),
-                    //     ),
-                    //   ),
-                    //   SizedBox(
-                    //     width: 55,
-                    //   ),
-                    //   Align(
-                    //     alignment: Alignment.centerRight,
-                    //     child: Text(
-                    //       DateFormat.MMMM().format(DateTime.now()).toString(),
-                    //       style: SafeGoogleFont(
-                    //         'Inter',
-                    //         fontSize: 24 * ffem,
-                    //         fontWeight: FontWeight.w400,
-                    //         height: 1.3102273018 * ffem / fem,
-                    //         color: Colors.tealAccent,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ]),
-                    ),
+                // iconnotificationxAm (0:9772)
+                right: 100 * fem,
+                top: 30 * fem,
+                child: Align(
+                  child: SizedBox(
+                      width: 45 * fem,
+                      height: 45 * fem,
+                      child: InkWell(
+                          onTap: () async {
+
+                            final isAuthenticated = await LocalAuthApi.authenticate();
+                            if (isAuthenticated)
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return SizedBox(
+
+                                      // decoration: BoxDecoration(
+                                      //   borderRadius: BorderRadius.circular(24),
+                                      //   color: Colors.black87,
+                                      // ),
+                                      height: 420,
+                                      child: Container(
+                                        color: Colors.black87,
+                                        child: Center(
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 40,
+                                                ),
+                                                QrImageView(
+                                                  data: getCurrentUsername(),
+                                                  size: 300,
+                                                  backgroundColor: Color(0xffFFFFFF),
+                                                ),
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+
+                                                    borderRadius:
+                                                    BorderRadius.circular(15 * fem),
+                                                    color: Color(0x10FFFFFF)
+                                                  ),
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Icon(
+                                                      Icons.arrow_back_ios_new,
+                                                      size: 30,
+                                                      color: Color(0x30FFFFFF),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                      )
+
+                                    );
+                                  });
+
+                          },
+                          child: Container(
+                            width: 45 * fem,
+                            height: 45 * fem,
+                            decoration: BoxDecoration(
+                              color: Color(0x20FFFFFF),
+                              borderRadius: BorderRadius.circular(16 * fem),
+                            ),
+                            child: Icon(
+                              Icons.qr_code_scanner_rounded,
+                              size: 30,
+                              color: Color(0xff53E88B),
+                            ),
+                          ))),
+                ),
               ),
               Positioned(
                 // tiiitletext3xu (0:9775)
                 left: 30 * fem,
-                top: 200 * fem,
+                top: 100 * fem,
+                child: Image.asset(
+                  'assets/images/frame14.png',
+
+
+                ),
+              ),
+              Positioned(
+                // tiiitletext3xu (0:9775)
+                left: 30 * fem,
+                top: 275 * fem,
+
                 child: Align(
                   child: SizedBox(
                     width: 200 * fem,
@@ -442,10 +463,10 @@ class _HomeScreenState extends State<HomeScreen>
                           ' Menu',
                       style: SafeGoogleFont(
                         'Inter',
-                        fontSize: 26 * ffem,
+                        fontSize: 30 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.3102273018 * ffem / fem,
-                        color: Color(0xff634831),
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -464,577 +485,585 @@ class _HomeScreenState extends State<HomeScreen>
         Container(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           width: double.infinity,
-          height: 390 * fem,
+          height: 350 * fem,
           decoration: BoxDecoration(
-            color: Color(0xffFFEEDD),
+            color: Color(0xffF0D0D0D),
           ),
-          child: ListView(
-            children: [
-              CarouselSlider(
-                items: [
-                  Container(
-                      alignment: Alignment.center,
-                      // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
-                      width: 250 * fem,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: Color(0xffDA6317)),
-                        color: Color(0x10634831),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Breakfast',
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 36 * ffem,
-                              fontWeight: FontWeight.bold,
-                              height: 1.3102273305 * ffem / fem,
-                              color: Color(0xff634831),
+          child: Stack(
+
+            children:[
+              Positioned(
+                child: ListView(
+                  children: [
+                    CarouselSlider(
+                      items: [
+                        Container(
+                            alignment: Alignment.topCenter,
+                            // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                            width: 250 * fem,
+                            decoration: BoxDecoration(
+                              color: Color(0x10FFFFFF),
+                              borderRadius: BorderRadius.circular(15 * fem),
                             ),
-                          ),
-
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 240,
-                            child: FutureBuilder<List<List<String>>>(
-                              future: futureMenu,
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    itemCount: 9,
-                                    itemBuilder: (context, rowIndex) {
-                                      return ListTile(
-                                          title: Center(
-                                        child: Column(
-                                          children: snapshot.data![current]
-                                              .skip(3)
-                                              .take(9)
-                                              .map((item) => Container(
-                                                    padding: EdgeInsets.all(4),
-                                                    child: Text(
-                                                      item,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      softWrap: false,
-                                                      style: TextStyle(
-                                                          color:
-                                                              Color(0xff634831),
-                                                          fontSize: 16),
-                                                    ),
-                                                  ))
-                                              .toList(),
-                                        ),
-                                      ));
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Center(
-                                      child: Text("An error occurred"));
-                                }
-
-                                return SpinKitPulsingGrid(
-                                  color: Color(0xff634831).withOpacity(0.5),
-                                  size: 50.0,
-                                );
-                              },
-                            ),
-                          ),
-
-                          // Text(
-                          //   _data[1][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,
-                          //     fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[2][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[3][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[4][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[5][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[6][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[7][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[8][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[9][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                        ],
-                      )),
-
-                  Container(
-                      alignment: Alignment.center,
-                      // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
-                      width: 250 * fem,
-                      height: 100 * fem,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: Color(0xffDA6317)),
-                        color: Color(0x10634831),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Lunch',
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 36 * ffem,
-                              fontWeight: FontWeight.bold,
-                              height: 1.3102273305 * ffem / fem,
-                              color: Color(0xff634831),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 235,
-                            child: FutureBuilder<List<List<String>>>(
-                              future: futureMenu,
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    itemCount: 8,
-                                    itemBuilder: (context, rowIndex) {
-                                      return ListTile(
-                                          title: Center(
-                                        child: Column(
-                                          children: snapshot.data![current]
-                                              .skip(14)
-                                              .take(8)
-                                              .map((item) => Container(
-                                                    padding: EdgeInsets.all(4),
-                                                    child: Text(
-                                                      item,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      softWrap: false,
-                                                      style: TextStyle(
-                                                          color:
-                                                              Color(0xff634831),
-                                                          fontSize: 16),
-                                                    ),
-                                                  ))
-                                              .toList(),
-                                        ),
-                                      ));
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Center(
-                                      child: Text("An error occurred"));
-                                }
-
-                                return SpinKitPulsingGrid(
-                                  color: Color(0xff634831).withOpacity(0.5),
-                                  size: 50.0,
-                                );
-                              },
-                            ),
-                          ),
-                          // Text(
-                          //   _data[12][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[13][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[14][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[15][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[16][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[17][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[18][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[19][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                        ],
-                      )),
-                  Container(
-                      alignment: Alignment.center,
-                      // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
-                      width: 250 * fem,
-                      height: 350 * fem,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: Color(0xffDA6317)),
-                        color: Color(0x10634831),
-                        borderRadius: BorderRadius.circular(15 * fem),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Dinner',
-                            style: SafeGoogleFont(
-                              'Inter',
-                              fontSize: 36 * ffem,
-                              fontWeight: FontWeight.bold,
-                              height: 1.3102273305 * ffem / fem,
-                              color: Color(0xff634831),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 235,
-                            child: FutureBuilder<List<List<String>>>(
-                              future: futureMenu,
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    itemCount: 7,
-                                    itemBuilder: (context, rowIndex) {
-                                      return ListTile(
-                                          title: Center(
-                                        child: Column(
-                                          children: snapshot.data![current]
-                                              .skip(24)
-                                              .take(7)
-                                              .map((item) => Container(
-                                                    padding: EdgeInsets.all(4),
-                                                    child: Text(
-                                                      item,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      softWrap: false,
-                                                      style: TextStyle(
-                                                          color:
-                                                              Color(0xff634831),
-                                                          fontSize: 16),
-                                                    ),
-                                                  ))
-                                              .toList(),
-                                        ),
-                                      ));
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Center(
-                                      child: Text("An error occurred"));
-                                }
-
-                                return SpinKitPulsingGrid(
-                                  color: Color(0xff634831).withOpacity(0.5),
-                                  size: 50.0,
-                                );
-                                // return Shimmer.fromColors(
-                                //   baseColor: Colors.white10,
-                                //   highlightColor: Colors.white,
-                                //   child: Text(
-                                //     'Loading ...',
-                                //     style: TextStyle(
-                                //       fontSize: 24,
-                                //       fontWeight: FontWeight.bold,
-                                //     ),
-                                //   ),
-                                // );
-                              },
-                            ),
-                          ),
-                          // Text(
-                          //   _data[22][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[23][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[24][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[25][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[26][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[27][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5,),
-                          // Text(
-                          //   _data[28][newDate.day-1],
-                          //   style: SafeGoogleFont (
-                          //     'Inter',
-                          //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                          //     height: 1.3102273305*ffem/fem,
-                          //     color: Color(0xffffffff),
-                          //   ),
-                          // ),
-                        ],
-                      )),
-
-                  //1st Image of Slider
-                ],
-
-                //Slider Container properties
-                options: CarouselOptions(
-                  height: 350.0,
-                  enlargeCenterPage: true,
-                  autoPlay: false,
-                  initialPage: getinitialpage(),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: false,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.6,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          color: Color(0xffFFEEDD),
-          height: 77,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                  width: 60 * fem,
-                  height: 60 * fem,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xffDA6317)),
-                    color: Color(0x30DF6F20),
-                    borderRadius: BorderRadius.circular(16 * fem),
-                  ),
-                  child: GestureDetector(
-                    onTap: () async {
-                      final isAuthenticated = await LocalAuthApi.authenticate();
-                      if (isAuthenticated)
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(24),
-                                  color: Color(0x80FEC584),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Breakfast',
+                                  style: SafeGoogleFont(
+                                    'Viva',
+                                    fontSize: 36 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3102273305 * ffem / fem,
+                                    color: Color(0xffFFFFFF),
+                                  ),
                                 ),
-                                height: 400,
-                                child: Center(
-                                    child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    QrImageView(
-                                      data: getCurrentUsername(),
-                                      size: 300,
-                                      backgroundColor: Color(0xffFFEEDD),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Color(0xffDA6317)),
-                                        color: Color(0x19ffffff),
-                                        borderRadius:
-                                            BorderRadius.circular(15 * fem),
 
-                                      ),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Icon(
-                                          Icons.arrow_back_ios_new,
-                                          color: Color(0x30DF6F20),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                              );
-                            });
-                    },
-                    child: Icon(
-                      Icons.qr_code_2,
-                      size: 50,
-                      color: Color(0xffDA6317),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  height: 240,
+                                  child: FutureBuilder<List<List<String>>>(
+                                    future: futureMenu,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasData) {
+                                        return ListView.builder(
+                                          itemCount: 1,
+                                          itemBuilder: (context, rowIndex) {
+                                            return ListTile(
+                                                title: Center(
+                                                  child: Column(
+                                                    children: snapshot.data![current]
+                                                        .skip(3)
+                                                        .take(9)
+                                                        .map((item) => Container(
+                                                      padding: EdgeInsets.all(4),
+                                                      child: Text(
+                                                        item,
+                                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                        softWrap: false,
+                                                        style: TextStyle(
+                                                            color:
+                                                            Color(0xffFFFFFF).withOpacity(0.5),
+                                                            fontSize: 16),
+                                                      ),
+                                                    ))
+                                                        .toList(),
+                                                  ),
+                                                ));
+                                          },
+                                        );
+                                      } else if (snapshot.hasError) {
+                                        return Center(
+                                            child: Text("An error occurred"));
+                                      }
+
+                                      return SpinKitPulsingGrid(
+                                        color: Color(0xff2DD293).withOpacity(0.5),
+                                        size: 40.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+
+                                // Text(
+                                //   _data[1][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,
+                                //     fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[2][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[3][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[4][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[5][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[6][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[7][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[8][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[9][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                              ],
+                            )),
+
+                        Container(
+                            alignment: Alignment.center,
+                            // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
+                            width: 250 * fem,
+                            height: 100 * fem,
+                            decoration: BoxDecoration(
+
+                              color: Color(0x10FFFFFF),
+                              borderRadius: BorderRadius.circular(15 * fem),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Lunch',
+                                  style: SafeGoogleFont(
+                                    'Viva',
+                                    fontSize: 36 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3102273305 * ffem / fem,
+                                    color: Color(0xffFFFFFF),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  height: 235,
+                                  child: FutureBuilder<List<List<String>>>(
+                                    future: futureMenu,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasData) {
+                                        return ListView.builder(
+                                          itemCount: 1,
+                                          itemBuilder: (context, rowIndex) {
+                                            return ListTile(
+                                                title: Center(
+                                                  child: Column(
+                                                    children: snapshot.data![current]
+                                                        .skip(14)
+                                                        .take(8)
+                                                        .map((item) => Container(
+                                                      padding: EdgeInsets.all(4),
+                                                      child: Text(
+                                                        item,
+                                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                        softWrap: false,
+                                                        style: TextStyle(
+                                                            color:
+                                                            Color(0xffFFFFFF).withOpacity(0.5),
+                                                            fontSize: 16),
+                                                      ),
+                                                    ))
+                                                        .toList(),
+                                                  ),
+                                                ));
+                                          },
+                                        );
+                                      } else if (snapshot.hasError) {
+                                        return Center(
+                                            child: Text("An error occurred"));
+                                      }
+
+                                      return SpinKitPulsingGrid(
+                                        color: Color(0xff2DD293).withOpacity(0.5),
+                                        size: 40.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                // Text(
+                                //   _data[12][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[13][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[14][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[15][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[16][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[17][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[18][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[19][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                              ],
+                            )),
+                        Container(
+                            alignment: Alignment.center,
+                            // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                            width: 250 * fem,
+                            height: 350 * fem,
+                            decoration: BoxDecoration(
+
+                              color: Color(0x10FFFFFF),
+                              borderRadius: BorderRadius.circular(15 * fem),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 5,),
+                                Text(
+                                  'Dinner',
+                                  style: SafeGoogleFont(
+                                    'Viva',
+                                    fontSize: 36 * ffem,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.3102273305 * ffem / fem,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  height: 235,
+                                  child: FutureBuilder<List<List<String>>>(
+                                    future: futureMenu,
+                                    builder: (context, snapshot) {
+                                      if (snapshot.hasData) {
+                                        return ListView.builder(
+                                          itemCount: 1,
+                                          itemBuilder: (context, rowIndex) {
+                                            return ListTile(
+                                                title: Center(
+                                                  child: Column(
+                                                    children: snapshot.data![current]
+                                                        .skip(24)
+                                                        .take(7)
+                                                        .map((item) => Container(
+                                                      padding: EdgeInsets.all(4),
+                                                      child: Text(
+                                                        item,
+                                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                        softWrap: false,
+                                                        style: TextStyle(
+                                                            color:
+                                                            Color(0xffFFFFFF).withOpacity(0.5),
+                                                            fontSize: 16),
+                                                      ),
+                                                    ))
+                                                        .toList(),
+                                                  ),
+                                                ));
+                                          },
+                                        );
+                                      } else if (snapshot.hasError) {
+                                        return Center(
+                                            child: Text("An error occurred"));
+                                      }
+
+                                      return SpinKitPulsingGrid(
+                                        color: Color(0xff2DD293).withOpacity(0.5),
+                                        size: 40.0,
+                                      );
+                                      // return Shimmer.fromColors(
+                                      //   baseColor: Colors.white10,
+                                      //   highlightColor: Colors.white,
+                                      //   child: Text(
+                                      //     'Loading ...',
+                                      //     style: TextStyle(
+                                      //       fontSize: 24,
+                                      //       fontWeight: FontWeight.bold,
+                                      //     ),
+                                      //   ),
+                                      // );
+                                    },
+                                  ),
+                                ),
+                                // Text(
+                                //   _data[22][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[23][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[24][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[25][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[26][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[27][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 5,),
+                                // Text(
+                                //   _data[28][newDate.day-1],
+                                //   style: SafeGoogleFont (
+                                //     'Inter',
+                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                //     height: 1.3102273305*ffem/fem,
+                                //     color: Color(0xffffffff),
+                                //   ),
+                                // ),
+                              ],
+                            )),
+
+                        //1st Image of Slider
+                      ],
+
+                      //Slider Container properties
+                      options: CarouselOptions(
+                        height: 310.0,
+                        enlargeCenterPage: true,
+                        autoPlay: false,
+                        initialPage: getinitialpage(),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: false,
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        viewportFraction: 0.6,
+
+                      ),
                     ),
-                  ))
-            ],
-          ),
-        )
+                  ],
+                ),
+              )
+            ]
+          )
+
+        ),
+        // Container(
+        //   color: Color(0xffFFEEDD),
+        //   height: 77,
+        //   child: Column(
+        //     children: [
+        //       SizedBox(
+        //         height: 10,
+        //       ),
+        //       Container(
+        //           width: 60 * fem,
+        //           height: 60 * fem,
+        //           decoration: BoxDecoration(
+        //             border: Border.all(color: Color(0xffDA6317)),
+        //             color: Color(0x30DF6F20),
+        //             borderRadius: BorderRadius.circular(16 * fem),
+        //           ),
+        //           child: GestureDetector(
+        //             onTap: () async {
+        //               final isAuthenticated = await LocalAuthApi.authenticate();
+        //               if (isAuthenticated)
+        //                 showModalBottomSheet(
+        //                     context: context,
+        //                     builder: (BuildContext context) {
+        //                       return Container(
+        //                         decoration: BoxDecoration(
+        //                           borderRadius: BorderRadius.circular(24),
+        //                           color: Color(0x80FEC584),
+        //                         ),
+        //                         height: 400,
+        //                         child: Center(
+        //                             child: Column(
+        //                           children: [
+        //                             SizedBox(
+        //                               height: 30,
+        //                             ),
+        //                             QrImageView(
+        //                               data: getCurrentUsername(),
+        //                               size: 300,
+        //                               backgroundColor: Color(0xffFFEEDD),
+        //                             ),
+        //                             SizedBox(
+        //                               height: 20,
+        //                             ),
+        //                             Container(
+        //                               padding: EdgeInsets.all(10),
+        //                               decoration: BoxDecoration(
+        //                                 border: Border.all(
+        //                                     color: Color(0xffDA6317)),
+        //                                 color: Color(0x19ffffff),
+        //                                 borderRadius:
+        //                                     BorderRadius.circular(15 * fem),
+        //                               ),
+        //                               child: GestureDetector(
+        //                                 onTap: () {
+        //                                   Navigator.pop(context);
+        //                                 },
+        //                                 child: Icon(
+        //                                   Icons.arrow_back_ios_new,
+        //                                   color: Color(0x30DF6F20),
+        //                                 ),
+        //                               ),
+        //                             )
+        //                           ],
+        //                         )),
+        //                       );
+        //                     });
+        //             },
+        //             child: Icon(
+        //               Icons.qr_code_2,
+        //               size: 50,
+        //               color: Color(0xffDA6317),
+        //             ),
+        //           ))
+        //     ],
+        //   ),
+        // )
       ]),
     );
   }

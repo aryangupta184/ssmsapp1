@@ -48,12 +48,12 @@ class _MasterScreenState extends State<MasterScreen> {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      backgroundColor: Color(0xffFFEEDD),
+      backgroundColor: Color(0xff0D0D0D),
       body: getBody(),
       bottomNavigationBar: Container(
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color: Color(0xffFEC584),
+            color: Color(0xff252525),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Padding(
@@ -64,9 +64,9 @@ class _MasterScreenState extends State<MasterScreen> {
               iconSize: 30,
               curve: Curves.easeInExpo,
               tabBorderRadius: 16,
-              color: Color(0x80FEC584),
-              activeColor: Color(0xffe47517),
-              tabBackgroundColor: Color(0x30DF6F20),
+              color: Color(0xff53E88B).withOpacity(0.5),
+              activeColor: Color(0xff53E88B).withOpacity(0.7),
+              tabBackgroundColor: Color(0xff53E88B).withOpacity(0.1),
               gap: 20,
               padding: EdgeInsets.all(10),
               onTabChange: (index){
@@ -78,23 +78,23 @@ class _MasterScreenState extends State<MasterScreen> {
 
                 GButton(
                   icon: Icons.home_filled,
-                  iconColor: Color(0x80634831),
+                  iconColor: Color(0xff53E88B).withOpacity(0.2),
                   text: 'Home',
                 ),
                 GButton(
                   icon: Icons.person,
-                  iconColor: Color(0x80634831),
+                  iconColor: Color(0xff53E88B).withOpacity(0.2),
                   text: 'Profile',
                 ),
                 GButton(
                   icon: Icons.fastfood,
-                  iconColor: Color(0x80634831),
+                  iconColor: Color(0xff53E88B).withOpacity(0.2),
                   text: 'Grub',
                 ),
 
                 GButton(
                   icon: Icons.chat_bubble,
-                  iconColor: Color(0x80634831),
+                  iconColor: Color(0xff53E88B).withOpacity(0.2),
                   text: 'Complain',
                 ),
               ],

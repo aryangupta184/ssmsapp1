@@ -16,10 +16,10 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
     return Stack(
       children: [
         Image.asset(
-          'assets/images/pattern-bg_2.png',
+          'assets/images/pattern-bg.png',
         ),
         Scaffold(
-          backgroundColor: Color(0xffFFEEDD),
+          backgroundColor: Color(0xff0D0D0D),
           body: Container(
             child: Column(
               children: [
@@ -31,21 +31,14 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         // patternk4h (0:9371)
                           left: 0 * fem,
                           top: 0 * fem,
-                          child: Opacity(
-                            opacity: 0.2,
-                            child: Align(
-                              child: SizedBox(
-                                width: 375 * fem,
-                                height: 200 * fem,
-                                child: Image.asset(
-                                  'assets/images/pattern-bg_2.png',
-                                  fit: BoxFit.cover,
-                                  width: 375 * fem,
-                                  height: 812 * fem,
-                                ),
-                              ),
-                            ),
-                          )),
+                          child: Image.asset(
+                            'assets/images/pattern-bg2.png',
+                            fit: BoxFit.fitWidth,
+                            width: 375 * fem,
+                            height: 812 * fem,
+
+
+                          ),),
                       Positioned(
                         top: 70,
                         child: Container(
@@ -53,7 +46,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "    Mess Complaints",
-                              style: TextStyle(fontSize: 30, color: Color(0xff634831),),
+                              style: TextStyle(fontSize: 30, color: Color(0xffFFFFFF),),
                             ),
                           )
 
@@ -74,7 +67,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
+                          colors: [Color(0xff53E88B), Color(0xff15BE77)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Row(
                     children: [
@@ -93,7 +86,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Complaints \nRegarding \nMess Staff",
-                          style: TextStyle(fontSize: 20, color: Color(0xffF9C488),),
+                          style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
                         ),
                       )
 
@@ -116,7 +109,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
+                          colors: [Color(0xff53E88B), Color(0xff15BE77)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Row(
                     children: [
@@ -135,7 +128,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Complaints \nRegarding \nMess Food",
-                          style: TextStyle(fontSize: 20, color: Color(0xffF9C488),),
+                          style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
                         ),
                       )
 
@@ -158,7 +151,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
+                          colors: [Color(0xff53E88B), Color(0xff15BE77)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Row(
                     children: [
@@ -177,7 +170,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Other \nComplaints",
-                          style: TextStyle(fontSize: 20, color: Color(0xffF9C488),),
+                          style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
                         ),
                       )
 
@@ -200,7 +193,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                   width: 350,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
+                          colors: [Color(0xff53E88B), Color(0xff15BE77)]),
                       borderRadius: BorderRadius.circular(24)),
                   child: Row(
                     children: [
@@ -219,7 +212,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Previous \nComplaints",
-                          style: TextStyle(fontSize: 20, color: Color(0xffF9C488),),
+                          style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
                         ),
                       )
 

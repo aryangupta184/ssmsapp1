@@ -19,7 +19,7 @@ class _GrubScreenState extends State<GrubScreen> {
           'assets/images/pattern-bg_2.png',
         ),
         Scaffold(
-          backgroundColor: Color(0xffFFEEDD),
+          backgroundColor: Color(0xff0D0D0D),
           body: Container(
             child: Column(
               children: [
@@ -30,21 +30,11 @@ class _GrubScreenState extends State<GrubScreen> {
                       // patternk4h (0:9371)
                         left: 0 * fem,
                         top: 0 * fem,
-                        child: Opacity(
-                          opacity: 0.2,
-                          child: Align(
-                            child: SizedBox(
-                              width: 375 * fem,
-                              height: 200 * fem,
-                              child: Image.asset(
-                                'assets/images/pattern-bg_2.png',
-                                fit: BoxFit.cover,
-                                width: 375 * fem,
-                                height: 812 * fem,
-                              ),
-                            ),
-                          ),
-                        )),
+                        child: Image.asset(
+                          'assets/images/pattern-bg2.png',
+                          fit: BoxFit.fitWidth,
+                          width: 375 * fem,
+                          height: 812 * fem,)),
                     Positioned(
                       top: 50,
                       child: Container(
@@ -54,7 +44,7 @@ class _GrubScreenState extends State<GrubScreen> {
                       width: 350,
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
-                              colors: [Color(0xffFD9C2E), Color(0xffDA6317)]),
+                              colors: [Color(0xff53E88B), Color(0xff15BE77)]),
                           borderRadius: BorderRadius.circular(24)),
                       child: Column(
                         children: [
@@ -67,7 +57,7 @@ class _GrubScreenState extends State<GrubScreen> {
                             child: Text(
                               " Upcoming Grubs",
                               textAlign: TextAlign.right,
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 20,color: Colors.white),
                             ),
                           ),
                           SizedBox(
@@ -87,7 +77,7 @@ class _GrubScreenState extends State<GrubScreen> {
                                   child: Text(
                                     "Reserve Now",
                                     style: TextStyle(
-                                        fontSize: 16, color: Color(0xff634831)),
+                                        fontSize: 16, color: Colors.black45),
                                   ),
                                 ),
                               )),
@@ -108,7 +98,7 @@ class _GrubScreenState extends State<GrubScreen> {
                     "    Previous Grubs",
                     style: TextStyle(
                       fontSize: 30,
-                      color: Color(0xff634831),
+                      color: Color(0xffFFFFFF),
                     ),
                   ),
                 )),
@@ -121,8 +111,8 @@ class _GrubScreenState extends State<GrubScreen> {
                       14 * fem, 19 * fem, 17 * fem, 13 * fem),
                   height: 80,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffDA6317)),
-                      color: Color(0x10634831),
+
+                      color: Color(0x10FFFFFF),
                       borderRadius: BorderRadius.circular(12)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,10 +146,10 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Grub',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 16 * ffem,
+                                  fontSize: 18 * ffem,
                                   fontWeight: FontWeight.bold,
                                   height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xff634831),
+                                  color: Color(0xffFFFFFF),
                                 ),
                               ),
                             ),
@@ -171,8 +161,8 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Date',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 19 * ffem,
-                                  color: Color(0xff634831),
+                                  fontSize: 16 * ffem,
+                                  color: Color(0x50FFFFFF),
                                   fontWeight: FontWeight.w400,
                                   height: 1 * ffem / fem,
                                 ),
@@ -185,7 +175,7 @@ class _GrubScreenState extends State<GrubScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
@@ -193,8 +183,8 @@ class _GrubScreenState extends State<GrubScreen> {
                       14 * fem, 19 * fem, 17 * fem, 13 * fem),
                   height: 80,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffDA6317)),
-                      color: Color(0x10634831),
+
+                      color: Color(0x10FFFFFF),
                       borderRadius: BorderRadius.circular(12)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -228,10 +218,10 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Grub',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 16 * ffem,
+                                  fontSize: 18 * ffem,
                                   fontWeight: FontWeight.bold,
                                   height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xff634831),
+                                  color: Color(0xffFFFFFF),
                                 ),
                               ),
                             ),
@@ -243,8 +233,8 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Date',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 19 * ffem,
-                                  color: Color(0xff634831),
+                                  fontSize: 16 * ffem,
+                                  color: Color(0x50FFFFFF),
                                   fontWeight: FontWeight.w400,
                                   height: 1 * ffem / fem,
                                 ),
@@ -256,14 +246,14 @@ class _GrubScreenState extends State<GrubScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 20),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
                   padding: EdgeInsets.all(15),
                   height: 80,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffDA6317)),
-                      color: Color(0x10634831),
+
+                      color: Color(0x10FFFFFF),
                       borderRadius: BorderRadius.circular(12)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -298,10 +288,10 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Grub',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 16 * ffem,
+                                  fontSize: 18 * ffem,
                                   fontWeight: FontWeight.bold,
                                   height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xff634831),
+                                  color: Color(0xffFFFFFF),
                                 ),
                               ),
                             ),
@@ -313,8 +303,8 @@ class _GrubScreenState extends State<GrubScreen> {
                                 'Date',
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 19 * ffem,
-                                  color: Color(0xff634831),
+                                  fontSize: 16 * ffem,
+                                  color: Color(0x50FFFFFF),
                                   fontWeight: FontWeight.w400,
                                   height: 1 * ffem / fem,
                                 ),
