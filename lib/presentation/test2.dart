@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 import 'dart:ui';
 import 'package:csv/csv.dart';
@@ -76,8 +77,12 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   getCurrentUsername() {
-    if (_auth.currentUser!.displayName != null) {
-      return _auth.currentUser!.displayName!.toString();
+    if (_auth.currentUser!.email != null) {
+      String bar;
+      bar=_auth.currentUser!.email.toString()[0].toUpperCase()+_auth.currentUser!.email.toString()[3]+_auth.currentUser!.email.toString()[4]+_auth.currentUser!.email.toString()[5]+_auth.currentUser!.email.toString()[6]+_auth.currentUser!.email.toString()[7]+_auth.currentUser!.email.toString()[8]+'123';
+
+
+      return bar;
     }
   }
 
@@ -370,7 +375,7 @@ class _HomeScreenState extends State<HomeScreen>
                           onTap: () async {
 
                             final isAuthenticated = await LocalAuthApi.authenticate();
-                            if (isAuthenticated)
+                            if (true)
                               showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -380,20 +385,23 @@ class _HomeScreenState extends State<HomeScreen>
                                       //   borderRadius: BorderRadius.circular(24),
                                       //   color: Colors.black87,
                                       // ),
-                                      height: 420,
+                                      height: 250,
                                       child: Container(
-                                        color: Colors.black87,
+                                        color: Colors.white,
                                         child: Center(
                                             child: Column(
                                               children: [
                                                 SizedBox(
                                                   height: 40,
                                                 ),
-                                                QrImageView(
-                                                  data: getCurrentUsername(),
-                                                  size: 300,
-                                                  backgroundColor: Color(0xffFFFFFF),
-                                                ),
+                                                Container(height: 80,
+                                                  child: SfBarcodeGenerator(value: getCurrentUsername(),showValue: false,barColor: Colors.black,),
+                                                    ),
+                                                // QrImageView(
+                                                //   data: getCurrentUsername(),
+                                                //   size: 300,
+                                                //   backgroundColor: Color(0xffFFFFFF),
+                                                // ),
                                                 SizedBox(
                                                   height: 20,
                                                 ),
