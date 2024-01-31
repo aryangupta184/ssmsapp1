@@ -216,6 +216,30 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
+  DateTime start(){
+    DateTime now = DateTime.now();
+    if(now.day>15){
+      DateTime dateOf16th = DateTime(now.year, now.month, 16);
+        return dateOf16th;
+    }
+    else{
+      DateTime dateOf1th = DateTime(now.year, now.month, 1);
+        return dateOf1th;
+
+    }
+  }
+  DateTime end(){
+    DateTime now = DateTime.now();
+    if(now.day>15){
+      DateTime dateOf16th = DateTime(now.year, now.month, 31);
+      return dateOf16th;
+    }
+    else{
+      DateTime dateOf1th = DateTime(now.year, now.month, 15);
+      return dateOf1th;
+
+    }
+  }
   DateTime selectedDate = DateTime.now();
   DateTime newDate = DateTime.now();
 
@@ -264,8 +288,8 @@ class _HomeScreenState extends State<HomeScreen>
                             DateTime? dateTime = await showDatePicker(
                                 context: context,
                                 initialDate: selectedDate,
-                                firstDate: DateTime(2020),
-                                lastDate: DateTime(2028),
+                                firstDate: start(),
+                                lastDate: end(),
                               builder: (context, child) {
                                 return Theme(
                                   data: ThemeData.dark(), // This will change to light theme.

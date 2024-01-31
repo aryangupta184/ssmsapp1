@@ -23,45 +23,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('local_menu');
-  Hive.registerAdapter(MenuDataAdapter());
-
-
-
-
-
-}
-
-@HiveType(typeId: 1)
-class MenuData {
-  @HiveField(0)
-  String dayOfWeek;
-
-  @HiveField(1)
-  String dateTime;
-
-  // Add fields for other data items
-
-  MenuData(this.dayOfWeek, this.dateTime);
-}
-
-// You need to create an adapter for the MenuData class
-class MenuDataAdapter extends TypeAdapter<MenuData> {
-  @override
-  final int typeId = 1;
-
-  @override
-  MenuData read(BinaryReader reader) {
-    return MenuData(
-      reader.readString(),
-      reader.readString(),
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, MenuData obj) {
-    writer.writeString(obj.dayOfWeek);
-    writer.writeString(obj.dateTime);
-  }
 }
 class MyApp extends StatelessWidget {
   @override

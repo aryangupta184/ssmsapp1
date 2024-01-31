@@ -23,12 +23,30 @@ List<MenuModel> decodeMenu(String responseBody) {
 Future<List<MenuModel>> fetchMenu() async {
   String url = 'https://script.google.com/macros/s/AKfycbwuakl_p421f_uvq6uABzx1Q51fspxa_FFw2yUripQGs24hP4nca2vmcca4jDSi-vAMLA/exec';
   Uri uri = Uri.parse(url);
-  final response = await http.get(uri);
-  if (response.statusCode == 200) {
-    return decodeMenu(response.body);
-  } else {
-    throw Exception('Unable to fetch data from the REST API');
+  final localMenu = Hive.box('local_menu');
+  DateTime now = new DateTime.now();
+  String date = new DateTime(now.year, now.month, now.day).toString();
+
+  if(!localMenu.containsKey(date)){
+    
+    final response = await http.get(uri);
+    print('called');
+    if (response.statusCode == 200) {
+
+      localMenu.put(date, response.body);
+      final test = localMenu.get(date);
+
+      return decodeMenu(response.body);
+    } else {
+      throw Exception('Unable to fetch data from the REST API');
+    }
   }
+  else{
+    print('saved call');
+    return decodeMenu(localMenu.get(date));
+  }
+
+
 }
 
 List<List<String>> convertToRowwise(List<MenuModel> menuModels) {
@@ -44,15 +62,7 @@ List<List<String>> convertToRowwise(List<MenuModel> menuModels) {
 Future<List<List<String>>> fetchRowwiseMenu() async {
   List<MenuModel> menu = await fetchMenu();
 
-  final localMenu = Hive.box('local_menu');
-  DateTime now = new DateTime.now();
-  String date = new DateTime(now.year, now.month, now.day).toString();
 
-
-  localMenu.put(date, menu);
-  final test = localMenu.get(date);
-  print(date);
-  print(test);
 
 
   return convertToRowwise(menu);
