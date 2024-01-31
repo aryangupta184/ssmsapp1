@@ -22,7 +22,7 @@ void main() async {
       .then((value) => runApp(MyApp()));
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('local_menu');
+
 }
 class MyApp extends StatelessWidget {
   @override

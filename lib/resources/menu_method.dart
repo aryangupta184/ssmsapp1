@@ -23,28 +23,35 @@ List<MenuModel> decodeMenu(String responseBody) {
 Future<List<MenuModel>> fetchMenu() async {
   String url = 'https://script.google.com/macros/s/AKfycbwuakl_p421f_uvq6uABzx1Q51fspxa_FFw2yUripQGs24hP4nca2vmcca4jDSi-vAMLA/exec';
   Uri uri = Uri.parse(url);
-  final localMenu = Hive.box('local_menu');
+  final localMenu = await Hive.openBox('local_menu');
   DateTime now = new DateTime.now();
   String date = new DateTime(now.year, now.month, now.day).toString();
 
-  if(!localMenu.containsKey(date)){
-    
+  if(!localMenu.containsKey(date))
+  //   if(true)
+
+    {
+
     final response = await http.get(uri);
     print('called');
     if (response.statusCode == 200) {
 
       localMenu.put(date, response.body);
-      final test = localMenu.get(date);
+      final menu = localMenu.get(date);
+      localMenu.close();
 
-      return decodeMenu(response.body);
+      return decodeMenu(menu);
     } else {
       throw Exception('Unable to fetch data from the REST API');
     }
   }
   else{
     print('saved call');
-    return decodeMenu(localMenu.get(date));
+    final menu = localMenu.get(date);
+    localMenu.close();
+    return decodeMenu(menu);
   }
+
 
 
 }

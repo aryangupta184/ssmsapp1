@@ -189,7 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               child: Container(
 
-                padding: EdgeInsets.fromLTRB(25*fem, 31*fem, 25*fem, 28*fem),
+                padding: EdgeInsets.fromLTRB(25*fem, 31*fem, 25*fem, 0*fem),
                 width: double.infinity,
                 decoration: BoxDecoration (
                   color: Color(0xff0D0D0D),
