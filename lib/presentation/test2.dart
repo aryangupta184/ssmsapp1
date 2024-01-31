@@ -375,7 +375,7 @@ class _HomeScreenState extends State<HomeScreen>
                           onTap: () async {
 
                             final isAuthenticated = await LocalAuthApi.authenticate();
-                            if (true)
+                            if (isAuthenticated)
                               showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -403,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                 //   backgroundColor: Color(0xffFFFFFF),
                                                 // ),
                                                 SizedBox(
-                                                  height: 20,
+                                                  height: 30,
                                                 ),
                                                 Container(
                                                   padding: EdgeInsets.all(10),
@@ -411,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                                                     borderRadius:
                                                     BorderRadius.circular(15 * fem),
-                                                    color: Color(0x10FFFFFF)
+                                                    color: Colors.black87
                                                   ),
                                                   child: GestureDetector(
                                                     onTap: () {
@@ -420,7 +420,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                     child: Icon(
                                                       Icons.arrow_back_ios_new,
                                                       size: 30,
-                                                      color: Color(0x30FFFFFF),
+                                                      color: Color(0xff53E88B),
                                                     ),
                                                   ),
                                                 )
