@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:hive_flutter/hive_flutter.dart';
 
 class MenuModel {
   List<String> items;
@@ -42,5 +43,17 @@ List<List<String>> convertToRowwise(List<MenuModel> menuModels) {
 
 Future<List<List<String>>> fetchRowwiseMenu() async {
   List<MenuModel> menu = await fetchMenu();
+
+  final localMenu = Hive.box('local_menu');
+  DateTime now = new DateTime.now();
+  String date = new DateTime(now.year, now.month, now.day).toString();
+
+
+  localMenu.put(date, menu);
+  final test = localMenu.get(date);
+  print(date);
+  print(test);
+
+
   return convertToRowwise(menu);
 }

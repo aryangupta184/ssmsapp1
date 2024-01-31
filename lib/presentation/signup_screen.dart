@@ -24,42 +24,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
   Future<int> GoogleLogin(BuildContext context, [bool mounted = true]) async {
-    showDialog(
 
-        barrierDismissible: false,
-        context: context,
-        builder: (_) {
-          return Dialog(
-            backgroundColor: Colors.black.withOpacity(0.7),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  CircularProgressIndicator(),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Searching for Google Accounts....',
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-          );
-        });
 
 
 
     await FirebaseServices().signInWithGoogle();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    if(_auth.currentUser!.email!.toString().endsWith('@pilani.bits-pilani.ac.in')){
+      Navigator.of(context)
+          .pushReplacement(
+          MaterialPageRoute(
+            builder: (context) =>
+                MasterScreen(),
+          ));
+    }
+    else{
+
+      await FirebaseServices().signOut();
+      await AuthMethods().signOut();
+      showDialog(
+
+          barrierDismissible: true,
+          context: context,
+          builder: (_) {
+            return Dialog(
+              backgroundColor: Colors.black.withOpacity(0.7),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      'BITS Mail Only!',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+
+    }
+
     // Navigator.of(context).pop();
-    Navigator.of(context)
-        .pushReplacement(
-        MaterialPageRoute(
-          builder: (context) =>
-              MasterScreen(),
-        ));
+
 
 
     if (!mounted) return 1;
@@ -85,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
-    if (res == 'success') {
+    if (res == 'success' ) {
       if (context.mounted) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
