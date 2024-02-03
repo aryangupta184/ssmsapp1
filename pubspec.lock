@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  auto_size_text:
+    dependency: "direct main"
+    description:
+      name: auto_size_text
+      sha256: "3f5261cd3fb5f2a9ab4e2fc3fba84fd9fcaac8821f20a1d4e71f557521b22599"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -752,6 +760,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
+  popup_card:
+    dependency: "direct main"
+    description:
+      name: popup_card
+      sha256: "515a1a059559358d5184f6961ebebcbd2e9a0f52bcbf77f3279e0bb0b0f66621"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   provider:
     dependency: "direct main"
     description:

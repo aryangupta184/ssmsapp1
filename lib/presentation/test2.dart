@@ -390,7 +390,7 @@ class _HomeScreenState extends State<HomeScreen>
                           onTap: () async {
 
                             final isAuthenticated = await LocalAuthApi.authenticate();
-                            if (isAuthenticated)
+                            if (true)
                               showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -409,16 +409,26 @@ class _HomeScreenState extends State<HomeScreen>
                                                 SizedBox(
                                                   height: 40,
                                                 ),
-                                                Container(height: 80,
-                                                  child: SfBarcodeGenerator(value: getCurrentUsername(),showValue: false,barColor: Colors.black,),
-                                                    ),
+                                                Container(
+                                                  width: 600,
+                                                  height: 30,
+                                                  child: FittedBox(
+
+                                                    fit: BoxFit.fill,
+
+
+
+                                                    child: SfBarcodeGenerator(value: getCurrentUsername(),showValue: false,barColor: Colors.black,),
+                                                  ),
+                                                ),
+
                                                 // QrImageView(
                                                 //   data: getCurrentUsername(),
                                                 //   size: 300,
                                                 //   backgroundColor: Color(0xffFFFFFF),
                                                 // ),
                                                 SizedBox(
-                                                  height: 30,
+                                                  height: 70,
                                                 ),
                                                 Container(
                                                   padding: EdgeInsets.all(10),

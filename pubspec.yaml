@@ -44,6 +44,8 @@ dependencies:
   google_nav_bar: ^5.0.6
   carousel_slider: ^4.2.1
   local_auth: ^2.1.7
+  popup_card: ^0.1.0
+  auto_size_text: ^3.0.0
 
 
 
