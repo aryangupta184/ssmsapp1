@@ -26,6 +26,8 @@ Future<List<MenuModel>> fetchMenu() async {
   final localMenu = await Hive.openBox('local_menu');
   DateTime now = new DateTime.now();
   String date = new DateTime(now.year, now.month, now.day).toString();
+  String prevdate = new DateTime(now.year, now.month, now.day-1).toString();
+
 
   if(!localMenu.containsKey(date))
   //   if(true)
@@ -38,6 +40,8 @@ Future<List<MenuModel>> fetchMenu() async {
 
       localMenu.put(date, response.body);
       final menu = localMenu.get(date);
+      localMenu.delete(prevdate);
+      print(localMenu.keys);
       localMenu.close();
 
       return decodeMenu(menu);
@@ -48,6 +52,7 @@ Future<List<MenuModel>> fetchMenu() async {
   else{
     print('saved call');
     final menu = localMenu.get(date);
+    print(localMenu.keys);
     localMenu.close();
     return decodeMenu(menu);
   }

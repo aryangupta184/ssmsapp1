@@ -95,7 +95,7 @@ class _GrubScreenState extends State<GrubScreen> {
                     child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "    Previous Grubs",
+                    "    Upcoming Grubs",
                     style: TextStyle(
                       fontSize: 30,
                       color: Color(0xffFFFFFF),
@@ -103,219 +103,224 @@ class _GrubScreenState extends State<GrubScreen> {
                   ),
                 )),
                 SizedBox(
-                  height: 30,
+                  height: 100,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25),
-                  padding: EdgeInsets.fromLTRB(
-                      14 * fem, 19 * fem, 17 * fem, 13 * fem),
-                  height: 80,
-                  decoration: BoxDecoration(
-
-                      color: Color(0x10FFFFFF),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        // photomenuHzR (0:547)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
-                        width: 62 * fem,
-                        height: 62 * fem,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16 * fem),
-                          child: Image.asset(
-                            'assets/images/photo-paneer.png',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // menunamejLd (0:544)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 4 * fem),
-                              child: Text(
-                                'Grub',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18 * ffem,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xffFFFFFF),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // priece99T (0:546)
-                              margin: EdgeInsets.fromLTRB(
-                                  0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
-                              child: Text(
-                                'Date',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 16 * ffem,
-                                  color: Color(0x50FFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  height: 1 * ffem / fem,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                Center(
+                  child: Text("Coming Soon!",style: TextStyle(
+                    color: Colors.white12,fontWeight: FontWeight.bold,fontSize: 24
+                  ),)
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25),
-                  padding: EdgeInsets.fromLTRB(
-                      14 * fem, 19 * fem, 17 * fem, 13 * fem),
-                  height: 80,
-                  decoration: BoxDecoration(
-
-                      color: Color(0x10FFFFFF),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        // photomenuHzR (0:547)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
-                        width: 62 * fem,
-                        height: 62 * fem,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16 * fem),
-                          child: Image.asset(
-                            'assets/images/photo-paneer.png',
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // menunamejLd (0:544)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 4 * fem),
-                              child: Text(
-                                'Grub',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18 * ffem,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xffFFFFFF),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // priece99T (0:546)
-                              margin: EdgeInsets.fromLTRB(
-                                  0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
-                              child: Text(
-                                'Date',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 16 * ffem,
-                                  color: Color(0x50FFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  height: 1 * ffem / fem,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 25),
-                  padding: EdgeInsets.all(15),
-                  height: 80,
-                  decoration: BoxDecoration(
-
-                      color: Color(0x10FFFFFF),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        // photomenuHzR (0:547)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
-                        width: 62 * fem,
-                        height: 62 * fem,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16 * fem),
-                          child: Image.asset(
-                            'assets/images/photo-paneer.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // menunamejLd (0:544)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 4 * fem),
-                              child: Text(
-                                'Grub',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 18 * ffem,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.3102273305 * ffem / fem,
-                                  color: Color(0xffFFFFFF),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // priece99T (0:546)
-                              margin: EdgeInsets.fromLTRB(
-                                  0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
-                              child: Text(
-                                'Date',
-                                style: SafeGoogleFont(
-                                  'Inter',
-                                  fontSize: 16 * ffem,
-                                  color: Color(0x50FFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  height: 1 * ffem / fem,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.symmetric(horizontal: 25),
+                //   padding: EdgeInsets.fromLTRB(
+                //       14 * fem, 19 * fem, 17 * fem, 13 * fem),
+                //   height: 80,
+                //   decoration: BoxDecoration(
+                //
+                //       color: Color(0x10FFFFFF),
+                //       borderRadius: BorderRadius.circular(12)),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         // photomenuHzR (0:547)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
+                //         width: 62 * fem,
+                //         height: 62 * fem,
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(16 * fem),
+                //           child: Image.asset(
+                //             'assets/images/photo-paneer.png',
+                //           ),
+                //         ),
+                //       ),
+                //       Container(
+                //         // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
+                //         height: double.infinity,
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Container(
+                //               // menunamejLd (0:544)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0 * fem, 0 * fem, 0 * fem, 4 * fem),
+                //               child: Text(
+                //                 'Grub',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 18 * ffem,
+                //                   fontWeight: FontWeight.bold,
+                //                   height: 1.3102273305 * ffem / fem,
+                //                   color: Color(0xffFFFFFF),
+                //                 ),
+                //               ),
+                //             ),
+                //             Container(
+                //               // priece99T (0:546)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
+                //               child: Text(
+                //                 'Date',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 16 * ffem,
+                //                   color: Color(0x50FFFFFF),
+                //                   fontWeight: FontWeight.w400,
+                //                   height: 1 * ffem / fem,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // Container(
+                //   margin: EdgeInsets.symmetric(horizontal: 25),
+                //   padding: EdgeInsets.fromLTRB(
+                //       14 * fem, 19 * fem, 17 * fem, 13 * fem),
+                //   height: 80,
+                //   decoration: BoxDecoration(
+                //
+                //       color: Color(0x10FFFFFF),
+                //       borderRadius: BorderRadius.circular(12)),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         // photomenuHzR (0:547)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
+                //         width: 62 * fem,
+                //         height: 62 * fem,
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(16 * fem),
+                //           child: Image.asset(
+                //             'assets/images/photo-paneer.png',
+                //           ),
+                //         ),
+                //       ),
+                //       Container(
+                //         // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
+                //         height: double.infinity,
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Container(
+                //               // menunamejLd (0:544)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0 * fem, 0 * fem, 0 * fem, 4 * fem),
+                //               child: Text(
+                //                 'Grub',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 18 * ffem,
+                //                   fontWeight: FontWeight.bold,
+                //                   height: 1.3102273305 * ffem / fem,
+                //                   color: Color(0xffFFFFFF),
+                //                 ),
+                //               ),
+                //             ),
+                //             Container(
+                //               // priece99T (0:546)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
+                //               child: Text(
+                //                 'Date',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 16 * ffem,
+                //                   color: Color(0x50FFFFFF),
+                //                   fontWeight: FontWeight.w400,
+                //                   height: 1 * ffem / fem,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(height: 20),
+                // Container(
+                //   margin: EdgeInsets.symmetric(horizontal: 25),
+                //   padding: EdgeInsets.all(15),
+                //   height: 80,
+                //   decoration: BoxDecoration(
+                //
+                //       color: Color(0x10FFFFFF),
+                //       borderRadius: BorderRadius.circular(12)),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         // photomenuHzR (0:547)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 17.45 * fem, 5 * fem),
+                //         width: 62 * fem,
+                //         height: 62 * fem,
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(16 * fem),
+                //           child: Image.asset(
+                //             'assets/images/photo-paneer.png',
+                //             fit: BoxFit.cover,
+                //           ),
+                //         ),
+                //       ),
+                //       Container(
+                //         // autogroupv4p9Cbb (HqNrRPagrxQi3RTzH2v4p9)
+                //         margin: EdgeInsets.fromLTRB(
+                //             0 * fem, 0 * fem, 36.55 * fem, 0 * fem),
+                //         height: double.infinity,
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //             Container(
+                //               // menunamejLd (0:544)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0 * fem, 0 * fem, 0 * fem, 4 * fem),
+                //               child: Text(
+                //                 'Grub',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 18 * ffem,
+                //                   fontWeight: FontWeight.bold,
+                //                   height: 1.3102273305 * ffem / fem,
+                //                   color: Color(0xffFFFFFF),
+                //                 ),
+                //               ),
+                //             ),
+                //             Container(
+                //               // priece99T (0:546)
+                //               margin: EdgeInsets.fromLTRB(
+                //                   0.45 * fem, 0 * fem, 0 * fem, 0 * fem),
+                //               child: Text(
+                //                 'Date',
+                //                 style: SafeGoogleFont(
+                //                   'Inter',
+                //                   fontSize: 16 * ffem,
+                //                   color: Color(0x50FFFFFF),
+                //                   fontWeight: FontWeight.w400,
+                //                   height: 1 * ffem / fem,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   height: 90,
                 ),

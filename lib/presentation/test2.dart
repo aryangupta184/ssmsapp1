@@ -338,58 +338,49 @@ class _HomeScreenState extends State<HomeScreen>
                           ))),
                 ),
               ),
+              // Positioned(
+              //   // iconnotificationxAm (0:9772)
+              //   right: 30 * fem,
+              //   top: 30 * fem,
+              //   child: Align(
+              //     child: SizedBox(
+              //         width: 45 * fem,
+              //         height: 45 * fem,
+              //         child: InkWell(
+              //             onTap: () {
+              //               showDialog(
+              //                   context: context,
+              //                   builder: (BuildContext context) {
+              //                     return AlertDialog(
+              //                       backgroundColor: Color(0xff0D0D0D),
+              //                       shape: RoundedRectangleBorder(
+              //                           borderRadius:
+              //                               BorderRadius.circular(16)),
+              //                       content:
+              //                           setupAlertDialoadContainer(context),
+              //                     );
+              //                   });
+              //             },
+              //             child: Container(
+              //               width: 45 * fem,
+              //               height: 45 * fem,
+              //               decoration: BoxDecoration(
+              //                 color: Color(0x20FFFFFF),
+              //                 borderRadius: BorderRadius.circular(16 * fem),
+              //               ),
+              //               child: Icon(
+              //                 Icons.notifications_none,
+              //                 size: 30,
+              //                 color: Color(0xff53E88B),
+              //               ),
+              //             ))),
+              //   ),
+              // ),
+
+
               Positioned(
                 // iconnotificationxAm (0:9772)
                 right: 30 * fem,
-                top: 30 * fem,
-                child: Align(
-                  child: SizedBox(
-                      width: 45 * fem,
-                      height: 45 * fem,
-                      child: InkWell(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: Color(0xff0D0D0D),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16)),
-                                    content:
-                                        setupAlertDialoadContainer(context),
-                                  );
-                                });
-                          },
-                          child: Container(
-                            width: 45 * fem,
-                            height: 45 * fem,
-                            decoration: BoxDecoration(
-                              color: Color(0x20FFFFFF),
-                              borderRadius: BorderRadius.circular(16 * fem),
-                            ),
-                            child: Icon(
-                              Icons.notifications_none,
-                              size: 30,
-                              color: Color(0xff53E88B),
-                            ),
-                          ))),
-                ),
-              ),
-              Positioned(
-                // tiiitletext3xu (0:9775)
-                left: 30 * fem,
-                top: 90 * fem,
-                child: Image.asset(
-                  'assets/images/frame14.png',
-
-
-                ),
-              ),
-
-              Positioned(
-                // iconnotificationxAm (0:9772)
-                right: 100 * fem,
                 top: 30 * fem,
                 child: Align(
                   child: SizedBox(
@@ -1010,7 +1001,7 @@ class _HomeScreenState extends State<HomeScreen>
                         autoPlayCurve: Curves.fastOutSlowIn,
                         enableInfiniteScroll: false,
                         autoPlayAnimationDuration: Duration(milliseconds: 800),
-                        viewportFraction: 0.6,
+                        viewportFraction: 0.7,
 
                       ),
                     ),
