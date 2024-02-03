@@ -256,13 +256,57 @@ class _HomeScreenState extends State<HomeScreen>
         Container(
           // homepHX (0:9368)
           width: double.infinity,
-          height: 320 * fem,
+          height: 300 * fem,
 
           decoration: BoxDecoration(
             color: Color(0xff0D0D0D),
           ),
           child: Stack(
             children: [
+              Positioned(
+                left: 50 * fem,
+                top: 80 * fem,
+                child: Center(
+                  child: SizedBox(
+                    width: 280 * fem,
+                    height: 120 * fem,
+                    child: Text(
+                      'ssms ',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Viga',
+                        fontSize: 80 * ffem,
+                        color: Color(0xFF53E88B),
+                        fontWeight: FontWeight.w400,
+                        height: 1.345 * ffem / fem,
+                        letterSpacing: 0.5 * fem,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 60 * fem,
+                top: 170 * fem,
+                child: Align(
+                  child: SizedBox(
+                    width: 250 * fem,
+                    height: 16 * fem,
+                    child: Text(
+                      'Society for Student Mess Services',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Inter',
+                        fontSize: 13 * ffem,
+                        fontWeight: FontWeight.w600,
+                        height: 1.2125 * ffem / fem,
+                        letterSpacing: 1 * fem,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Positioned(
                 // patternk4h (0:9371)
                 left: 0 * fem,
@@ -278,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen>
               Positioned(
                 // iconnotificationxAm (0:9772)
                right: 30*fem,
-                top: 275 * fem,
+                top: 245 * fem,
                 child: Align(
                   child: SizedBox(
                       width: 45 * fem,
@@ -390,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen>
                           onTap: () async {
 
                             final isAuthenticated = await LocalAuthApi.authenticate();
-                            if (true)
+                            if (isAuthenticated)
                               showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -472,20 +516,20 @@ class _HomeScreenState extends State<HomeScreen>
                           ))),
                 ),
               ),
+              // Positioned(
+              //   // tiiitletext3xu (0:9775)
+              //   left: 30 * fem,
+              //   top: 100 * fem,
+              //   child: SvgPicture.asset(
+              //     'assets/images/frame14.svg',
+              //
+              //
+              //   ),
+              // ),
               Positioned(
                 // tiiitletext3xu (0:9775)
                 left: 30 * fem,
-                top: 100 * fem,
-                child: SvgPicture.asset(
-                  'assets/images/frame14.svg',
-
-
-                ),
-              ),
-              Positioned(
-                // tiiitletext3xu (0:9775)
-                left: 30 * fem,
-                top: 275 * fem,
+                top: 245 * fem,
 
                 child: Align(
                   child: SizedBox(
@@ -519,7 +563,7 @@ class _HomeScreenState extends State<HomeScreen>
         Container(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           width: double.infinity,
-          height: 350 * fem,
+          height: 370 * fem,
           decoration: BoxDecoration(
             color: Color(0xffF0D0D0D),
           ),
@@ -533,7 +577,7 @@ class _HomeScreenState extends State<HomeScreen>
                       items: [
                         Container(
                             alignment: Alignment.topCenter,
-                            // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                             width: 250 * fem,
                             decoration: BoxDecoration(
                               color: Color(0x10FFFFFF),
@@ -545,7 +589,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   'Breakfast',
                                   style: SafeGoogleFont(
                                     'Viva',
-                                    fontSize: 36 * ffem,
+                                    fontSize: 40 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3102273305 * ffem / fem,
                                     color: Color(0xffFFFFFF),
@@ -553,7 +597,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
 
                                 const SizedBox(
-                                  height: 10,
+                                  height: 5,
                                 ),
                                 Container(
                                   height: 240,
@@ -710,7 +754,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   'Lunch',
                                   style: SafeGoogleFont(
                                     'Viva',
-                                    fontSize: 36 * ffem,
+                                    fontSize: 40 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3102273305 * ffem / fem,
                                     color: Color(0xffFFFFFF),
@@ -744,7 +788,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         style: TextStyle(
                                                             color:
                                                             Color(0xffFFFFFF).withOpacity(0.5),
-                                                            fontSize: 16),
+                                                            fontSize: 18),
                                                       ),
                                                     ))
                                                         .toList(),
@@ -862,7 +906,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   'Dinner',
                                   style: SafeGoogleFont(
                                     'Viva',
-                                    fontSize: 36 * ffem,
+                                    fontSize: 40 * ffem,
                                     fontWeight: FontWeight.w400,
                                     height: 1.3102273305 * ffem / fem,
                                     color: Colors.white,
@@ -896,7 +940,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         style: TextStyle(
                                                             color:
                                                             Color(0xffFFFFFF).withOpacity(0.5),
-                                                            fontSize: 16),
+                                                            fontSize: 18),
                                                       ),
                                                     ))
                                                         .toList(),
@@ -1004,7 +1048,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                       //Slider Container properties
                       options: CarouselOptions(
-                        height: 310.0,
+                        height: 330.0,
                         enlargeCenterPage: true,
                         autoPlay: false,
                         initialPage: getinitialpage(),
