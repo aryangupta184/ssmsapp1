@@ -270,18 +270,37 @@ class _HomeScreenState extends State<HomeScreen>
                   child: SizedBox(
                     width: 280 * fem,
                     height: 120 * fem,
-                    child: Text(
-                      'ssms ',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Viga',
-                        fontSize: 80 * ffem,
-                        color: Color(0xFF53E88B),
-                        fontWeight: FontWeight.w400,
-                        height: 1.345 * ffem / fem,
-                        letterSpacing: 0.5 * fem,
-                      ),
+                    child: Shimmer.fromColors(
+                        baseColor: Color(0xff15BE77),
+                        highlightColor: Color(0xff53E88B),
+                        period: Duration(milliseconds: 1000),
+
+                        child: Text(
+                          'ssms ',
+                          textAlign: TextAlign.center,
+                          style: SafeGoogleFont(
+                            'Viga',
+                            fontSize: 80 * ffem,
+                            color: Color(0xFF53E88B),
+                            fontWeight: FontWeight.w400,
+                            height: 1.345 * ffem / fem,
+                            letterSpacing: 0.5 * fem,
+                          ),
+                        ),
                     ),
+
+                    // Text(
+                    //   'ssms ',
+                    //   textAlign: TextAlign.center,
+                    //   style: SafeGoogleFont(
+                    //     'Viga',
+                    //     fontSize: 80 * ffem,
+                    //     color: Color(0xFF53E88B),
+                    //     fontWeight: FontWeight.w400,
+                    //     height: 1.345 * ffem / fem,
+                    //     letterSpacing: 0.5 * fem,
+                    //   ),
+                    // ),
                   ),
                 ),
               ),
@@ -370,7 +389,7 @@ class _HomeScreenState extends State<HomeScreen>
                             width: 45 * fem,
                             height: 45 * fem,
                             decoration: BoxDecoration(
-                              color: Color(0x10FFFFFF),
+                              color: Color(0x20FFFFFF),
                               borderRadius: BorderRadius.circular(16 * fem),
                             ),
                             child: Image.asset(
@@ -540,8 +559,8 @@ class _HomeScreenState extends State<HomeScreen>
                           // newDate.day.toString()+"-"+newDate.month.toString()+
                           ' Menu',
                       style: SafeGoogleFont(
-                        'Inter',
-                        fontSize: 30 * ffem,
+                        'Viva',
+                        fontSize: 34 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.3102273018 * ffem / fem,
                         color: Colors.white,

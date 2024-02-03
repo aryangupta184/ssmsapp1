@@ -29,8 +29,7 @@ import 'package:ssmsapp1/resources/auth_methods.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 Widget card(String name, String title, BuildContext context) {
   return Card(
-    color: Color(0x10FFFFFF),
-    elevation: 8,
+    color: Color(0x20FFFFFF),
     margin: EdgeInsets.all(2.0),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
 
@@ -44,10 +43,12 @@ Widget card(String name, String title, BuildContext context) {
             flex: 1,
             child: AutoSizeText(
               name,
-              style: TextStyle(
+
+              style: SafeGoogleFont(
+                'viva',
                 fontSize: 20.0,
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
               ),
               maxLines: 1, // Limit the text to 2 lines
 
@@ -70,9 +71,10 @@ Widget card(String name, String title, BuildContext context) {
               alignment: Alignment.centerRight,
               child: AutoSizeText(
                 title,
-                style: TextStyle(
+                style: SafeGoogleFont(
+                  'viva',
                   fontSize: 20.0,
-                  color: Colors.greenAccent,
+                  color: Colors.lightGreenAccent,
                   fontWeight: FontWeight.w400,
                 ),
                 maxLines: 1, // Limit the text to 2 lines
@@ -110,7 +112,7 @@ class _TodoPopupCard extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Material(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.black,
+        color: Color(0xff53E88B),
         child: SizedBox(
           child: Padding(
 
@@ -124,7 +126,13 @@ class _TodoPopupCard extends StatelessWidget {
                     child: Text(
                       " Developed By",
                       textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 32, color: Colors.white),
+                      style: SafeGoogleFont(
+                        'Viga',
+                        fontSize: 32 ,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+
+                      ),
 
                     ),
                   ),
@@ -144,7 +152,13 @@ class _TodoPopupCard extends StatelessWidget {
                     child: Text(
                       " GC Members",
                       textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 32, color: Colors.white),
+                      style: SafeGoogleFont(
+                        'Viga',
+                        fontSize: 32 ,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+
+                      ),
 
                     ),
                   ),
