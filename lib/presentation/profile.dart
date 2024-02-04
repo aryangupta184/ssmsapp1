@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui';
+import 'package:shimmer/shimmer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:ssmsapp1/presentation/home_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ssmsapp1/utils.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -103,6 +107,7 @@ class _TodoPopupCard extends StatelessWidget {
     'Divyanshi Jena', 'Puru Gupta', 'Rahulraj Jhawar'];
   List<String> title2 =['App ','Backend', 'UI UX'];
   List<String> name2 =['Aryan Gupta','Arshit Choudhary','Shubh Singhvi'];
+
 
 
 
@@ -318,7 +323,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Center(
                         child: InkWell(
@@ -363,7 +368,22 @@ class ProfileScreen extends StatelessWidget {
                     )),
                     SizedBox(
                       height: 250,
+
+
+
+                      child: SvgPicture.asset(
+                        'assets/images/expenses.svg',
+                        fit: BoxFit.fitWidth,
+
+
+
+
+
+                      ),
                     ),
+                    SizedBox(height: 20,),
+
+
                     Container(
                       child: GestureDetector(
                         onTap: () {
@@ -376,16 +396,26 @@ class ProfileScreen extends StatelessWidget {
                         },
                         child: Row(
                           children: [
+
                             Expanded(
                               flex: 3,
                               child: Align(
                                 alignment: Alignment.centerRight,
-                                child: Text(
-                                  'Made with',
-                                  style: TextStyle(
-                                      color: Color(0xffFFFFFF).withOpacity(0.5),
-                                      fontSize: 24),
+                                child: Shimmer.fromColors(
+                                  baseColor: Color(0x50FFFFFF),
+                                  highlightColor: Color(0xffFFFFFF),
+                                  period: Duration(milliseconds: 1000),
+                                  direction: ShimmerDirection.rtl,
+
+                                  child: Text(
+                                    'Made with',
+                                    style: TextStyle(
+                                        color: Color(0xffFFFFFF),
+                                        fontSize: 24),
+                                  ),
                                 ),
+
+
                               ),
                             ),
                             Expanded(
@@ -401,14 +431,23 @@ class ProfileScreen extends StatelessWidget {
                                 flex: 3,
                                 child: Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    'by SSMS',
-                                    style: TextStyle(
-                                        color:
-                                            Color(0xffFFFFFF).withOpacity(0.5),
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
+                                  child: Shimmer.fromColors(
+                                    direction: ShimmerDirection.ltr,
+                                    baseColor: Color(0x50FFFFFF),
+                                    highlightColor: Color(0xffFFFFFF),
+                                    period: Duration(milliseconds: 1000),
+
+                                    child: Text(
+                                      'by SSMS',
+                                      style: TextStyle(
+                                          color:
+                                          Color(0xffFFFFFF),
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
+
+
                                 )),
                           ],
                         ),

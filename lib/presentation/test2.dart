@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,8 +27,187 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../resources/menu_method.dart';
 import '../resources/menu_method.dart';
+Widget card(String name, String time1,String time2,String time3, BuildContext context) {
+  return Card(
+      color: Color(0x20FFFFFF),
+      margin: EdgeInsets.all(2.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical:4,horizontal: 6),
+        padding:EdgeInsets.symmetric(vertical:6,horizontal: 4),
+        child:Column(
+          children: [
+
+            AutoSizeText(
+                name,
+
+                style: SafeGoogleFont(
+                  'viva',
+                  fontSize: 28.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 1, // Limit the text to 2 lines
+
+                // Handle overflow with ellipsis
+              ),
+              // child: Text(
+              //   name,
+              //   style: TextStyle(
+              //     fontSize: 20.0,
+              //     color: Colors.white,
+              //     fontWeight: FontWeight.w700,
+              //   ),
+              // ),
+
+
+            AutoSizeText(
+              time1,
+
+              style: SafeGoogleFont(
+                'viva',
+                fontSize: 20.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 1, // Limit the text to 2 lines
+
+              // Handle overflow with ellipsis
+            ),
+              AutoSizeText(
+                time2,
+
+                style: SafeGoogleFont(
+                  'viva',
+                  fontSize: 20.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 1, // Limit the text to 2 lines
+
+                // Handle overflow with ellipsis
+              ),
+            AutoSizeText(
+              time3,
+
+              style: SafeGoogleFont(
+                'viva',
+                fontSize: 20.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 1, // Limit the text to 2 lines
+
+              // Handle overflow with ellipsis
+            ),
+              // child: Text(
+              //   name,
+              //   style: TextStyle(
+              //     fontSize: 20.0,
+              //     color: Colors.white,
+              //     fontWeight: FontWeight.w700,
+              //   ),
+              // ),
+
+
+
+
+
+
+          ],
+        ) ,
+      )
+
+  );
+}
+class _TimePopup extends StatelessWidget {
+
+  List<String> time1 =['7:30AM - 9:30AM','11:30AM - 1:30PM', '6:15PM - 8:15PM'];
+  List<String> time2 =['8:00AM - 10:00AM ','12:00PM - 2:00PM', '8:00PM (Last Entry Time)'];
+  List<String> time3 =['(Sundays and Holidays)','(Sundays and Holidays)',""];
+
+  List<String> meal =['Breakfast','Lunch','Dinner'];
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Material(
+        borderRadius: BorderRadius.circular(16),
+        color: Color(0xff53E88B),
+        child: SizedBox(
+          height: 510,
+          child: Padding(
+
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+
+
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Mess Timings",
+                      textAlign: TextAlign.right,
+                      style: SafeGoogleFont(
+                        'Viga',
+                        fontSize: 32 ,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+
+                      ),
+
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Container(
+                    height: 400,
+                    child: ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int index) {
+                        return card(meal[index],time1[index],time2[index],time3[index], context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 int current = 0;
+
+class DinnerProcessor {
+  bool dinnerEncountered = false;
+
+  String item(String item) {
+    // Convert the input to lowercase for case-insensitive comparison
+
+
+    if (dinnerEncountered || isDayOfWeek(item)) {
+      dinnerEncountered = true;
+      return ""; // Return empty string for "dinner" or any day of the week
+    } else {
+      return item; // Return the input string otherwise
+    }
+  }
+
+  bool isDayOfWeek(String input) {
+    // List of days of the week
+    List<String> daysOfWeek = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+
+
+    return daysOfWeek.contains(input);
+  }
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -75,6 +255,8 @@ class _HomeScreenState extends State<HomeScreen>
       return -1 + newDate.day.toInt();
     }
   }
+
+
 
   getCurrentUsername() {
     if (_auth.currentUser!.email != null) {
@@ -271,9 +453,9 @@ class _HomeScreenState extends State<HomeScreen>
                     width: 280 * fem,
                     height: 120 * fem,
                     child: Shimmer.fromColors(
-                        baseColor: Color(0xff15BE77),
+                        baseColor: Color(0x8015BE77),
                         highlightColor: Color(0xff53E88B),
-                        period: Duration(milliseconds: 1000),
+                        period: Duration(milliseconds: 800),
 
                         child: Text(
                           'ssms ',
@@ -439,6 +621,38 @@ class _HomeScreenState extends State<HomeScreen>
               //             ))),
               //   ),
               // ),
+              Positioned(
+                // iconnotificationxAm (0:9772)
+                right: 90 * fem,
+                top: 30 * fem,
+                child: Align(
+                  child: SizedBox(
+                      width: 45 * fem,
+                      height: 45 * fem,
+                      child: InkWell(
+                          onTap: () async {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                child: _TimePopup(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 45 * fem,
+                            height: 45 * fem,
+                            decoration: BoxDecoration(
+                              color: Color(0x20FFFFFF),
+                              borderRadius: BorderRadius.circular(16 * fem),
+                            ),
+                            child: Icon(
+                              Icons.watch_later_outlined,
+                              size: 30,
+                              color: Color(0xff53E88B),
+                            ),
+                          ))),
+                ),
+              ),
 
 
               Positioned(
@@ -624,6 +838,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     future: futureMenu,
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
+                                        DinnerProcessor processor = DinnerProcessor();
                                         return ListView.builder(
                                           itemCount: 1,
                                           itemBuilder: (context, rowIndex) {
@@ -636,7 +851,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         .map((item) => Container(
                                                       padding: EdgeInsets.all(4),
                                                       child: Text(
-                                                        item,
+                                                        processor.item(item),
                                                         overflow:
                                                         TextOverflow.ellipsis,
                                                         softWrap: false,
@@ -788,6 +1003,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     future: futureMenu,
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
+                                        DinnerProcessor processor = DinnerProcessor();
                                         return ListView.builder(
                                           itemCount: 1,
                                           itemBuilder: (context, rowIndex) {
@@ -800,7 +1016,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         .map((item) => Container(
                                                       padding: EdgeInsets.all(4),
                                                       child: Text(
-                                                        item,
+                                                        processor.item(item),
                                                         overflow:
                                                         TextOverflow.ellipsis,
                                                         softWrap: false,
@@ -940,6 +1156,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     future: futureMenu,
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
+                                        DinnerProcessor processor = DinnerProcessor();
                                         return ListView.builder(
                                           itemCount: 1,
                                           itemBuilder: (context, rowIndex) {
@@ -952,7 +1169,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         .map((item) => Container(
                                                       padding: EdgeInsets.all(4),
                                                       child: Text(
-                                                        item,
+                                                        processor.item(item),
                                                         overflow:
                                                         TextOverflow.ellipsis,
                                                         softWrap: false,

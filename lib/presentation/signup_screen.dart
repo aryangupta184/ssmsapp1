@@ -38,6 +38,29 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../resources/menu_method.dart';
 import '../resources/menu_method.dart';
+class DinnerProcessor {
+  bool dinnerEncountered = false;
+
+  String item(String item) {
+    // Convert the input to lowercase for case-insensitive comparison
+
+
+    if (dinnerEncountered || isDayOfWeek(item)) {
+      dinnerEncountered = true;
+      return ""; // Return empty string for "dinner" or any day of the week
+    } else {
+      return item; // Return the input string otherwise
+    }
+  }
+
+  bool isDayOfWeek(String input) {
+    // List of days of the week
+    List<String> daysOfWeek = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+
+
+    return daysOfWeek.contains(input);
+  }
+}
 
 int current = 0;
 
@@ -385,6 +408,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             FutureBuilder<List<List<String>>>(
                                           future: futureMenu,
                                           builder: (context, snapshot) {
+                                            DinnerProcessor processor = DinnerProcessor();
                                             if (snapshot.hasData) {
                                               return ListView.builder(
                                                 itemCount: 1,
@@ -405,7 +429,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                                             EdgeInsets.all(4),
                                                                         child:
                                                                             Text(
-                                                                          item,
+                                                                          processor.item(item),
                                                                           overflow:
                                                                               TextOverflow.ellipsis,
                                                                           softWrap:
@@ -560,6 +584,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           future: futureMenu,
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
+                                              DinnerProcessor processor = DinnerProcessor();
                                               return ListView.builder(
                                                 itemCount: 1,
                                                 itemBuilder:
@@ -579,7 +604,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                                             EdgeInsets.all(4),
                                                                         child:
                                                                             Text(
-                                                                          item,
+                                                                          processor.item(item),
                                                                           overflow:
                                                                               TextOverflow.ellipsis,
                                                                           softWrap:
@@ -724,6 +749,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           future: futureMenu,
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
+                                              DinnerProcessor processor = DinnerProcessor();
+
                                               return ListView.builder(
                                                 itemCount: 1,
                                                 itemBuilder:
@@ -743,7 +770,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                                             EdgeInsets.all(4),
                                                                         child:
                                                                             Text(
-                                                                          item,
+                                                                          processor.item(item),
                                                                           overflow:
                                                                               TextOverflow.ellipsis,
                                                                           softWrap:
