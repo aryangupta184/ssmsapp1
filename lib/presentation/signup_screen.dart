@@ -394,12 +394,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: SizedBox(
                                 width: 280 * fem,
                                 height: 120 * fem,
-                                child: Shimmer.fromColors(
-                                  baseColor: Color(0x8015BE77),
-                                  highlightColor: Color(0xff53E88B),
-                                  period: Duration(milliseconds: 800),
-
-                                  child: Text(
+                                child:
+                                 Text(
                                     'ssms ',
                                     textAlign: TextAlign.center,
                                     style: SafeGoogleFont(
@@ -410,7 +406,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       height: 1.345 * ffem / fem,
                                       letterSpacing: 0.5 * fem,
                                     ),
-                                  ),
+
                                 ),
 
                               ),
