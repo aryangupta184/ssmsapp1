@@ -25,7 +25,7 @@ List<MenuModel> decodeMenu(String responseBody) {
 }
 
 Future<List<MenuModel>> fetchMenu() async {
-  String url = 'https://script.google.com/macros/s/AKfycbwuakl_p421f_uvq6uABzx1Q51fspxa_FFw2yUripQGs24hP4nca2vmcca4jDSi-vAMLA/exec';
+  String url = 'http://143.110.187.184:3000/menu';
   Uri uri = Uri.parse(url);
   final localMenu = await Hive.openBox('local_menu');
   DateTime now = new DateTime.now();

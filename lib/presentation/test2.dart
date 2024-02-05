@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+
 
 import 'dart:ui';
 import 'package:csv/csv.dart';
@@ -27,6 +29,308 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../resources/menu_method.dart';
 import '../resources/menu_method.dart';
+class _FeedbackPopup2 extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
+
+  TextEditingController messnameController = TextEditingController();
+  TextEditingController foodnameController = TextEditingController();
+  TextEditingController feedbackController = TextEditingController();
+
+  // Method to Submit Feedback and save it in Google Sheets
+
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Material(
+            borderRadius: BorderRadius.circular(16),
+            color: Color(0xff53E88B),
+            child: SizedBox(
+                height: 510,
+                child: Padding(
+
+                    padding: const EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Form(
+                              key: _formKey,
+                              child:
+                              Padding(padding: EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Feedback Form",
+                                        textAlign: TextAlign.right,
+                                        style: SafeGoogleFont(
+                                          'Viga',
+                                          fontSize: 32 ,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+
+                                        ),
+
+                                      ),
+                                    ),
+                                    SizedBox(height: 30,),
+                                    TextFormField(
+
+                                      controller: messnameController,
+                                      validator: (value) {
+                                        if (value.toString().isEmpty) {
+                                          return 'Enter Valid Name';
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                          labelText: 'Mess Name',
+                                          fillColor: Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon: Icon(
+                                              Icons.room_rounded
+
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(8)
+                                          )
+
+
+                                      ),
+                                    ),
+                                    SizedBox(height: 10,),
+                                    TextFormField(
+                                      controller: foodnameController,
+
+
+                                      decoration: InputDecoration(
+                                          labelText: 'Food Name',
+                                          fillColor: Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon: Icon(
+                                              Icons.person
+
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(8)
+                                          )
+
+
+                                      ),
+
+                                    ),
+                                    SizedBox(height: 10,),
+
+                                    TextFormField(
+                                      maxLines: 3,
+                                      controller: feedbackController,
+                                      validator: (value) {
+                                        if (value.toString().isEmpty) {
+                                          return 'Enter Valid Feedback';
+                                        }
+                                        return null;
+                                      },
+                                      keyboardType: TextInputType.multiline,
+                                      decoration: InputDecoration(
+                                          labelText: 'Feedback',
+                                          fillColor: Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon: Icon(
+                                              Icons.format_align_center
+
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(8)
+                                          )
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                          ),
+                          SizedBox(height: 30,),
+                          ElevatedButton(
+
+                            onPressed: () async {
+                              // Validate form
+                              if (_formKey.currentState!.validate()) {
+                                // Get values from controllers
+                                String messName = messnameController.text;
+                                String foodName = foodnameController.text;
+                                String feedback = feedbackController.text;
+
+                                // Add feedback to Firestore collection
+                                await FirebaseFirestore.instance.collection('messfeedback').add({
+                                  'messName': messName,
+                                  'foodName': foodName,
+                                  'feedback': feedback,
+                                  'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+
+                                // Close the feedback form
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text('Submit Feedback'),
+                          ),
+                        ],
+                      ),)))
+
+
+        )
+    );
+  }
+}
+
+
+class ListItem {
+  String title;
+  int likes;
+  int dislikes;
+
+  ListItem({
+    required this.title,
+    required this.likes,
+    required this.dislikes,
+  });
+}
+
+
+class LikesListView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('menurate').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return CircularProgressIndicator();
+        }
+
+        List<DocumentSnapshot> documents = snapshot.data!.docs;
+        print(documents);
+
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Material(
+            borderRadius: BorderRadius.circular(16),
+            color: Color(0xff53E88B),
+            child: SizedBox(
+              height: 510,
+              child: Padding(
+
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+
+
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Food Feedback",
+                          textAlign: TextAlign.right,
+                          style: SafeGoogleFont(
+                            'Viga',
+                            fontSize: 32 ,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+
+                          ),
+
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height: 400,
+                        child: ListView.builder(
+                          itemCount: documents.length,
+                          itemBuilder: (context, index) {
+                            bool voted=false;
+                            ListItem item = ListItem(
+                              title: documents[index]['title'],
+                              likes: documents[index]['likes'],
+                              dislikes: documents[index]['dislikes'],
+                            );
+
+                            return ListTile(
+                              title: Text(item.title),
+                              subtitle: Text('Likes: ${item.likes}, Dislikes: ${item.dislikes}'),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.thumb_up),
+                                    onPressed: () {
+                                      voted?0:_handleLike(item, isThumbsUp: true);
+                                      voted=true;
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.thumb_down),
+                                    onPressed: () => _handleLike(item, isThumbsUp: false),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+
+
+
+
+      },
+    );
+  }
+
+  Future<void> _handleLike(ListItem item, {required bool isThumbsUp}) async {
+    final int incrementValue = isThumbsUp ? 1 : -1;
+
+
+    // Reference to the document
+    final documentReference =
+    FirebaseFirestore.instance.collection('menurate').doc(item.title);
+
+    // Check if the document exists
+    final documentSnapshot = await documentReference.get();
+    if (documentSnapshot.exists) {
+      // Document exists, update the fields
+      await documentReference.update({
+        'likes': item.likes + incrementValue,
+        'dislikes': item.dislikes + (isThumbsUp ? 0 : incrementValue),
+      });
+    } else {
+      // Document does not exist, create it with the specified ID and fields
+      await documentReference.set({
+        'title': item.title,
+        'likes': isThumbsUp ? incrementValue : 0,
+        'dislikes': isThumbsUp ? 0 : incrementValue,
+      });
+    }
+  }
+}
 Widget card(String name, String time1,String time2,String time3, BuildContext context) {
   return Card(
       color: Color(0x20FFFFFF),
@@ -692,10 +996,15 @@ class _HomeScreenState extends State<HomeScreen>
                                                   child: FittedBox(
 
                                                     fit: BoxFit.fill,
+                                                    // child: Text(
+                                                    //   "Disabled for Shubh's Testing",
+                                                    //   style: TextStyle(color: Colors.red),
+                                                    // ),
 
 
 
-                                                    child: SfBarcodeGenerator(value: getCurrentUsername(),showValue: false,barColor: Colors.black,),
+
+                                                     child: SfBarcodeGenerator(value: getCurrentUsername(),showValue: false,barColor: Colors.black,),
                                                   ),
                                                 ),
 
@@ -808,476 +1117,515 @@ class _HomeScreenState extends State<HomeScreen>
                   children: [
                     CarouselSlider(
                       items: [
-                        Container(
-                            alignment: Alignment.topCenter,
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                            width: 250 * fem,
-                            decoration: BoxDecoration(
-                              color: Color(0x10FFFFFF),
-                              borderRadius: BorderRadius.circular(15 * fem),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Breakfast',
-                                  style: SafeGoogleFont(
-                                    'Viva',
-                                    fontSize: 40 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3102273305 * ffem / fem,
-                                    color: Color(0xffFFFFFF),
-                                  ),
-                                ),
 
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  height: 240,
-                                  child: FutureBuilder<List<List<String>>>(
-                                    future: futureMenu,
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        DinnerProcessor processor = DinnerProcessor();
-                                        return ListView.builder(
-                                          itemCount: 1,
-                                          itemBuilder: (context, rowIndex) {
-                                            return ListTile(
-                                                title: Center(
-                                                  child: Column(
-                                                    children: snapshot.data![current]
-                                                        .skip(3)
-                                                        .take(9)
-                                                        .map((item) => Container(
-                                                      padding: EdgeInsets.all(4),
-                                                      child: Text(
-                                                        processor.item(item),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        softWrap: false,
-                                                        style: TextStyle(
-                                                            color:
-                                                            Color(0xffFFFFFF).withOpacity(0.5),
-                                                            fontSize: 16),
-                                                      ),
-                                                    ))
-                                                        .toList(),
-                                                  ),
-                                                ));
-                                          },
+                        InkWell(
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                child:_FeedbackPopup2(),
+                              ),
+                            );
+
+                          },
+                          child: Container(
+                              alignment: Alignment.topCenter,
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              width: 250 * fem,
+                              decoration: BoxDecoration(
+                                color: Color(0x10FFFFFF),
+                                borderRadius: BorderRadius.circular(15 * fem),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Breakfast',
+                                    style: SafeGoogleFont(
+                                      'Viva',
+                                      fontSize: 40 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3102273305 * ffem / fem,
+                                      color: Color(0xffFFFFFF),
+                                    ),
+                                  ),
+
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    height: 240,
+                                    child: FutureBuilder<List<List<String>>>(
+                                      future: futureMenu,
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          DinnerProcessor processor = DinnerProcessor();
+                                          return ListView.builder(
+                                            itemCount: 1,
+                                            itemBuilder: (context, rowIndex) {
+                                              return ListTile(
+                                                  title: Center(
+                                                    child: Column(
+                                                      children: snapshot.data![current]
+                                                          .skip(3)
+                                                          .take(9)
+                                                          .map((item) => Container(
+                                                        padding: EdgeInsets.all(4),
+                                                        child: Text(
+                                                          processor.item(item),
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          softWrap: false,
+                                                          style: TextStyle(
+                                                              color:
+                                                              Color(0xffFFFFFF).withOpacity(0.5),
+                                                              fontSize: 16),
+                                                        ),
+                                                      ))
+                                                          .toList(),
+                                                    ),
+                                                  ));
+                                            },
+                                          );
+                                        } else if (snapshot.hasError) {
+                                          return Center(
+                                              child: Text("An error occurred"));
+                                        }
+
+                                        return SpinKitPulsingGrid(
+                                          color: Color(0xff2DD293).withOpacity(0.5),
+                                          size: 40.0,
                                         );
-                                      } else if (snapshot.hasError) {
-                                        return Center(
-                                            child: Text("An error occurred"));
-                                      }
-
-                                      return SpinKitPulsingGrid(
-                                        color: Color(0xff2DD293).withOpacity(0.5),
-                                        size: 40.0,
-                                      );
-                                    },
+                                      },
+                                    ),
                                   ),
-                                ),
 
-                                // Text(
-                                //   _data[1][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,
-                                //     fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[2][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[3][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[4][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[5][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[6][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[7][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[8][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[9][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                              ],
-                            )),
+                                  // Text(
+                                  //   _data[1][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,
+                                  //     fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[2][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[3][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[4][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[5][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[6][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[7][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[8][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[9][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                             fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                ],
+                              )),
+                        ),
 
-                        Container(
-                            alignment: Alignment.center,
-                            // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
-                            width: 250 * fem,
-                            height: 100 * fem,
-                            decoration: BoxDecoration(
+                        InkWell(
+                          onTap: (){
 
-                              color: Color(0x10FFFFFF),
-                              borderRadius: BorderRadius.circular(15 * fem),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Lunch',
-                                  style: SafeGoogleFont(
-                                    'Viva',
-                                    fontSize: 40 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3102273305 * ffem / fem,
-                                    color: Color(0xffFFFFFF),
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                child:_FeedbackPopup2(),
+                              ),
+                            );
+
+                          },
+                          child: Container(
+
+                              alignment: Alignment.center,
+                              // padding: EdgeInsets.fromLTRB(40*fem, 16*fem, 40*fem, 16*fem),
+                              width: 250 * fem,
+                              height: 100 * fem,
+                              decoration: BoxDecoration(
+
+                                color: Color(0x10FFFFFF),
+                                borderRadius: BorderRadius.circular(15 * fem),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Lunch',
+                                    style: SafeGoogleFont(
+                                      'Viva',
+                                      fontSize: 40 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3102273305 * ffem / fem,
+                                      color: Color(0xffFFFFFF),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  height: 235,
-                                  child: FutureBuilder<List<List<String>>>(
-                                    future: futureMenu,
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        DinnerProcessor processor = DinnerProcessor();
-                                        return ListView.builder(
-                                          itemCount: 1,
-                                          itemBuilder: (context, rowIndex) {
-                                            return ListTile(
-                                                title: Center(
-                                                  child: Column(
-                                                    children: snapshot.data![current]
-                                                        .skip(14)
-                                                        .take(8)
-                                                        .map((item) => Container(
-                                                      padding: EdgeInsets.all(4),
-                                                      child: Text(
-                                                        processor.item(item),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        softWrap: false,
-                                                        style: TextStyle(
-                                                            color:
-                                                            Color(0xffFFFFFF).withOpacity(0.5),
-                                                            fontSize: 18),
-                                                      ),
-                                                    ))
-                                                        .toList(),
-                                                  ),
-                                                ));
-                                          },
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    height: 235,
+                                    child: FutureBuilder<List<List<String>>>(
+                                      future: futureMenu,
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          DinnerProcessor processor = DinnerProcessor();
+                                          return ListView.builder(
+                                            itemCount: 1,
+                                            itemBuilder: (context, rowIndex) {
+                                              return ListTile(
+                                                  title: Center(
+                                                    child: Column(
+                                                      children: snapshot.data![current]
+                                                          .skip(14)
+                                                          .take(8)
+                                                          .map((item) => Container(
+                                                        padding: EdgeInsets.all(4),
+                                                        child: Text(
+                                                          processor.item(item),
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          softWrap: false,
+                                                          style: TextStyle(
+                                                              color:
+                                                              Color(0xffFFFFFF).withOpacity(0.5),
+                                                              fontSize: 18),
+                                                        ),
+                                                      ))
+                                                          .toList(),
+                                                    ),
+                                                  ));
+                                            },
+                                          );
+                                        } else if (snapshot.hasError) {
+                                          return Center(
+                                              child: Text("An error occurred"));
+                                        }
+
+                                        return SpinKitPulsingGrid(
+                                          color: Color(0xff2DD293).withOpacity(0.5),
+                                          size: 40.0,
                                         );
-                                      } else if (snapshot.hasError) {
-                                        return Center(
-                                            child: Text("An error occurred"));
-                                      }
-
-                                      return SpinKitPulsingGrid(
-                                        color: Color(0xff2DD293).withOpacity(0.5),
-                                        size: 40.0,
-                                      );
-                                    },
+                                      },
+                                    ),
                                   ),
-                                ),
-                                // Text(
-                                //   _data[12][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[13][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[14][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[15][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[16][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[17][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[18][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[19][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                              ],
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
-                            width: 250 * fem,
-                            height: 350 * fem,
-                            decoration: BoxDecoration(
+                                  // Text(
+                                  //   _data[12][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[13][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[14][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[15][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[16][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[17][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[18][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[19][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                ],
+                              )),
+                        ),
+                        InkWell(
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                child:_FeedbackPopup2(),
+                              ),
+                            );
 
-                              color: Color(0x10FFFFFF),
-                              borderRadius: BorderRadius.circular(15 * fem),
-                            ),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 5,),
-                                Text(
-                                  'Dinner',
-                                  style: SafeGoogleFont(
-                                    'Viva',
-                                    fontSize: 40 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3102273305 * ffem / fem,
-                                    color: Colors.white,
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              // padding: EdgeInsets.fromLTRB(39*fem, 16*fem, 40*fem, 16*fem),
+                              width: 250 * fem,
+                              height: 350 * fem,
+                              decoration: BoxDecoration(
+
+                                color: Color(0x10FFFFFF),
+                                borderRadius: BorderRadius.circular(15 * fem),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 5,),
+                                  Text(
+                                    'Dinner',
+                                    style: SafeGoogleFont(
+                                      'Viva',
+                                      fontSize: 40 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.3102273305 * ffem / fem,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  height: 235,
-                                  child: FutureBuilder<List<List<String>>>(
-                                    future: futureMenu,
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        DinnerProcessor processor = DinnerProcessor();
-                                        return ListView.builder(
-                                          itemCount: 1,
-                                          itemBuilder: (context, rowIndex) {
-                                            return ListTile(
-                                                title: Center(
-                                                  child: Column(
-                                                    children: snapshot.data![current]
-                                                        .skip(24)
-                                                        .take(7)
-                                                        .map((item) => Container(
-                                                      padding: EdgeInsets.all(4),
-                                                      child: Text(
-                                                        processor.item(item),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        softWrap: false,
-                                                        style: TextStyle(
-                                                            color:
-                                                            Color(0xffFFFFFF).withOpacity(0.5),
-                                                            fontSize: 18),
-                                                      ),
-                                                    ))
-                                                        .toList(),
-                                                  ),
-                                                ));
-                                          },
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    height: 235,
+                                    child: FutureBuilder<List<List<String>>>(
+                                      future: futureMenu,
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          DinnerProcessor processor = DinnerProcessor();
+                                          return ListView.builder(
+                                            itemCount: 1,
+                                            itemBuilder: (context, rowIndex) {
+                                              return ListTile(
+                                                  title: Center(
+                                                    child: Column(
+                                                      children: snapshot.data![current]
+                                                          .skip(24)
+                                                          .take(7)
+                                                          .map((item) => Container(
+                                                        padding: EdgeInsets.all(4),
+                                                        child: Text(
+                                                          processor.item(item),
+                                                          overflow:
+                                                          TextOverflow.ellipsis,
+                                                          softWrap: false,
+                                                          style: TextStyle(
+                                                              color:
+                                                              Color(0xffFFFFFF).withOpacity(0.5),
+                                                              fontSize: 18),
+                                                        ),
+                                                      ))
+                                                          .toList(),
+                                                    ),
+                                                  ));
+                                            },
+                                          );
+                                        } else if (snapshot.hasError) {
+                                          return Center(
+                                              child: Text("An error occurred"));
+                                        }
+
+                                        return SpinKitPulsingGrid(
+                                          color: Color(0xff2DD293).withOpacity(0.5),
+                                          size: 40.0,
                                         );
-                                      } else if (snapshot.hasError) {
-                                        return Center(
-                                            child: Text("An error occurred"));
-                                      }
-
-                                      return SpinKitPulsingGrid(
-                                        color: Color(0xff2DD293).withOpacity(0.5),
-                                        size: 40.0,
-                                      );
-                                      // return Shimmer.fromColors(
-                                      //   baseColor: Colors.white10,
-                                      //   highlightColor: Colors.white,
-                                      //   child: Text(
-                                      //     'Loading ...',
-                                      //     style: TextStyle(
-                                      //       fontSize: 24,
-                                      //       fontWeight: FontWeight.bold,
-                                      //     ),
-                                      //   ),
-                                      // );
-                                    },
+                                        // return Shimmer.fromColors(
+                                        //   baseColor: Colors.white10,
+                                        //   highlightColor: Colors.white,
+                                        //   child: Text(
+                                        //     'Loading ...',
+                                        //     style: TextStyle(
+                                        //       fontSize: 24,
+                                        //       fontWeight: FontWeight.bold,
+                                        //     ),
+                                        //   ),
+                                        // );
+                                      },
+                                    ),
                                   ),
-                                ),
-                                // Text(
-                                //   _data[22][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[23][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[24][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[25][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[26][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[27][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 5,),
-                                // Text(
-                                //   _data[28][newDate.day-1],
-                                //   style: SafeGoogleFont (
-                                //     'Inter',
-                                //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
-                                //     height: 1.3102273305*ffem/fem,
-                                //     color: Color(0xffffffff),
-                                //   ),
-                                // ),
-                              ],
-                            )),
+                                  // Text(
+                                  //   _data[22][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[23][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[24][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[25][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[26][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[27][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 5,),
+                                  // Text(
+                                  //   _data[28][newDate.day-1],
+                                  //   style: SafeGoogleFont (
+                                  //     'Inter',
+                                  //     fontSize: 16 *ffem,                               fontWeight: FontWeight.w400,
+                                  //     height: 1.3102273305*ffem/fem,
+                                  //     color: Color(0xffffffff),
+                                  //   ),
+                                  // ),
+                                ],
+                              )),
+                        )
+
+
+
 
                         //1st Image of Slider
                       ],

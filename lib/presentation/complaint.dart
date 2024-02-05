@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ssmsapp1/utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // If using Firebase Authentication
+
 
 class _FeedbackPopup2 extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -111,7 +114,7 @@ class _FeedbackPopup2 extends StatelessWidget {
                                       },
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
-                                          labelText: 'Other Feedback',
+                                          labelText: 'Feedback',
                                           fillColor: Colors.white.withOpacity(0.3),
                                           filled: true,
                                           prefixIcon: Icon(
@@ -131,9 +134,31 @@ class _FeedbackPopup2 extends StatelessWidget {
                           SizedBox(height: 30,),
                           ElevatedButton(
 
-                            onPressed:(){
-                              Navigator.of(context).pop();
+                            onPressed: () async {
+                              // Validate form
+                              if (_formKey.currentState!.validate()) {
+                                // Get values from controllers
+                                String messName = messnameController.text;
+                                String foodName = foodnameController.text;
+                                String feedback = feedbackController.text;
 
+                                // Add feedback to Firestore collection
+                                await FirebaseFirestore.instance.collection('messfeedback').add({
+                                  'messName': messName,
+                                  'foodName': foodName,
+                                  'feedback': feedback,
+                                  'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+
+                                // Close the feedback form
+                                Navigator.of(context).pop();
+                              }
                             },
                             child: Text('Submit Feedback'),
                           ),
@@ -255,9 +280,31 @@ class _FeedbackPopup3 extends StatelessWidget {
                           SizedBox(height: 30,),
                           ElevatedButton(
 
-                            onPressed:(){
-                              Navigator.of(context).pop();
+                            onPressed: () async {
+                              // Validate form
+                              if (_formKey.currentState!.validate()) {
+                                // Get values from controllers
+                                String messName = messnameController.text;
 
+                                String feedback = feedbackController.text;
+
+                                // Add feedback to Firestore collection
+                                await FirebaseFirestore.instance.collection('messfeedback').add({
+                                  'messName': messName,
+
+                                  'feedback': feedback,
+                                  'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+
+                                // Close the feedback form
+                                Navigator.of(context).pop();
+                              }
                             },
                             child: Text('Submit Feedback'),
                           ),
@@ -400,9 +447,31 @@ class _FeedbackPopup1 extends StatelessWidget {
                   SizedBox(height: 30,),
                   ElevatedButton(
 
-                    onPressed:(){
-                      Navigator.of(context).pop();
+                    onPressed: () async {
+                      // Validate form
+                      if (_formKey.currentState!.validate()) {
+                        // Get values from controllers
+                        String messName = messnameController.text;
+                        String staffName = staffnameController.text;
+                        String feedback = feedbackController.text;
 
+                        // Add feedback to Firestore collection
+                        await FirebaseFirestore.instance.collection('messfeedback').add({
+                          'messName': messName,
+                          'staffName': staffName,
+                          'feedback': feedback,
+                          'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                        });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+
+                        // Close the feedback form
+                        Navigator.of(context).pop();
+                      }
                     },
                     child: Text('Submit Feedback'),
                   ),
