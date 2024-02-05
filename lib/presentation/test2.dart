@@ -72,7 +72,7 @@ class _FeedbackPopup2 extends StatelessWidget {
                                         textAlign: TextAlign.right,
                                         style: SafeGoogleFont(
                                           'Viga',
-                                          fontSize: 28 ,
+                                          fontSize: 28   ,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400,
 

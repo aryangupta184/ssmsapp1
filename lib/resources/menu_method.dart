@@ -25,7 +25,7 @@ List<MenuModel> decodeMenu(String responseBody) {
 }
 
 Future<List<MenuModel>> fetchMenu() async {
-  String url = 'http://143.110.187.184:3000/menu';
+  String url = ' http://143.110.187.184/menu';
   Uri uri = Uri.parse(url);
   final localMenu = await Hive.openBox('local_menu');
   DateTime now = new DateTime.now();
