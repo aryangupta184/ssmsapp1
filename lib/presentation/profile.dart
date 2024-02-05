@@ -246,7 +246,7 @@ class ProfileScreen extends StatelessWidget {
                         )),
                     Positioned(
                       top: 60,
-                      left: 130,
+                      left: 30,
                       child: Container(
                           height: 130,
                           width: 130,
@@ -257,23 +257,13 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           padding: EdgeInsets.all(10),
                           child: getProfileImage()),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                // autogroupcg2uiMf (HqNr5u9ATaSyCpGeFiCg2u)
-                width: 400 * fem,
-                height: 120 * fem,
-                child: Stack(
-                  children: [
+                    ),
                     Positioned(
                       // textSgy (0:537)
-                      left: 20 * fem,
-                      top: 40 * fem,
+                      left: 170 * fem,
+                      top: 60 * fem,
                       child: Container(
-                        width: 400 * fem,
-                        height: 100 * fem,
+                        height: 300 * fem,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -297,10 +287,10 @@ class ProfileScreen extends StatelessWidget {
                               margin: EdgeInsets.fromLTRB(
                                   0 * fem, 0 * fem, 0 * fem, 20 * fem),
                               child: Text(
-                                getCurrentEmail(),
+                                " "+ getCurrentEmail(),
                                 style: SafeGoogleFont(
                                   'Inter',
-                                  fontSize: 16 * ffem,
+                                  fontSize: 10 * ffem,
                                   fontWeight: FontWeight.w400,
                                   height: 1.5 * ffem / fem,
                                   letterSpacing: 0.5 * fem,
@@ -309,8 +299,51 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 5,
                             ),
+                            Center(
+                              child:InkWell(
+                                onTap: () async {
+                                  await FirebaseServices().signOut();
+                                  await AuthMethods().signOut();
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    builder: (context) => const SignUpScreen(),
+                                  ));
+                                },
+                                child: Container(
+                                    height: 50,
+                                    width: 140,
+                                    alignment: Alignment.center,
+                                    padding:
+                                    EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(colors: [
+                                          Color(0xff53E88B),
+                                          Color(0xff15BE77)
+                                        ]),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 3,
+                                          child: Center(
+                                            child: Text(
+                                              "Sign Out",
+                                              style: TextStyle(
+                                                  fontSize: 16, color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child:
+                                          Icon(Icons.logout, color: Colors.black38),
+                                        ),
+                                      ],
+                                    )),
+                              ) ,
+                            )
+
                           ],
                         ),
                       ),
@@ -318,54 +351,54 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
+
               Container(
                 height: 550,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                        child: InkWell(
-                      onTap: () async {
-                        await FirebaseServices().signOut();
-                        await AuthMethods().signOut();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const SignUpScreen(),
-                        ));
-                      },
-                      child: Container(
-                          height: 50,
-                          width: 140,
-                          alignment: Alignment.center,
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Color(0xff53E88B),
-                                Color(0xff15BE77)
-                              ]),
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Center(
-                                  child: Text(
-                                    "Sign Out",
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child:
-                                    Icon(Icons.logout, color: Colors.black38),
-                              ),
-                            ],
-                          )),
-                    )),
+
+                    // Center(
+                    //     child: InkWell(
+                    //   onTap: () async {
+                    //     await FirebaseServices().signOut();
+                    //     await AuthMethods().signOut();
+                    //     Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //       builder: (context) => const SignUpScreen(),
+                    //     ));
+                    //   },
+                    //   child: Container(
+                    //       height: 50,
+                    //       width: 140,
+                    //       alignment: Alignment.center,
+                    //       padding:
+                    //           EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                    //       decoration: BoxDecoration(
+                    //           gradient: LinearGradient(colors: [
+                    //             Color(0xff53E88B),
+                    //             Color(0xff15BE77)
+                    //           ]),
+                    //           borderRadius: BorderRadius.circular(8)),
+                    //       child: Row(
+                    //         children: [
+                    //           Expanded(
+                    //             flex: 3,
+                    //             child: Center(
+                    //               child: Text(
+                    //                 "Sign Out",
+                    //                 style: TextStyle(
+                    //                     fontSize: 16, color: Colors.white),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             flex: 1,
+                    //             child:
+                    //                 Icon(Icons.logout, color: Colors.black38),
+                    //           ),
+                    //         ],
+                    //       )),
+                    // )
+                    // ),
                     SizedBox(
                       height: 250,
 

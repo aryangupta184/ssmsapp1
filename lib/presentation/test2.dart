@@ -68,11 +68,11 @@ class _FeedbackPopup2 extends StatelessWidget {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        "Feedback Form",
+                                        "Menu Item Feedback",
                                         textAlign: TextAlign.right,
                                         style: SafeGoogleFont(
                                           'Viga',
-                                          fontSize: 32 ,
+                                          fontSize: 28 ,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400,
 
@@ -756,12 +756,9 @@ class _HomeScreenState extends State<HomeScreen>
                   child: SizedBox(
                     width: 280 * fem,
                     height: 120 * fem,
-                    child: Shimmer.fromColors(
-                        baseColor: Color(0x8015BE77),
-                        highlightColor: Color(0xff53E88B),
-                        period: Duration(milliseconds: 800),
+                    child:
 
-                        child: Text(
+                        Text(
                           'ssms ',
                           textAlign: TextAlign.center,
                           style: SafeGoogleFont(
@@ -773,7 +770,7 @@ class _HomeScreenState extends State<HomeScreen>
                             letterSpacing: 0.5 * fem,
                           ),
                         ),
-                    ),
+
 
                     // Text(
                     //   'ssms ',
@@ -1130,7 +1127,7 @@ class _HomeScreenState extends State<HomeScreen>
                           },
                           child: Container(
                               alignment: Alignment.topCenter,
-                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                               width: 250 * fem,
                               decoration: BoxDecoration(
                                 color: Color(0x10FFFFFF),
@@ -1149,9 +1146,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                   ),
 
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
+
                                   Container(
                                     height: 240,
                                     child: FutureBuilder<List<List<String>>>(
@@ -1198,6 +1193,8 @@ class _HomeScreenState extends State<HomeScreen>
                                       },
                                     ),
                                   ),
+                                  SizedBox(height: 10,),
+                                  Text("Click for feedback...",style: TextStyle(color: Color(0xff53E88B).withOpacity(0.7)),)
 
                                   // Text(
                                   //   _data[1][newDate.day-1],
@@ -1376,6 +1373,8 @@ class _HomeScreenState extends State<HomeScreen>
                                       },
                                     ),
                                   ),
+                                  Text("Click for feedback...",style: TextStyle(color: Color(0xff53E88B).withOpacity(0.5)),)
+
                                   // Text(
                                   //   _data[12][newDate.day-1],
                                   //   style: SafeGoogleFont (
@@ -1551,6 +1550,8 @@ class _HomeScreenState extends State<HomeScreen>
                                       },
                                     ),
                                   ),
+                                  Text("Click for feedback...",style: TextStyle(color: Color(0xff53E88B).withOpacity(0.7)),)
+
                                   // Text(
                                   //   _data[22][newDate.day-1],
                                   //   style: SafeGoogleFont (

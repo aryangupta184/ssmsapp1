@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ssmsapp1/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // If using Firebase Authentication
+
 
 
 class _FeedbackPopup2 extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-
 
   TextEditingController messnameController = TextEditingController();
   TextEditingController foodnameController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
 
   // Method to Submit Feedback and save it in Google Sheets
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +26,14 @@ class _FeedbackPopup2 extends StatelessWidget {
             child: SizedBox(
                 height: 510,
                 child: Padding(
-
                     padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
                           Form(
                               key: _formKey,
-                              child:
-                              Padding(padding: EdgeInsets.all(16),
+                              child: Padding(
+                                padding: EdgeInsets.all(16),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -47,17 +44,16 @@ class _FeedbackPopup2 extends StatelessWidget {
                                         textAlign: TextAlign.right,
                                         style: SafeGoogleFont(
                                           'Viga',
-                                          fontSize: 32 ,
+                                          fontSize: 32,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400,
-
                                         ),
-
                                       ),
                                     ),
-                                    SizedBox(height: 30,),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
                                     TextFormField(
-
                                       controller: messnameController,
                                       validator: (value) {
                                         if (value.toString().isEmpty) {
@@ -67,42 +63,32 @@ class _FeedbackPopup2 extends StatelessWidget {
                                       },
                                       decoration: InputDecoration(
                                           labelText: 'Mess Name',
-                                          fillColor: Colors.white.withOpacity(0.3),
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
                                           filled: true,
-                                          prefixIcon: Icon(
-                                              Icons.room_rounded
-
-                                          ),
+                                          prefixIcon: Icon(Icons.room_rounded),
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(8)
-                                          )
-
-
-                                      ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     TextFormField(
                                       controller: foodnameController,
-
-
                                       decoration: InputDecoration(
                                           labelText: 'Food Name',
-                                          fillColor: Colors.white.withOpacity(0.3),
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
                                           filled: true,
-                                          prefixIcon: Icon(
-                                              Icons.person
-
-                                          ),
+                                          prefixIcon: Icon(Icons.person),
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(8)
-                                          )
-
-
-                                      ),
-
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
                                     ),
-                                    SizedBox(height: 10,),
-
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     TextFormField(
                                       maxLines: 3,
                                       controller: feedbackController,
@@ -115,25 +101,22 @@ class _FeedbackPopup2 extends StatelessWidget {
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
                                           labelText: 'Feedback',
-                                          fillColor: Colors.white.withOpacity(0.3),
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
                                           filled: true,
-                                          prefixIcon: Icon(
-                                              Icons.format_align_center
-
-                                          ),
+                                          prefixIcon:
+                                              Icon(Icons.format_align_center),
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(8)
-                                          )
-
-                                      ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
                                     ),
                                   ],
                                 ),
-                              )
+                              )),
+                          SizedBox(
+                            height: 30,
                           ),
-                          SizedBox(height: 30,),
                           ElevatedButton(
-
                             onPressed: () async {
                               // Validate form
                               if (_formKey.currentState!.validate()) {
@@ -143,15 +126,22 @@ class _FeedbackPopup2 extends StatelessWidget {
                                 String feedback = feedbackController.text;
 
                                 // Add feedback to Firestore collection
-                                await FirebaseFirestore.instance.collection('messfeedback').add({
+                                await FirebaseFirestore.instance
+                                    .collection('messfeedback')
+                                    .add({
                                   'messName': messName,
                                   'foodName': foodName,
                                   'feedback': feedback,
-                                  'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                                  'timestamp': FieldValue
+                                      .serverTimestamp(), // Optional: Include a timestamp
                                 });
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                                    content: Text(
+                                      'Feedback Submitted Successfully!',
+                                      style:
+                                          TextStyle(color: Color(0xff53E88B)),
+                                    ),
                                     duration: Duration(seconds: 2),
                                   ),
                                 );
@@ -163,26 +153,19 @@ class _FeedbackPopup2 extends StatelessWidget {
                             child: Text('Submit Feedback'),
                           ),
                         ],
-                      ),)))
-
-
-        )
-    );
+                      ),
+                    )))));
   }
 }
+
 class _FeedbackPopup3 extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-
 
   TextEditingController messnameController = TextEditingController();
   TextEditingController staffnameController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
 
   // Method to Submit Feedback and save it in Google Sheets
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -194,15 +177,14 @@ class _FeedbackPopup3 extends StatelessWidget {
             child: SizedBox(
                 height: 510,
                 child: Padding(
-
                     padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
                           Form(
                               key: _formKey,
-                              child:
-                              Padding(padding: EdgeInsets.all(16),
+                              child: Padding(
+                                padding: EdgeInsets.all(16),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -213,17 +195,16 @@ class _FeedbackPopup3 extends StatelessWidget {
                                         textAlign: TextAlign.right,
                                         style: SafeGoogleFont(
                                           'Viga',
-                                          fontSize: 32 ,
+                                          fontSize: 32,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400,
-
                                         ),
-
                                       ),
                                     ),
-                                    SizedBox(height: 30,),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
                                     TextFormField(
-
                                       controller: messnameController,
                                       validator: (value) {
                                         if (value.toString().isEmpty) {
@@ -233,22 +214,17 @@ class _FeedbackPopup3 extends StatelessWidget {
                                       },
                                       decoration: InputDecoration(
                                           labelText: 'Mess Name',
-                                          fillColor: Colors.white.withOpacity(0.3),
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
                                           filled: true,
-                                          prefixIcon: Icon(
-                                              Icons.room_rounded
-
-                                          ),
+                                          prefixIcon: Icon(Icons.room_rounded),
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(8)
-                                          )
-
-
-                                      ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
                                     ),
-                                    SizedBox(height: 10,),
-
-
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     TextFormField(
                                       maxLines: 5,
                                       controller: feedbackController,
@@ -261,25 +237,22 @@ class _FeedbackPopup3 extends StatelessWidget {
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
                                           labelText: 'Feedback',
-                                          fillColor: Colors.white.withOpacity(0.3),
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
                                           filled: true,
-                                          prefixIcon: Icon(
-                                              Icons.format_align_center
-
-                                          ),
+                                          prefixIcon:
+                                              Icon(Icons.format_align_center),
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(8)
-                                          )
-
-                                      ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
                                     ),
                                   ],
                                 ),
-                              )
+                              )),
+                          SizedBox(
+                            height: 30,
                           ),
-                          SizedBox(height: 30,),
                           ElevatedButton(
-
                             onPressed: () async {
                               // Validate form
                               if (_formKey.currentState!.validate()) {
@@ -289,15 +262,22 @@ class _FeedbackPopup3 extends StatelessWidget {
                                 String feedback = feedbackController.text;
 
                                 // Add feedback to Firestore collection
-                                await FirebaseFirestore.instance.collection('messfeedback').add({
+                                await FirebaseFirestore.instance
+                                    .collection('messfeedback')
+                                    .add({
                                   'messName': messName,
 
                                   'feedback': feedback,
-                                  'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
+                                  'timestamp': FieldValue
+                                      .serverTimestamp(), // Optional: Include a timestamp
                                 });
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
+                                    content: Text(
+                                      'Feedback Submitted Successfully!',
+                                      style:
+                                          TextStyle(color: Color(0xff53E88B)),
+                                    ),
                                     duration: Duration(seconds: 2),
                                   ),
                                 );
@@ -309,17 +289,13 @@ class _FeedbackPopup3 extends StatelessWidget {
                             child: Text('Submit Feedback'),
                           ),
                         ],
-                      ),)))
-
-
-        )
-    );
+                      ),
+                    )))));
   }
 }
 
 class _FeedbackPopup1 extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-
 
   TextEditingController messnameController = TextEditingController();
   TextEditingController staffnameController = TextEditingController();
@@ -327,164 +303,150 @@ class _FeedbackPopup1 extends StatelessWidget {
 
   // Method to Submit Feedback and save it in Google Sheets
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(16),
-        color: Color(0xff53E88B),
-        child: SizedBox(
-          height: 510,
-          child: Padding(
-
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Form(
-                      key: _formKey,
-                      child:
-                      Padding(padding: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Feedback Form",
-                                textAlign: TextAlign.right,
-                                style: SafeGoogleFont(
-                                  'Viga',
-                                  fontSize: 32 ,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-
+        padding: const EdgeInsets.all(16.0),
+        child: Material(
+            borderRadius: BorderRadius.circular(16),
+            color: Color(0xff53E88B),
+            child: SizedBox(
+                height: 510,
+                child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Form(
+                              key: _formKey,
+                              child: Padding(
+                                padding: EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Feedback Form",
+                                        textAlign: TextAlign.right,
+                                        style: SafeGoogleFont(
+                                          'Viga',
+                                          fontSize: 32,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    TextFormField(
+                                      controller: messnameController,
+                                      validator: (value) {
+                                        if (value.toString().isEmpty) {
+                                          return 'Enter Valid Name';
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                          labelText: 'Mess Name',
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon: Icon(Icons.room_rounded),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextFormField(
+                                      controller: staffnameController,
+                                      decoration: InputDecoration(
+                                          labelText: 'Staff Name',
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon: Icon(Icons.person),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextFormField(
+                                      maxLines: 3,
+                                      controller: feedbackController,
+                                      validator: (value) {
+                                        if (value.toString().isEmpty) {
+                                          return 'Enter Valid Feedback';
+                                        }
+                                        return null;
+                                      },
+                                      keyboardType: TextInputType.multiline,
+                                      decoration: InputDecoration(
+                                          labelText: 'Feedback',
+                                          fillColor:
+                                              Colors.white.withOpacity(0.3),
+                                          filled: true,
+                                          prefixIcon:
+                                              Icon(Icons.format_align_center),
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8))),
+                                    ),
+                                  ],
                                 ),
-
-                              ),
-                            ),
-                            SizedBox(height: 30,),
-                            TextFormField(
-
-                              controller: messnameController,
-                              validator: (value) {
-                                if (value.toString().isEmpty) {
-                                  return 'Enter Valid Name';
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                  labelText: 'Mess Name',
-                                  fillColor: Colors.white.withOpacity(0.3),
-                                filled: true,
-                                prefixIcon: Icon(
-                                    Icons.room_rounded
-
-                                ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8)
-                                  )
-
-
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            TextFormField(
-                              controller: staffnameController,
-
-
-                              decoration: InputDecoration(
-                                  labelText: 'Staff Name',
-                                  fillColor: Colors.white.withOpacity(0.3),
-                                  filled: true,
-                                  prefixIcon: Icon(
-                                      Icons.person
-
-                                  ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8)
-                                  )
-
-
-                              ),
-
-                            ),
-                            SizedBox(height: 10,),
-
-                            TextFormField(
-                              maxLines: 3,
-                              controller: feedbackController,
-                              validator: (value) {
-                                if (value.toString().isEmpty) {
-                                  return 'Enter Valid Feedback';
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.multiline,
-                              decoration: InputDecoration(
-                                  labelText: 'Feedback',
-                                  fillColor: Colors.white.withOpacity(0.3),
-                                  filled: true,
-                                  prefixIcon: Icon(
-                                      Icons.format_align_center
-
-                                  ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8)
-                                )
-
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                  ),
-                  SizedBox(height: 30,),
-                  ElevatedButton(
-
-                    onPressed: () async {
-                      // Validate form
-                      if (_formKey.currentState!.validate()) {
-                        // Get values from controllers
-                        String messName = messnameController.text;
-                        String staffName = staffnameController.text;
-                        String feedback = feedbackController.text;
-
-                        // Add feedback to Firestore collection
-                        await FirebaseFirestore.instance.collection('messfeedback').add({
-                          'messName': messName,
-                          'staffName': staffName,
-                          'feedback': feedback,
-                          'timestamp': FieldValue.serverTimestamp(), // Optional: Include a timestamp
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Feedback Submitted Successfully!',style: TextStyle(color: Color(0xff53E88B)),),
-                            duration: Duration(seconds: 2),
+                              )),
+                          SizedBox(
+                            height: 30,
                           ),
-                        );
+                          ElevatedButton(
+                            onPressed: () async {
+                              // Validate form
+                              if (_formKey.currentState!.validate()) {
+                                // Get values from controllers
+                                String messName = messnameController.text;
+                                String staffName = staffnameController.text;
+                                String feedback = feedbackController.text;
 
-                        // Close the feedback form
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    child: Text('Submit Feedback'),
-                  ),
-                ],
-              ),)))
+                                // Add feedback to Firestore collection
+                                await FirebaseFirestore.instance
+                                    .collection('messfeedback')
+                                    .add({
+                                  'messName': messName,
+                                  'staffName': staffName,
+                                  'feedback': feedback,
+                                  'timestamp': FieldValue
+                                      .serverTimestamp(), // Optional: Include a timestamp
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Feedback Submitted Successfully!',
+                                      style:
+                                          TextStyle(color: Color(0xff53E88B)),
+                                    ),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
 
-
-      )
-    );
+                                // Close the feedback form
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text('Submit Feedback'),
+                          ),
+                        ],
+                      ),
+                    )))));
   }
 }
 
 class ComplaintScreen extends StatefulWidget {
+
   const ComplaintScreen({Key? key}) : super(key: key);
 
   @override
@@ -492,6 +454,7 @@ class ComplaintScreen extends StatefulWidget {
 }
 
 class _ComplaintScreenState extends State<ComplaintScreen> {
+
   Widget build(BuildContext context) {
     double baseWidth = 375;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -512,44 +475,37 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                     children: [
                       Positioned(
                         // patternk4h (0:9371)
-                          left: 0 * fem,
-                          top: 0 * fem,
-                          child: Image.asset(
-                            'assets/images/pattern-bg2.png',
-                            fit: BoxFit.fitWidth,
-                            width: 375 * fem,
-                            height: 812 * fem,
-
-
-                          ),),
+                        left: 0 * fem,
+                        top: 0 * fem,
+                        child: Image.asset(
+                          'assets/images/pattern-bg2.png',
+                          fit: BoxFit.fitWidth,
+                          width: 375 * fem,
+                          height: 812 * fem,
+                        ),
+                      ),
                       Positioned(
                         top: 70,
                         child: Container(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "    Mess Complaints",
-                              style: TextStyle(fontSize: 30, color: Color(0xffFFFFFF),),
+                            child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "    Mess Complaints",
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Color(0xffFFFFFF),
                             ),
-                          )
-
-
-
-                      ),)
-
+                          ),
+                        )),
+                      )
                     ],
                   ),
                 ),
-
-
                 InkWell(
-                  onTap: (){
-                    showDialog(
-                      context: context,
-                      builder: (context) => Center(
-                        child: _FeedbackPopup1(),
-                      ),
-                    );
+                  onTap: () async {
+                    final websiteUrl=Uri.parse('https://docs.google.com/forms/d/1TMejxkgoaFfWPkd381Je9JVrrNp41M3lUfPsBlnnaMM/viewform?edit_requested=true#settings');
+                    launchUrl(websiteUrl,mode: LaunchMode.externalApplication);
+
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 25),
@@ -562,47 +518,41 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(16*fem),
+                          borderRadius: BorderRadius.circular(16 * fem),
                           child: Image.asset(
                             'assets/images/complaint.png',
                             height: 200,
-
-
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Complaints \nRegarding \nMess Staff",
-                            style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0x90FFFFFF),
+                            ),
                           ),
                         )
-
-
-
-
-
-
-
                       ],
                     ),
-                  ) ,
+                  ),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
                 InkWell(
-                  onTap: (){
-                    showDialog(
-                      context: context,
-                      builder: (context) => Center(
-                        child: _FeedbackPopup2(),
-                      ),
-                    );
+                  onTap: () async {
+                    final websiteUrl=Uri.parse('https://docs.google.com/forms/d/1TMejxkgoaFfWPkd381Je9JVrrNp41M3lUfPsBlnnaMM/viewform?edit_requested=true#settings');
+                    launchUrl(websiteUrl,mode: LaunchMode.externalApplication);
+
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 25),
@@ -615,49 +565,43 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(16*fem),
+                          borderRadius: BorderRadius.circular(16 * fem),
                           child: Image.asset(
                             'assets/images/complaint.png',
                             height: 200,
-
-
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Complaints \nRegarding \nMess Food",
-                            style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0x90FFFFFF),
+                            ),
                           ),
                         )
-
-
-
-
-
-
-
                       ],
                     ),
                   ),
-
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
                 InkWell(
-                  onTap: (){
-                    showDialog(
-                      context: context,
-                      builder: (context) => Center(
-                        child: _FeedbackPopup3(),
-                      ),
-                    );
+                  onTap: () async {
+                    final websiteUrl=Uri.parse('https://docs.google.com/forms/d/1TMejxkgoaFfWPkd381Je9JVrrNp41M3lUfPsBlnnaMM/viewform?edit_requested=true#settings');
+                    launchUrl(websiteUrl,mode: LaunchMode.externalApplication);
+
                   },
+
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 25),
                     padding: EdgeInsets.all(10),
@@ -669,42 +613,36 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(16*fem),
+                          borderRadius: BorderRadius.circular(16 * fem),
                           child: Image.asset(
                             'assets/images/complaint.png',
                             height: 200,
-
-
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Other \nComplaints",
-                            style: TextStyle(fontSize: 20, color: Color(0x90FFFFFF),),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0x90FFFFFF),
+                            ),
                           ),
                         )
-
-
-
-
-
-
-
                       ],
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
-
-
-
               ],
             ),
           ),
