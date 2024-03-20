@@ -25,7 +25,7 @@ List<MenuModel> decodeMenu(String responseBody) {
 }
 
 Future<List<MenuModel>> fetchMenu() async {
-  String url = ' http://143.110.187.184/menu';
+  String url = 'http://143.110.187.184/menu';
   Uri uri = Uri.parse(url);
   final localMenu = await Hive.openBox('local_menu');
   DateTime now = new DateTime.now();
@@ -34,27 +34,40 @@ Future<List<MenuModel>> fetchMenu() async {
 
 
   if(!localMenu.containsKey(date))
+    {
+      localMenu.put(date, test);
+          // localMenu.put(date, test);
+          // print(test);
+          final menu = localMenu.get(date);
+          localMenu.delete(prevdate);
+          print(localMenu.keys);
+          localMenu.close();
+
+          return decodeMenu(menu);
+
+    }
   //   if(true)
 
-    {
-
-    final response = await http.get(uri);
-    print('called');
-    if (response.statusCode == 200) {
-
-      localMenu.put(date, response.body);
-      // localMenu.put(date, test);
-      // print(test);
-      final menu = localMenu.get(date);
-      localMenu.delete(prevdate);
-      print(localMenu.keys);
-      localMenu.close();
-
-      return decodeMenu(menu);
-    } else {
-      throw Exception('Unable to fetch data from the REST API');
-    }
-  }
+  //   {
+  //
+  //   final response = await http.get(uri);
+  //   print('called');
+  //
+  //   if (response.statusCode == 200) {
+  //
+  //     localMenu.put(date, response.body);
+  //     // localMenu.put(date, test);
+  //     // print(test);
+  //     final menu = localMenu.get(date);
+  //     localMenu.delete(prevdate);
+  //     print(localMenu.keys);
+  //     localMenu.close();
+  //
+  //     return decodeMenu(menu);
+  //   } else {
+  //     throw Exception('Unable to fetch data from the REST API');
+  //   }
+  // }
   else{
     print('saved call');
     final menu = localMenu.get(date);

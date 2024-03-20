@@ -8,6 +8,9 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+import 'package:ssmsapp1/resources/form_controller.dart';
+import 'package:ssmsapp1/models/form.dart';
+
 
 
 import 'dart:ui';
@@ -31,11 +34,46 @@ import '../resources/menu_method.dart';
 import '../resources/menu_method.dart';
 class _FeedbackPopup2 extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
   TextEditingController messnameController = TextEditingController();
   TextEditingController foodnameController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
+
+
+
+  void _submitForm() {
+
+
+      FeedbackForm feedbackForm = FeedbackForm(
+
+          _auth.currentUser!.email.toString(),
+          messnameController.text,
+          foodnameController.text,
+          feedbackController.text
+      );
+
+      FormController formController = FormController((String response){
+        print("Response: $response");
+        if(response == FormController.STATUS_SUCCESS){
+          print("check excel");
+          //
+
+        } else {
+
+        }
+      });
+
+
+
+      // Submit 'feedbackForm' and save it in Google Sheet
+
+      formController.submitForm(feedbackForm);
+
+
+
+  }
 
   // Method to Submit Feedback and save it in Google Sheets
 
@@ -160,6 +198,7 @@ class _FeedbackPopup2 extends StatelessWidget {
                           ElevatedButton(
 
                             onPressed: () async {
+                              _submitForm();
                               // Validate form
                               if (_formKey.currentState!.validate()) {
                                 // Get values from controllers
