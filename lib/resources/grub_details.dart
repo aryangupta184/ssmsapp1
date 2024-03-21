@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 String test = """
 {
-  "grub_name": "Sample Restaurant",
+  "grub_name": "Sample Assoc.",
   "logo_image_url": "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg",
   "menu": {
     "vegetarian": [
@@ -18,6 +18,8 @@ String test = """
       "Beef Burger"
     ]
   },
+  "day": "Monday",
+  "date": "25-03-2024",
   "price": {
     "vegetarian_total_price": 26.97,
     "non_vegetarian_total_price": 34.97
@@ -29,12 +31,16 @@ class GrubModel {
   final String grubName;
   final String logoImageUrl;
   final Map<String, List<String>> menu;
+  final String day;
+  final String date;
   final Map<String, double> price;
 
   GrubModel({
     required this.grubName,
     required this.logoImageUrl,
     required this.menu,
+    required this.day,
+    required this.date,
     required this.price,
   });
 
@@ -46,6 +52,8 @@ class GrubModel {
         'vegetarian': List<String>.from(json['menu']['vegetarian']),
         'non_vegetarian': List<String>.from(json['menu']['non_vegetarian']),
       },
+      day: json['day'],
+      date: json['date'],
       price: {
         'vegetarian_total_price': json['price']['vegetarian_total_price'],
         'non_vegetarian_total_price': json['price']['non_vegetarian_total_price'],
@@ -122,6 +130,8 @@ GrubModel decodeGrub(String jsonData) {
     'vegetarian': List<String>.from(jsonMap['menu']['vegetarian']),
     'non_vegetarian': List<String>.from(jsonMap['menu']['non_vegetarian']),
   };
+  String day = jsonMap['day'];
+  String date = jsonMap['date'];
   Map<String, double> price = {
     'vegetarian_total_price': jsonMap['price']['vegetarian_total_price'].toDouble(),
     'non_vegetarian_total_price': jsonMap['price']['non_vegetarian_total_price'].toDouble(),
@@ -132,6 +142,8 @@ GrubModel decodeGrub(String jsonData) {
     grubName: grubName,
     logoImageUrl: logoImageUrl,
     menu: menu,
+    day: day,
+    date: date,
     price: price,
   );
 }

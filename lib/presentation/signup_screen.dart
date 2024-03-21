@@ -247,9 +247,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   getHalf() {
     if (newDate.day.toInt() >= 16) {
-      return -16 + newDate.day.toInt();
+      // return -16 + newDate.day.toInt() ;
+      return newDate.day.toInt() - DateTime.now().day.toInt();
     } else {
-      return -1 + newDate.day.toInt();
+      // return -1 + newDate.day.toInt();
+      return newDate.day.toInt() - DateTime.now().day.toInt();
     }
   }
 
@@ -322,10 +324,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   DateTime start() {
     DateTime now = DateTime.now();
     if (now.day > 15) {
-      DateTime dateOf16th = DateTime(now.year, now.month, 16);
+      DateTime dateOf16th = DateTime(now.year, now.month, now.day);
       return dateOf16th;
     } else {
-      DateTime dateOf1th = DateTime(now.year, now.month, 1);
+      DateTime dateOf1th = DateTime(now.year, now.month, now.day);
       return dateOf1th;
     }
   }
@@ -1061,6 +1063,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             //Slider Container properties
                             options: CarouselOptions(
                               height: 330.0,
+                              // height: 430.0,
                               enlargeCenterPage: true,
                               autoPlay: false,
                               initialPage: getinitialpage(),

@@ -236,140 +236,140 @@ class _FeedbackPopup2 extends StatelessWidget {
 }
 
 
-class ListItem {
-  String title;
-  int likes;
-  int dislikes;
-
-  ListItem({
-    required this.title,
-    required this.likes,
-    required this.dislikes,
-  });
-}
-
-
-class LikesListView extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('menurate').snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return CircularProgressIndicator();
-        }
-
-        List<DocumentSnapshot> documents = snapshot.data!.docs;
-        print(documents);
-
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Material(
-            borderRadius: BorderRadius.circular(16),
-            color: Color(0xff53E88B),
-            child: SizedBox(
-              height: 510,
-              child: Padding(
-
-                padding: const EdgeInsets.all(16.0),
-                child: SingleChildScrollView(
-                  child: Column(
+// class ListItem {
+//   String title;
+//   int likes;
+//   int dislikes;
+//
+//   ListItem({
+//     required this.title,
+//     required this.likes,
+//     required this.dislikes,
+//   });
+// }
 
 
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Food Feedback",
-                          textAlign: TextAlign.right,
-                          style: SafeGoogleFont(
-                            'Viga',
-                            fontSize: 32 ,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-
-                          ),
-
-                        ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height: 400,
-                        child: ListView.builder(
-                          itemCount: documents.length,
-                          itemBuilder: (context, index) {
-                            bool voted=false;
-                            ListItem item = ListItem(
-                              title: documents[index]['title'],
-                              likes: documents[index]['likes'],
-                              dislikes: documents[index]['dislikes'],
-                            );
-
-                            return ListTile(
-                              title: Text(item.title),
-                              subtitle: Text('Likes: ${item.likes}, Dislikes: ${item.dislikes}'),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(Icons.thumb_up),
-                                    onPressed: () {
-                                      voted?0:_handleLike(item, isThumbsUp: true);
-                                      voted=true;
-                                    },
-                                  ),
-                                  IconButton(
-                                    icon: Icon(Icons.thumb_down),
-                                    onPressed: () => _handleLike(item, isThumbsUp: false),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-
-
-
-
-      },
-    );
-  }
-
-  Future<void> _handleLike(ListItem item, {required bool isThumbsUp}) async {
-    final int incrementValue = isThumbsUp ? 1 : -1;
-
-
-    // Reference to the document
-    final documentReference =
-    FirebaseFirestore.instance.collection('menurate').doc(item.title);
-
-    // Check if the document exists
-    final documentSnapshot = await documentReference.get();
-    if (documentSnapshot.exists) {
-      // Document exists, update the fields
-      await documentReference.update({
-        'likes': item.likes + incrementValue,
-        'dislikes': item.dislikes + (isThumbsUp ? 0 : incrementValue),
-      });
-    } else {
-      // Document does not exist, create it with the specified ID and fields
-      await documentReference.set({
-        'title': item.title,
-        'likes': isThumbsUp ? incrementValue : 0,
-        'dislikes': isThumbsUp ? 0 : incrementValue,
-      });
-    }
-  }
-}
+// class LikesListView extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<QuerySnapshot>(
+//       stream: FirebaseFirestore.instance.collection('menurate').snapshots(),
+//       builder: (context, snapshot) {
+//         if (!snapshot.hasData) {
+//           return CircularProgressIndicator();
+//         }
+//
+//         List<DocumentSnapshot> documents = snapshot.data!.docs;
+//         print(documents);
+//
+//         return Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Material(
+//             borderRadius: BorderRadius.circular(16),
+//             color: Color(0xff53E88B),
+//             child: SizedBox(
+//               height: 510,
+//               child: Padding(
+//
+//                 padding: const EdgeInsets.all(16.0),
+//                 child: SingleChildScrollView(
+//                   child: Column(
+//
+//
+//                     children: [
+//                       Align(
+//                         alignment: Alignment.centerLeft,
+//                         child: Text(
+//                           "Food Feedback",
+//                           textAlign: TextAlign.right,
+//                           style: SafeGoogleFont(
+//                             'Viga',
+//                             fontSize: 32 ,
+//                             color: Colors.black,
+//                             fontWeight: FontWeight.w400,
+//
+//                           ),
+//
+//                         ),
+//                       ),
+//                       SizedBox(height: 15,),
+//                       Container(
+//                         height: 400,
+//                         child: ListView.builder(
+//                           itemCount: documents.length,
+//                           itemBuilder: (context, index) {
+//                             bool voted=false;
+//                             ListItem item = ListItem(
+//                               title: documents[index]['title'],
+//                               likes: documents[index]['likes'],
+//                               dislikes: documents[index]['dislikes'],
+//                             );
+//
+//                             return ListTile(
+//                               title: Text(item.title),
+//                               subtitle: Text('Likes: ${item.likes}, Dislikes: ${item.dislikes}'),
+//                               trailing: Row(
+//                                 mainAxisSize: MainAxisSize.min,
+//                                 children: [
+//                                   IconButton(
+//                                     icon: Icon(Icons.thumb_up),
+//                                     onPressed: () {
+//                                       voted?0:_handleLike(item, isThumbsUp: true);
+//                                       voted=true;
+//                                     },
+//                                   ),
+//                                   IconButton(
+//                                     icon: Icon(Icons.thumb_down),
+//                                     onPressed: () => _handleLike(item, isThumbsUp: false),
+//                                   ),
+//                                 ],
+//                               ),
+//                             );
+//                           },
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//         );
+//
+//
+//
+//
+//       },
+//     );
+//   }
+//
+//   Future<void> _handleLike(ListItem item, {required bool isThumbsUp}) async {
+//     final int incrementValue = isThumbsUp ? 1 : -1;
+//
+//
+//     // Reference to the document
+//     final documentReference =
+//     FirebaseFirestore.instance.collection('menurate').doc(item.title);
+//
+//     // Check if the document exists
+//     final documentSnapshot = await documentReference.get();
+//     if (documentSnapshot.exists) {
+//       // Document exists, update the fields
+//       await documentReference.update({
+//         'likes': item.likes + incrementValue,
+//         'dislikes': item.dislikes + (isThumbsUp ? 0 : incrementValue),
+//       });
+//     } else {
+//       // Document does not exist, create it with the specified ID and fields
+//       await documentReference.set({
+//         'title': item.title,
+//         'likes': isThumbsUp ? incrementValue : 0,
+//         'dislikes': isThumbsUp ? 0 : incrementValue,
+//       });
+//     }
+//   }
+// }
 Widget card(String name, String time1,String time2,String time3, BuildContext context) {
   return Card(
       color: Color(0x20FFFFFF),
@@ -466,8 +466,8 @@ Widget card(String name, String time1,String time2,String time3, BuildContext co
 }
 class _TimePopup extends StatelessWidget {
 
-  List<String> time1 =['7:30AM - 9:30AM','11:30AM - 1:30PM', '6:15PM - 8:15PM'];
-  List<String> time2 =['8:00AM - 10:00AM ','12:00PM - 2:00PM', '8:00PM (Last Entry Time)'];
+  List<String> time1 =['7:30AM - 9:30AM','11:30AM - 1:30PM', '7:00PM - 9:00PM'];
+  List<String> time2 =['8:00AM - 10:00AM ','12:00PM - 2:00PM', '8:45PM (Last Entry Time)'];
   List<String> time3 =['(Sundays and Holidays)','(Sundays and Holidays)',""];
 
   List<String> meal =['Breakfast','Lunch','Dinner'];
@@ -593,9 +593,11 @@ class _HomeScreenState extends State<HomeScreen>
 
   getHalf() {
     if (newDate.day.toInt() >= 16) {
-      return -16 + newDate.day.toInt();
+      // return -16 + newDate.day.toInt();
+      return newDate.day.toInt() - DateTime.now().day.toInt();
     } else {
-      return -1 + newDate.day.toInt();
+      // return -1 + newDate.day.toInt();
+      return newDate.day.toInt() - DateTime.now().day.toInt();
     }
   }
 
@@ -725,6 +727,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     futureMenu = fetchRowwiseMenu();
+
     current = getHalf();
 
     auth = LocalAuthentication();
@@ -744,11 +747,11 @@ class _HomeScreenState extends State<HomeScreen>
   DateTime start(){
     DateTime now = DateTime.now();
     if(now.day>15){
-      DateTime dateOf16th = DateTime(now.year, now.month, 16);
+      DateTime dateOf16th = DateTime(now.year, now.month, now.day);
         return dateOf16th;
     }
     else{
-      DateTime dateOf1th = DateTime(now.year, now.month, 1);
+      DateTime dateOf1th = DateTime(now.year, now.month, now.day);
         return dateOf1th;
 
     }
@@ -1673,6 +1676,8 @@ class _HomeScreenState extends State<HomeScreen>
                       //Slider Container properties
                       options: CarouselOptions(
                         height: 330.0,
+                        // height: 430.0,
+
                         enlargeCenterPage: true,
                         autoPlay: false,
                         initialPage: getinitialpage(),
