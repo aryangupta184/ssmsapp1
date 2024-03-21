@@ -1677,7 +1677,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                       //Slider Container properties
                       options: CarouselOptions(
-                        height: 430.0,
+                        height: 330.0,
                         // height: 430.0,
 
                         enlargeCenterPage: true,
