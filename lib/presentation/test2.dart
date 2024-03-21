@@ -594,10 +594,12 @@ class _HomeScreenState extends State<HomeScreen>
   getHalf() {
     if (newDate.day.toInt() >= 16) {
       // return -16 + newDate.day.toInt();
-      return newDate.day.toInt() - DateTime.now().day.toInt();
+      // return newDate.day.toInt() - DateTime.now().day.toInt();
+      return newDate.day.toInt() - 21;
     } else {
       // return -1 + newDate.day.toInt();
-      return newDate.day.toInt() - DateTime.now().day.toInt();
+      // return newDate.day.toInt() - DateTime.now().day.toInt();
+      return newDate.day.toInt() - 21;
     }
   }
 
@@ -1675,7 +1677,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                       //Slider Container properties
                       options: CarouselOptions(
-                        height: 330.0,
+                        height: 430.0,
                         // height: 430.0,
 
                         enlargeCenterPage: true,

@@ -248,10 +248,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   getHalf() {
     if (newDate.day.toInt() >= 16) {
       // return -16 + newDate.day.toInt() ;
-      return newDate.day.toInt() - DateTime.now().day.toInt();
+      // return newDate.day.toInt() - DateTime.now().day.toInt();
+      return newDate.day.toInt() - 21;
+
     } else {
       // return -1 + newDate.day.toInt();
-      return newDate.day.toInt() - DateTime.now().day.toInt();
+      // return newDate.day.toInt() - DateTime.now().day.toInt();
+      return newDate.day.toInt() - 21;
     }
   }
 

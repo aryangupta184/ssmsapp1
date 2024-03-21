@@ -3,8 +3,448 @@ import 'package:http/http.dart' as http;
 import 'package:hive_flutter/hive_flutter.dart';
 
 
-
-// String test = """{"data":[["THURSDAY","2023-11-16T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Vada pav","Green chutney","Sweet daliya","Watermelon","Tea + coffee","Milk","THURSDAY","LUNCH","Aloo chips","Jeera aloo ","Kadhi pakoda","Veg khichdi","Chapati","Plain rice","Sambar","Shkanji ","THURSDAY","DINNER","Green salad","Aloo gobhi ","Mix dal ","Chapati","Plain rice","Rasam","Suji pineapple halwa"],["FRIDAY","2023-11-17T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Aloo bhaji","Palak puri ","Cut onion lemon","Papaya","Tea + coffee","Milk","FRIDAY","LUNCH","Macroni salad","Soya handi ","Palak corn","Dal panchratan","Chapati","Plain rice","Sambar","Choco chip i/c","FRIDAY","DINNER","Green salad","Veg kohlapuri","Dhaba dal ","Chapati","Plain rice","Rasam","Fruit custard "],["SATURDAY","2023-11-18T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Seeviyaam upma","Adrak chutney","**********`","Honeydew","Tea + coffee","Milk","SATURDAY","LUNCH","Tomato chutney","Mix bhajia","Ragda mutter","Curd /butter","Mix veg paratha","Plain rice","Sambar","Litchi sherbet","SATURDAY","DINNER","Green salad","Dum aloo","Dal tadka","Chapati","Plain rice","Rasam","Hot badam milk "],["SUNDAY","2023-11-19T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Masala dosa","Sambhar","Coconut chutney","Apple","Tea + coffee","Milk","SUNDAY","LUNCH","Onion salad","Paneer lababdar","Dhaba chicken","Naan / chapati","Biryani rice","Boondi raita","SUNDAY","DINNER","Corn salad","Aloo palak","Aarhar dal tadka","Chapati","Plain rice","Rasam","Gulab jamuin"],["MONDAY","2023-11-20T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Poha","Sev","Cut onion lemon","Pineapple","Tea + coffee","Milk","MONDAY","LUNCH","Green salad","Tori masala","Rajma masala","Dal palak","Chapati","Plain rice","Sambar","MONDAY","DINNER","Green salad","Methi mutter malai ","Dal lahsuni","Chapati","Plain rice","Rasam","Veg manchow soup "],["TUESDAY","2023-11-21T00:00:00.000Z","BREAKFAST","No egg","Cornflakes","Bread + jam","Aloo paratrha","Curd","Pickle","Watermelon","Tea + coffee","Milk","TUESDAY","LUNCH","Bhel poori","Baingan bharta","Veg kofta curry ","Dal maharani ","Chapati","Plain rice","Sambar","Tang","TUESDAY","DINNER","Lemon + onion","Khatta meetha pumpkin","Chole masala","Bhatora/ chapati","Jeera rice","Mix veg raita","Coconut burfi "],["WEDNESDAY","2023-11-22T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Idli/ sautee idli ","Sambar","Coconut chutney","Banana","Tea + coffee","Milk","WEDNESDAY","LUNCH","Onion salad","Paneer korma","Chicken makhani ","Chapati","Pulao rice","Pineapple raita ","WEDNESDAY","DINNER","Aloo chana chaat","Mix tawa veg ","Dal panchratan","Chapati","Plain rice","Rasam","Lemon corriender soup "],["THURSDAY","2023-11-23T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Bread pakora","Green chutney","Sweet daliya","Papaya","Tea + coffee","Milk","THURSDAY","LUNCH","Roasted papad ","Pakoda kadhi","Achari aloo","Curd rice","Chapati","Plain rice","Sambar","Sweet lassi ","THURSDAY","DINNER","Mirch ke tapore/ lahsun chutney","Aloo rassa","Dal fry","Bati/ chapati","Plain rice","Rasam","Churma"],["FRIDAY","2023-11-24T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Suji upma","Adrak chutney","Pineapple","Tea + coffee","Milk","FRIDAY","LUNCH","Macroni salad","Gobhi mutter","Mix kathol ","Dal palak ","Chapati","Plain rice","Mix veg raita","FRIDAY","DINNER","Green salad","Veg in hot garlic sauce","Dal makhani","Egg fried rice / veg fried rice","Chapati","Rasam"],["SATURDAY","2023-11-25T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Masala s/w","Tomato ketchup","Sweet daliya","Apple","Tea + coffee","Milk","SATURDAY","LUNCH","Green chutney","Sabudana wada","Kala channa masala","Curd /butter","Aloo paratha","Plain rice","Sambar","SATURDAY","DINNER","Cut onion + lemon ","Pao","Bhaji","Dal tadka","Plain rice","Chapati limited","Seeviyaan kheer "],["SUNDAY","2023-11-26T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Methi paratha","Curd","Pickle","Hoenydew","Tea + coffee","Milk","SUNDAY","LUNCH","Onion salad","Paneer lahori","Butter chicken","Naan / chapati","Biryani rice","Boondi raita","SUNDAY","DINNER","Green salad","Aloo gobhi ","Mix dal ","Chapati","Plain rice","Pineapple raita ","Tomato soup"],["MONDAY","2023-11-27T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Poha","Sev","Cut onion lemon","Water melon","Tea + coffee","Milk","MONDAY","LUNCH","Green salad","Cabbage mutter","Rajma masala","Dal tadka ","Chapati","Plain rice","Sambar","Shikanji","MONDAY","DINNER","Hara bhara kabab","Sahi paneer","Dal makhani ","Tikona paratha","Kashmiri pulao","Burani raita","Aate ka halwa"],["TUESDAY","2023-11-28T00:00:00.000Z","BREAKFAST","No egg","Cornflakes","Bread + jam","Mutter ","Kulcha","Cut onion + lemon","Papaya","Tea + coffee","Milk","TUESDAY","LUNCH","Papadi chaat","Soya masala","Gatta curry ","Moong dal tadka","Chapati","Plain rice","Sambar","TUESDAY","DINNER","Lemon + onion","Khatta meetha pumpkin","Chole masala","Bhatora/ chapati","Jeera rice","Rasam","Veg soup "],["WEDNESDAY","2023-11-29T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Idli / sautee idli","Sambhar","Coconut chutney","Banana","Tea + coffee","Milk","WEDNESDAY","LUNCH","Onion salad","Palak paneer","Dal makhani ","Chapati","Veg pulao ","Mix veg raita","WEDNESDAY","DINNER","Bhel poori","Methi mutter malai","Dhaba dal ","Chapati","Plain rice","Rasam","Jalebi"],["THURSDAY","2023-11-30T00:00:00.000Z","BREAKFAST","Choice of egg","Cornflakes","Bread + jam","Missal","Pao","Onion + lemom","Hoenydew","Tea + coffee","Milk","THURSDAY","LUNCH","Fryms","Jeera aloo ","Kadhi pakoda","Veg khichdi","Chapati","Plain rice","Sambar","Tang","THURSDAY","DINNER","Green salad","Vada ","Sambhar","Masala dosa","Tamrind rice","Coconut chutney","Hot badam milk "]]}""";
+String test = '''{
+    "data": [
+        [
+            "THURSDAY",
+            "2024-03-21",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Onion tomato utappam",
+            "Sambhar",
+            "Coconut chutney",
+            "Pineapple",
+            "Tea + coffee + bv",
+            "Milk",
+            "THURSDAY",
+            "LUNCH",
+            "Roasted papad",
+            "Aloo do piyaza",
+            "Kadhi pakoda",
+            "Veg khichdi",
+            "Chapati",
+            "Plain rice",
+            "Sambhar",
+            "Cookies & cream ",
+            "THURSDAY",
+            "DINNER",
+            "Green salad",
+            "Veg korma",
+            "Arhar dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam"
+        ],
+        [
+            "FRIDAY",
+            "2024-03-22",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Tikona paratha",
+            "Aloo bhaji",
+            "Lemon + onion",
+            "Honey dew",
+            "Tea + coffee + bv",
+            "Milk",
+            "FRIDAY",
+            "LUNCH",
+            "Mix salad",
+            "Tinda masala",
+            "Rajma masala",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Sambhar",
+            "Sweet lassi",
+            "FRIDAY",
+            "DINNER",
+            "Corn salad",
+            "Veg manchurian",
+            "Moong dal tadka",
+            "Egg fried rice / veg fried rice/",
+            "Chapati",
+            "Fruit custard"
+        ],
+        [
+            "SATURDAY",
+            "2024-03-23",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Suji upma",
+            "Adrak chutney",
+            "Tomato ketchup",
+            "Papapya",
+            "Tea + coffee + bv",
+            "Milk",
+            "SATURDAY",
+            "LUNCH",
+            "Veg bullet",
+            "Tomato ketchup",
+            "Ragda mutter",
+            "Curd /butter",
+            "Aloo gobhi paratha",
+            "Plain rice",
+            "Sambar",
+            "Mint cooler",
+            "SATURDAY",
+            "DINNER",
+            "Green salad",
+            "Aloo mutter tamatar",
+            "Black masoor tadka",
+            "Chapati",
+            "Plain rice"
+        ],
+        [
+            "SUNDAY",
+            "2024-03-24",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala dosa",
+            "Sambhar",
+            "Coconut chutney",
+            "Papaya",
+            "Tea + coffee + bv",
+            "Milk",
+            "SUNDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer lahori",
+            "Butter chicken ",
+            "Biryani rice",
+            "Naan / chapati",
+            "Boondi raita",
+            "Choco chip i/c",
+            "SUNDAY",
+            "DINNER",
+            "Green salad",
+            "Methi mutter malai ",
+            "Butter dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam"
+        ],
+        [
+            "MONDAY",
+            "2024-03-25",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala s/w",
+            "Tomato ketchup",
+            "Sweet daliya",
+            "Grapes",
+            "Tea + coffee + bv",
+            "Milk",
+            "MONDAY",
+            "LUNCH",
+            "MONDAY",
+            "DINNER",
+            "Happy holi",
+            "Happy holi",
+            "Happy holi",
+            "Happy holi",
+            "Happy holi",
+            "Happy holi",
+            "Happy holi"
+        ],
+        [
+            "TUESDAY",
+            "2024-03-26",
+            "BREAKFAST",
+            "Kala channa sprout",
+            "Cornflakes",
+            "Bread + jam",
+            "Mix veg paratha",
+            "Curd",
+            "Pickel",
+            "Banana",
+            "Tea + coffee + bv",
+            "Milk",
+            "TUESDAY",
+            "LUNCH",
+            "Green salad",
+            "Capsicum pitla",
+            "Raw banana kofta curry",
+            "Dhaba dal ",
+            "Chapati",
+            "Plain rice",
+            "Sambar",
+            "Shikanji",
+            "TUESDAY",
+            "DINNER",
+            "Lemon + onion",
+            "Jeera aloo ",
+            "Chole masala",
+            "Puri / chapati",
+            "Plain rice",
+            "Rasam",
+            "Gulab jamun"
+        ],
+        [
+            "WEDNESDAY",
+            "2024-03-27",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Mysore bonda",
+            "Adrak chutney",
+            "Sweet daliya ",
+            "Pineapple",
+            "Tea + coffee + bv",
+            "Milk",
+            "WEDNESDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer lababdar",
+            "Dal makhani",
+            "Chapati",
+            "Plain rice",
+            "Pine apple raita",
+            "Mint cooler",
+            "WEDNESDAY",
+            "DINNER",
+            "Green salad",
+            "Kadhai veg ",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam"
+        ],
+        [
+            "THURSDAY",
+            "2024-03-28",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Poha",
+            "Sev",
+            "Lemon + onion",
+            "Water melon",
+            "Tea + coffee + bv",
+            "Milk",
+            "THURSDAY",
+            "LUNCH",
+            "Fryms",
+            "Madrasi aloo ",
+            "Onion kadhi",
+            "Masala khinchadi",
+            "Chapati",
+            "Plain rice",
+            "Sambhar",
+            "Tutty fruity i/c",
+            "THURSDAY",
+            "DINNER",
+            "Papdi chat",
+            "Soya chaap masala",
+            "Dal masala",
+            "Chapati",
+            "Onion rice",
+            "Onion raita"
+        ],
+        [
+            "FRIDAY",
+            "2024-03-29",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Rawa idli",
+            "Sambhar",
+            "Coconut chutney",
+            "Grapes",
+            "Tea + coffee + bv",
+            "Milk",
+            "FRIDAY",
+            "LUNCH",
+            "Bhel puri",
+            "Baingan bhartha",
+            "Rajam masala",
+            "Dal lahshuni",
+            "Chapati",
+            "Plain rice",
+            "Sambar",
+            "Masala chacch",
+            "FRIDAY",
+            "DINNER",
+            "Green salad",
+            "White sauce pasta",
+            "Moong dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam"
+        ],
+        [
+            "SATURDAY",
+            "2024-03-30",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Seviya upma",
+            "Adrak chutney",
+            "Banana",
+            "Tea + coffee + bv",
+            "Milk",
+            "SATURDAY",
+            "LUNCH",
+            "Green chutney",
+            "Corn tikki",
+            "Kala chana masala",
+            "Curd /butter",
+            "Mix veg paratha",
+            "Plain rice",
+            "Sambar",
+            "Butter scotch i/c",
+            "SATURDAY",
+            "DINNER",
+            "Green salad",
+            "Veg diwani handi",
+            "Dal maharani ",
+            "Chapati",
+            "Plain rice",
+            "Rasam"
+        ],
+        [
+            "SUNDAY",
+            "2024-03-31",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala dosa",
+            "Sambhar",
+            "Coconut chutney",
+            "Water melon",
+            "Tea + coffee + bv",
+            "Milk",
+            "SUNDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer makhani ",
+            "Chicken lahori",
+            "Biryani rice",
+            "Naan / chapati",
+            "Boondi raita",
+            "Rooh afza",
+            "SUNDAY",
+            "DINNER",
+            "Green salad",
+            "Aloo mutter rassa",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam",
+            "Coconut burfi"
+        ],
+        [
+            "SUNDAY",
+            "2024-03-31",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala dosa",
+            "Sambhar",
+            "Coconut chutney",
+            "Water melon",
+            "Tea + coffee + bv",
+            "Milk",
+            "SUNDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer makhani ",
+            "Chicken lahori",
+            "Biryani rice",
+            "Naan / chapati",
+            "Boondi raita",
+            "Rooh afza",
+            "SUNDAY",
+            "DINNER",
+            "Green salad",
+            "Aloo mutter rassa",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam",
+            "Coconut burfi"
+        ],
+        [
+            "SUNDAY",
+            "2024-03-31",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala dosa",
+            "Sambhar",
+            "Coconut chutney",
+            "Water melon",
+            "Tea + coffee + bv",
+            "Milk",
+            "SUNDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer makhani ",
+            "Chicken lahori",
+            "Biryani rice",
+            "Naan / chapati",
+            "Boondi raita",
+            "Rooh afza",
+            "SUNDAY",
+            "DINNER",
+            "Green salad",
+            "Aloo mutter rassa",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam",
+            "Coconut burfi"
+        ],
+        [
+            "SUNDAY",
+            "2024-03-31",
+            "BREAKFAST",
+            "Choice of egg",
+            "Cornflakes",
+            "Bread + jam",
+            "Masala dosa",
+            "Sambhar",
+            "Coconut chutney",
+            "Water melon",
+            "Tea + coffee + bv",
+            "Milk",
+            "SUNDAY",
+            "LUNCH",
+            "Onion salad",
+            "Paneer makhani ",
+            "Chicken lahori",
+            "Biryani rice",
+            "Naan / chapati",
+            "Boondi raita",
+            "Rooh afza",
+            "SUNDAY",
+            "DINNER",
+            "Green salad",
+            "Aloo mutter rassa",
+            "Dal tadka",
+            "Chapati",
+            "Plain rice",
+            "Rasam",
+            "Coconut burfi"
+        ]
+    ]
+}''';
 
 class MenuModel {
   List<String> items;
@@ -18,6 +458,7 @@ class MenuModel {
 }
 
 List<MenuModel> decodeMenu(String responseBody) {
+
   final Map<String, dynamic> parsed = json.decode(responseBody);
   final List<dynamic> dataLists = parsed['data'];
 
@@ -25,7 +466,6 @@ List<MenuModel> decodeMenu(String responseBody) {
 }
 
 Future<List<MenuModel>> fetchMenu() async {
-
 
 
   var uri = Uri.parse('https://api.ssms-pilani.in/menu');
@@ -38,49 +478,49 @@ Future<List<MenuModel>> fetchMenu() async {
   String prevdate = new DateTime(now.year, now.month, now.day-1).toString();
 
 
-  // if(!localMenu.containsKey(date))
+  if(true)
 
-    // {
-    //   localMenu.put(date, test);
-    //       // localMenu.put(date, test);
-    //       // print(test);
-    //       final menu = localMenu.get(date);
-    //       localMenu.delete(prevdate);
-    //       print(localMenu.keys);
-    //       localMenu.close();
-    //
-    //       return decodeMenu(menu);
-    //
-    // }
-
-
-    if(!localMenu.containsKey(date))
     {
-    print("making call for menu");
+      localMenu.put(date, test);
 
-    final response = await http.get(uri);
-    print('called menu');
-
-
-
-    print(response.body.toString());
-
-
-    if (response.statusCode == 200) {
-
-      localMenu.put(date, response.body);
       // localMenu.put(date, test);
-      // print(test);
-      final menu = localMenu.get(date);
-      localMenu.delete(prevdate);
-      print(localMenu.keys);
-      localMenu.close();
+          // print(test);
+          final menu = localMenu.get(date);
+          localMenu.delete(prevdate);
+
+          localMenu.close();
 
       return decodeMenu(menu);
-    } else {
-      throw Exception('Unable to fetch data from the REST API');
     }
-  }
+
+
+  //   if(!localMenu.containsKey(date))
+  //   {
+  //   print("making call for menu");
+  //
+  //   final response = await http.get(uri);
+  //   print('called menu');
+  //
+  //
+  //
+  //   print(response.body.toString());
+  //
+  //
+  //   if (response.statusCode == 200) {
+  //
+  //     localMenu.put(date, response.body);
+  //     // localMenu.put(date, test);
+  //     // print(test);
+  //     final menu = localMenu.get(date);
+  //     localMenu.delete(prevdate);
+  //     print(localMenu.keys);
+  //     localMenu.close();
+  //
+  //     return decodeMenu(menu);
+  //   } else {
+  //     throw Exception('Unable to fetch data from the REST API');
+  //   }
+  // }
   else{
     print('saved call');
     final menu = localMenu.get(date);
@@ -99,14 +539,13 @@ List<List<String>> convertToRowwise(List<MenuModel> menuModels) {
   for (var model in menuModels) {
     rowwise.add(model.items);
   }
-  print(rowwise);
+
   return rowwise;
 }
 
 Future<List<List<String>>> fetchRowwiseMenu() async {
 
   List<MenuModel> menu = await fetchMenu();
-
 
 
 
